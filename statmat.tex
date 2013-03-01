@@ -5,16 +5,14 @@
 \date{}		
 
 \usepackage{amsmath}%
+\usepackage{bbm}%
 
-\newtheorem{corollary}{Corollary}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
+\newtheorem{corollario}{Corollario}
+\newtheorem{definizione}{Definizione}
+\newtheorem{esempio}{Esempio}
 \newtheorem{exercise}{Exercise}
-\newtheorem{problem}{Problem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{remark}{Remark}
-\newtheorem{summary}{Summary}
-\newtheorem{theorem}{Theorem}
+\newtheorem{proposizione}{Proposizione}
+\newtheorem{teorema}{Teorema}
 
 \begin{document}
 \maketitle
@@ -24,12 +22,44 @@
 \subsection{Funzione generatrice dei momenti}
 \subsection{Famiglia esponenziale a k parametri}
 \subsection{Trasformazioni di variabili casuali}
+\paragraph{Discrete}
+\begin{teorema}
+Sia X una vc con funzione di massa $f_X(x)=P(X=x)$,  sia W=h(X) una nuova vc. Allora $$
+P(W=w)=\sum_{\{x\in (supporto di X):h(x)=w\}}P(X=x)$$
+\end{teorema}
+\begin{esempio}
+Sia X $\sim$ b(n,p) con $f_X(x,p)=\binom{n}{p}p^x(1-p)^{n-x}\mathbbm{1}_{0,1,...,n}(x)$, n noto e $p\in(0,1)$.
+Considero quindi W=n-X. Come si distribuisce W? 
+$$P(W=w)=P(X=n-w)=\binom{n}{n-w}p^{n-w}(1-p)^w\mathbbm{1}_{0,1,...,n}(w)$$
+\end{esempio}
+\begin{esempio}
+X vc...
+\end{esempio}
+\paragraph{Assolutamente continue}
 
-\begin{theorem}
-Sia X una vc con funzione di massa $f_X(x)=P(X=x)$ e sia W=h(X) una nuova vc, allora $P(W=w)=\sum_{{x:h(x)=w}}P(X=x)$ per ogni punto del supporto di X.
-\end{theorem}
-\begin{example}
-Sia X $\sim$ b(n,p), e quindi $f_X(x,p)=\left(\stackrel{n}{p}\right)p^x(1-p)^{n-x}$
-\end{example}
+\begin{teorema}
+Sia X una variabile casuale (ass continua) con funzione di densità $f_X(x)$ e sia W=h(X), ove h è una funzione monotona. 
+Supponiamo inoltre che $f_X(x)$ sia continua sul supporto di X e che $h^{-1}(w)$ abbia derivata continua sul supporto di W. Allora
+%$$f_W(w)=f_X(h^{-1}(w))\left.\left|\frac{d}{dw}h^{-1}(w)\right|\mathbbm{1}_{A_W}(w)$$
+\end{teorema}
+\begin{esempio}
+Standardizzazione di una vc normale:
+\end{esempio}
+\begin{teorema}
+Se W=h(X) ove h è monotona a tratti (un numero finito k di tratti) e valgono le condizioni del teorema precedente, allora
+$$f_W(w)=\sum_{n=1}^k f_X(h_n^{-1}(w))\left|\frac{d}{dw}h_n^{-1}(w)\right|\mathbbm{1}_{A_W}(w)$$
+\end{teorema}
+\begin{esempio}
+CHI-QUADRATO:
+\end{esempio}
+\subsection{Convergenze}
+\paragraph{Convergenza in probabilità}
+\begin{definizione}
+
+Sia $\{X_n\}_{n\in\mathbbm{N}}$ una successione di variabili casuali e sia X un'altra variabile casuale, tutte definite sullo stesso spazio campionario.
+Diciamo che $X_n$ converge in probabilità a X se
+% $\forall\varepsilon>0$ $$\lim_{n \to \infty}P(|X_n-X|\geqslant\varepsilon)=0$$
+\end{definizione}
+\paragraph{Convergenza in distribuzione}
 
 \end{document}
