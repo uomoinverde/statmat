@@ -1,0 +1,93 @@
+\subsection{Teoria asintotica}
+Lezione del 04/03, ultima modifica 05/03
+
+\begin{teo}
+\noindent
+($\Delta$-method) Sia $\{X_n\}_{n \in\ \mathbbm{N}}$ una successione di vc
+tale che 
+
+\noindent $\sqrt{n}(X_n-\vartheta)\stackrel{d}{\rightarrow}N(0,\sigma^2)$. 
+Supponiamo che una funzione g(X) sia derivabile in $\vartheta$ e che $g'(\vartheta)\neq0$. Allora $$\sqrt{n}(g(X_n)-g(\vartheta))\stackrel{d}{\rightarrow}N(0,\sigma^2(g'(\vartheta))^2)$$
+\end{teo}
+
+\textbf{Esempi}
+\begin{enumerate}
+\item Considero $$Y_n=\frac{\chi^2_n-n}{\sqrt{2n}}=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$$ ove $\chi^2_n$ è la chiquadro con n gradi di libertà. 
+Ricordiamo che $\mathbbm{E}(\chi^2_n)=n$ e che $Var(\chi^2_n)=2n$ (discende dal fatto che $\chi^2_n \sim \mathcal{G}(\alpha=n/2,\beta=2)$. 
+Siccome $Y_n \stackrel{d}{\rightarrow} N(0,1)$, scrivendo $Y_n$ nella forma $Y_n=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$ riconosciamo che la prima parte delle ipotesi del $\Delta$-method sono soddisfatte.
+Considero quindi $g(t)=\sqrt{t}$, che è derivabile in $\vartheta=1/\sqrt{2}$, $g'(t)=\frac{1}{2\sqrt{t}}|_{\vartheta=1/\sqrt{2}}=2^{-3/4}$.
+Allora $$\sqrt{n}(g\left(\frac{\chi^2_n}{\sqrt{2}n}\right)-g(\vartheta))=
+\sqrt{n}\left(\sqrt{\frac{\chi^2_n}{\sqrt{2}n}}-\sqrt{\frac{1}{\sqrt{2}}}\right)
+\stackrel{d}{\rightarrow}N(0,1^2\cdot 2^{-3/2})$$
+\end{enumerate}
+
+\begin{teo}
+(Teorema centrale del limite) Siano $X_1,...X_n$ vc iid dotate di media $\mu$ e varianza finita $\sigma^2$. Allora 
+$$\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\cdot \sigma} = \frac{\sqrt{n}(\bar{X_n}-\mu)}{\sigma}\stackrel{d}{\rightarrow}N(0,1) $$
+\end{teo}
+
+\textbf{Esempi/Applicazioni}
+\begin{enumerate}
+\item $X \sim b(n,p)$, $X \stackrel{a}{\sim}N(np,np(1-p))$
+\item $X_1,...,X_n$ vc 
+$P(\lambda =1)$. 
+Considero $Y_n=\sum X_i$.
+Dato che $Y_n \stackrel{a}
+{\sim} N(n\lambda ,n \lambda )$,
+ $\frac{Y_n}{n} \stackrel{a}
+ {\sim} N(1,1/n)$
+\item Considerato $W_n=\sqrt{n}(Y_n/n-1)=\frac{Y_n/n-1}
+{1/\sqrt{n}}=\frac{\bar{Y_n} - \mathbbm{E}(\bar{Y_n})}
+{\sqrt{Var(Y_n/n)}}$
+\end{enumerate}
+
+\begin{teo}
+Sia $\{X_n\}$ una succ di vc iid con FGM $M_{X_n}(t)$ definita e $<\infty$ per $t\in(-h,h) \forall n$, e sia X un'altra vc con FGM $M_X(t)$ definita e $<\infty$ per $t \in (-h_1,h_1), h_1\leq h$. Se $$\lim_{n \rightarrow +\infty} M_{X_n}(t)=M_X(t) \forall |t| \leq h_1$$ allora $X_n \stackrel{d}{\rightarrow} X$.
+\end{teo}
+\textbf{Applicazione}
+
+Sia $X_n \sim b(n,p)$. 
+Ricordiamo che $X_n=\sum X_i$ ove $X_i \sim b(1,p)$, ed inoltre $\mu=\mathbbm{E}(X)=np$.
+Siccome $M_{X_n}(t)=
+\mathbbm{E}(e^{tX_n})=[(1-p)+pe^t]^n=
+[1+\frac{\mu}{n}(e^t - 1)]^n$, 
+$$ M_{X_n}(t) \stackrel{n \rightarrow \infty}{\longrightarrow} 
+e^{\mu(e^t-1)}$$
+che è la FGM di una Poisson di parametro $\mu$.
+
+\section{Approccio alla Statistica Matematica}
+
+\subsection{Introduzione}
+
+\begin{definizione} (Campione Casuale)
+Il vettore casuale $(X_1,...,X_n)$ si dice Campione Casuale relativamente ad una vc $X \sim F_X(x,\vartheta)$ se i suoi elementi sono vc i.i.d.
+\end{definizione}
+\textbf{Osservazione}
+Il fatto che le vc siano i.i.d. implica che $$F_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n F_{X_i} (X_i)$$ e $$f_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n f_{X_i} (X_i)$$
+
+\begin{definizione} (Statistica)
+Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione associata alla vc $X$, e sia $\Omega$ lo spazio campionario di $(X_1,...,X_n)$
+
+\noindent Ogni funzione $$T(X_1,...,X_n):\Omega \longrightarrow \mathbbm{R}^k$$ che NON dipende da parametri incogniti è detta Statistica.
+\end{definizione}
+
+\textbf{Osservazioni}
+Le cose scritte tra virgolette "" sono concetti e/o definizioni non ancora introdotti, che vengono usati per dare un'idea intuitiva di quello che si andrà a vedere, cose che poi durante il corso verranno trattate con rigore.
+\begin{enumerate}
+\item Una statistica T è una "caratteristica numerica" del campione: si presta a $sintetizzare$ l'informazione su $\vartheta$ contenuta nel campione.
+\item $\sum_{i=1}^n X_i$ e $\sum_{i=1}^n X_i^2$ sono entrambe statistiche: sono alla base di due "stimatori" molto importanti:
+
+Media Campionaria: $\bar{X}_n =\frac{1}{n}\sum X_i$
+
+Varianza Campionaria: $S_n^2=\frac{1}{n-1} \sum (X_i-\bar{X}_n)^2 = \frac{1}{n-1} \sum X_i^2 - \frac{n}{n-1}\bar{X}_n^2$
+\item Ogni statistica è una vc: ha quindi una distribuzione, che dipende dal parametro.
+
+\textbf{Esempio} Considero $\bar{X}=\frac{1}{n} \sum X_i$ ove $X_i \sim N(\mu,\sigma^2)$. Allora $\bar{X} \sim N(\mu,\frac{\sigma^2}{n})$. Da questo si potrà dedurre la "bontà" di $\bar{X}$ come "stimatore" di $\mu$.
+\item Tra tutti i modi di sintetizzare l'informazione contenuta in $(X_1,...,X_n)$ relativamente a $\vartheta$, siamo interessati a quelli che NON tralasciano informazioni o quote di informazioni rilevanti per il parametro.
+\item In relazione ad uno stimatore potremmo essere interessati ad alcune proprietà, in particolare a queste due:
+
+$\cdot$ Accuratezza [concetto legato alla media dello stimatore] ($Non$ $distorsione$)
+
+$\cdot$ Precisione [concetto legato alla varianza dello stimatore] ($efficienza$ o $consistenza$)
+\end{enumerate}
+%Fine lezione del 4 marzo. ultima modifica 5 marzo, 14.08, Michele
