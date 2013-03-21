@@ -1,7 +1,7 @@
 %%%%lezione 18 febbraio%%%%
 
 \subsection{Funzione generatrice dei momenti}
-Lezione del 18/02, ultima modifica 04/03
+Lezione del 18/02, ultima modifica 04/03, Andrea Gadotti
 
 \begin{definizione}
 Sia $X$ una variabile casuale (discreta o assolutamente continua). Se esiste $t_0 > 0$ tale per cui $\mathbbm{E}(e^{tX}) < +\infty$ $\forall t \in (-t_0 , t_0)$, chiameremo la funzione 
@@ -88,10 +88,8 @@ $$M_{S_n}(t) = \mathbbm{E}({e^{tS_n}}) = \mathbbm{E}({e^{t \sum_{i=1}^n X_i}}) $
 $$\stackrel{TEO 1}
 {=} \displaystyle\prod_{i=1}^n \mathbbm{E}({e^{tX_i}}) = \displaystyle\prod_{i=1}^n M_{X_i}(t) = \displaystyle\prod_{i=1}^n (p e^t + (1-p)) = (p e^t + (1-p))^n$$ ovvero $S_n$ è distribuita come $b(n,p)$ per il Teorema 2.
 
-\begin{esercizio}
+\textbf{esercizio}
 Ripetere il calcolo precedente supponendo $X_i \sim P(\lambda), \forall i$.
-\end{esercizio}
-
 
 \subsection{Famiglia Esponenziale a $k$ parametri}
 Una famiglia di $f$ densità / $f$ massa è detta essere una Famiglia Esponenziale a $k$ parametri $\theta_1,...,\theta_k$ se la corrispondente $f$ densità / $f$ massa (che è indicizzata da $\theta_1,...,\theta_k$) può essere scritta come
@@ -115,6 +113,7 @@ Quindi ponendo $D^*(p) := (1-p)^n$, $C^*(x) := \binom{n}{x} \mathbbm{1}_{\lbrace
 \end{enumerate}
 
 \begin{oss}
-Le famiglie di esponenziali di ?...? hanno interessanti proprietà matematiche (proprietà di regolarità).\\
+Le famiglie di esponenziali di ?...? hanno interessanti proprietà matematiche (proprietà di regolarità).
+
 Dal punto di vista statistico, ciò si traduce in un'interessante conseguenza: tutta l'informazione contenuta nei dati a disposizione $(X_1,...,X_n)$ relativa alla funzione $f_X (x; \theta)$ può essere sintetizzata attraverso $k$ quantità (funzioni di $(X_1,...,X_n)$) che potranno essere impiegate per costruire procedure inferenziali (stima, test per la verifica di ipotesi) riguardanti il parametro $\theta$.\\
 Ovvero, l'appartenenza a una famiglia esponenziale permette una riduzione dei dati $(X_1,...,X_n)$ via $B_m$.\end{oss}

@@ -1,26 +1,70 @@
-\documentclass[11pt]{article}
+\documentclass[11pt,a4paper]{article}
 
-\title{Statistica Matematica}
-\author{Git}
+\title{Appunti di Statistica Matematica}
+\author{.}
 \date{}		
 
 \usepackage{amsmath}%
 \usepackage{bbm}%
 \usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{longtable}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{vmargin}
 
 \newtheorem{corollario}{Corollario}
 \newtheorem{oss}{Osservazione}
 \newtheorem{definizione}{Definizione}
 \newtheorem{esempio}{Esempio}
-\newtheorem{esercizio}{Esercizio}
 \newtheorem{proposizione}{Proposizione}
 \newtheorem{teo}{Teorema}
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{lemma}{Lemma}
+
+\newcommand{\ud}{\,\mathrm{d}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ri}{Risk}
+\DeclareMathOperator{\ggt}{ggT}
+\DeclareMathOperator{\mse}{MSE}
+\DeclareMathOperator{\eendd}{End}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\lo}{Loss}
+\DeclareMathOperator{\dom}{Dom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\bi}{Bin}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\uni}{Unif}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\homm}{Hom}
+\DeclareMathOperator{\iso}{Iso}
+\DeclareMathOperator{\asin}{asin}
+\DeclareMathOperator{\acos}{acos}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\var}{Var}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\Abs}[1]{\bigg\lvert#1\bigg\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+
 
 \begin{document}
+\setpapersize{A4}
+\setmarginsrb{30mm}{10mm}{25mm}{30mm}%
+             {0mm}{10mm}{0mm}{10mm}
+             
 \maketitle
 \section{Introduzione}
 \input{0218.tex}
 \input{0301.tex}
 \input{0304.tex}
-
+\input{0308.tex}
+\input{0315.tex}
+\input{0318.tex}
 \end{document}

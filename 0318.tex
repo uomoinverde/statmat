@@ -1,0 +1,25 @@
+%%% lezione 18 marzo %%%
+
+\subsubsection{Distribuzione esatta della statistica pivot per campioni poco numerosi}
+
+Lezione del 18/03, ultima modifica 19/03, Michele Nardin
+
+\textbf{La distribuzione t di student}
+La distribuzione di student con $\nu$ gradi di libertà è definita come 
+$T=\frac{Z}{\sqrt{S^2 / \nu}}$ ove $Z \sim N(0,1)$ mentre $S^2 \sim \chi^2_\nu$ (chiquadro con $\nu$ gradi di libertà).
+La funzione di densità è $$f_{t_\nu}(t,\nu)=\frac{\Gamma((\nu + 1)/2)}{\Gamma(\nu / 2)}
+\frac{1}{\sqrt{\pi \nu}} \frac{1}{[1+t^2/\nu]^{\frac{v+1}{2}}} \mathbbm{1}_\mathbbm{R} (t)$$
+tale funzione è simmetrica, ha la classica forma "a campana" come la normale, ma a differenza di quest'ultima ha le code più "pesanti".
+Risulta che la statistica pivot per la media in campioni poco numerosi (in caso di campionamento da normale) ha distribuzione t. Infatti 
+$$Q=\frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{S^2_n}{\sigma^2}}}$$
+ovviamente al numeratore abbiamo che $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
+mentre al denominatore abbiamo che 
+$$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}$$
+abbiamo già dimostrato che $\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$ e quindi risulta esattamente che al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
+Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. (per n>30, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti! Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
+Fissato un livello di confidenza $1-\alpha$, consideriamo i quantili della distribuzione t di student 
+(con n-1 gradi di libertà, ove n è la dimensione campionaria) 
+$\pm t_{(\alpha/2;n-1)}$, 
+troviamo che $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}
+ \leq t_{(\alpha/2;n-1)}\right) = 1 - \alpha $$
+Notiamo che questa volta vale l'uguaglianza "vera", non è un'approssimazione! Quindi in presenza del campione effettivamente estratto, $(x_1,...,x_n)$, 
