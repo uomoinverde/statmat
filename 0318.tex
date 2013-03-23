@@ -1,25 +1,53 @@
 %%% lezione 18 marzo %%%
 
-\subsubsection{Distribuzione esatta della statistica pivot per campioni poco numerosi}
+\subsubsection{Distribuzione esatta della statistica pivot: distribuzione t di Student}
 
 Lezione del 18/03, ultima modifica 19/03, Michele Nardin
-
-\textbf{La distribuzione t di student}
-La distribuzione di student con $\nu$ gradi di libertà è definita come 
+\\
+\\
+La distribuzione di Student con $\nu$ gradi di libertà è definita come 
 $T=\frac{Z}{\sqrt{S^2 / \nu}}$ ove $Z \sim N(0,1)$ mentre $S^2 \sim \chi^2_\nu$ (chiquadro con $\nu$ gradi di libertà).
 La funzione di densità è $$f_{t_\nu}(t,\nu)=\frac{\Gamma((\nu + 1)/2)}{\Gamma(\nu / 2)}
 \frac{1}{\sqrt{\pi \nu}} \frac{1}{[1+t^2/\nu]^{\frac{v+1}{2}}} \mathbbm{1}_\mathbbm{R} (t)$$
-tale funzione è simmetrica, ha la classica forma "a campana" come la normale, ma a differenza di quest'ultima ha le code più "pesanti".
-Risulta che la statistica pivot per la media in campioni poco numerosi (in caso di campionamento da normale) ha distribuzione t. Infatti 
+tale funzione è simmetrica, ha la classica forma a campana come la normale, ma a differenza di quest'ultima ha le code più pesanti.
+Risulta che la statistica pivot per la media in campioni poco numerosi 
+\footnote{in realtà in tutti i campioni, è solo che da un certo punto in poi la differenza con la normale è davvero trascurabile! Sulle tavole si riporta solo per $\nu < 120$} (in caso di campionamento da normale) 
+ha distribuzione t. Infatti 
 $$Q=\frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{S^2_n}{\sigma^2}}}$$
-ovviamente al numeratore abbiamo che $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
+troviamo al numeratore $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
 mentre al denominatore abbiamo che 
-$$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}$$
-abbiamo già dimostrato che $\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$ e quindi risulta esattamente che al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
-Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. (per n>30, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti! Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
+$$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}= \sqrt{\frac{H}{(n-1)}} $$
+Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$ e quindi risulta esattamente che al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
+Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. (per $n>30$, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti! Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
 Fissato un livello di confidenza $1-\alpha$, consideriamo i quantili della distribuzione t di student 
 (con n-1 gradi di libertà, ove n è la dimensione campionaria) 
 $\pm t_{(\alpha/2;n-1)}$, 
 troviamo che $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}
  \leq t_{(\alpha/2;n-1)}\right) = 1 - \alpha $$
-Notiamo che questa volta vale l'uguaglianza "vera", non è un'approssimazione! Quindi in presenza del campione effettivamente estratto, $(x_1,...,x_n)$, 
+Notiamo che questa volta vale l'uguaglianza 'vera', non è un'approssimazione! 
+In presenza del campione effettivamente estratto, $(x_1,...,x_n)$, 
+scriviamo $\bar{x}_n$ e $s^2_n$ i valori assunti da media e varianza campionaria,
+l'intervallo di confidenza sarà $$IC_{\mu}(1-\alpha)=
+\left[\bar{x}_n -
+ t_{(\alpha / 2;n-1)} 
+ \sqrt{\frac{s^2_n}{n}},
+  \bar{x}_n + t_{(\alpha / 2;n-1)}\sqrt{\frac{s^2_n}{n}}\right]$$
+\begin{oss}
+Alcune osservazioni che, pur sembrando banali, è bene tenere a mente:
+\begin{enumerate}
+\item Al crescere del livello di confidenza $(1-\alpha)$ e/o della varianza campionaria $S^2_n$ cresce anche l'ampiezza di IC
+\item Al crescere dell'ampiezza campionaria $n$, (fermo restando il livello di confidenza) l'ampiezza di IC diminuisce
+\end{enumerate}
+\end{oss}
+
+\subsection{Intervalli di confidenza per la varianza}
+Sia $(X_1,...,X_n)$ un campione casuale da $N(\mu,\sigma^2)$.
+Consideriamo la statistica pivot $W=\frac{n-1}{\sigma^2} S^2_n$. Abbiamo già mostrato che $W \sim \chi^2_{n-1}$. 
+Ma allora, dato che noi cerchiamo $q_1,q_2$ tc $P(q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2)=1-\alpha$, troviamo che essi sono i quantili di ordine $\alpha / 2$ e $1 - \alpha / 2$ della chiquadro con n-1 gradi di libertà, che indicheremo $q_1=\chi^2_{(n-1,\alpha / 2)}$ e $q_2=\chi^2_{(n-1,1 - \alpha / 2)}$.
+Con qualche passaggio otteniamo:
+$$P(\frac{1}{q_2} \leq \frac{\sigma^2}{(n-1) S^2_n} \leq \frac{1}{q_1})=1-\alpha$$
+$$P(\frac{(n-1) S^2_n}{q_2} \leq \sigma^2 \leq \frac{(n-1) S^2_n}{q_1})=1-\alpha$$
+Troviamo così l'intervallo casuale (e di conseguenza il relativo intervallo di confidenza) $$IC=\left[ \frac{(n-1)S^2_n}{q_2};\frac{(n-1)S^2_n}{q_1} \right]$$
+\subsection{Intervalli di confidenza per la differenza di medie}
+Vogliamo confrontare due distribuzioni, e per farlo confrontiamo la differenza tra le medie.
+Supponiamo di avere 
