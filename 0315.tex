@@ -1,7 +1,7 @@
 %%% lezione 15 marzo %%%
 
 \subsection{Intervalli di confidenza}
-Lezione del 15/03, ultima modifica 18/03, Michele Nardin
+Lezione del 15/03, ultima modifica 26/03, Michele Nardin
 
 \begin{definizione}
 Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione con funzione di ripartizione $F_X (x,\vartheta)$, $\vartheta \in \Theta$. 
@@ -36,6 +36,7 @@ $$P(-z_{\alpha / 2} \leq \frac{\sqrt{n}(T_n - \vartheta_0)}{\sigma_{T_n}} \leq z
 $$P(T_n - z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}} \leq \vartheta_0 \leq T_n+z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}})\stackrel{.}{=}1-\alpha$$
 Possiamo quindi definire un intervallo casuale, $$IC=\left[T_n - z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}},T_n + z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}}\right]$$ (è casuale perchè per $T_n$ è una vc). $IC$ è uno Stimatore Intervallare.
 Si può affermare che $P(\vartheta \in IC) \stackrel {.}{=} 1 - \alpha$.
+
 $\textbf{Nomenclatura}:$
 $z_{\alpha / 2}$ si dice Fattore di Affidabilità,
 $\frac{\sigma_{T_n}}{\sqrt{n}}$ si dice Standard Error dello stimatore $T_n$.
@@ -52,7 +53,7 @@ $$\frac{\sqrt{n}(\bar{X}_n - \mu)}{S_n} \stackrel{d}{\rightarrow}N(0,1)$$
 che è una statistica pivot. Quindi l'intervallo di confidenza con probabilità di copertura $1-\alpha$ (sempre approssimato) sarà
 $$IC_\mu(1-\alpha)=\left[\bar{X}_n - z_{\alpha / 2} \frac{S_n}{\sqrt{n}}, \bar{X}_n + z_{\alpha / 2} \frac{S_n}{\sqrt{n}}\right]$$
 \subsubsection{Intervallo di confidenza per una proporzione p}
-Sia $(X_1,...,X_n)$ un campione casuale da $b(1,p)$ e sia $\hat{p}_n=\frac{1}{n} \sum_{i=1}^n X_i$ lo stimatore (corretto e consistente) di p. Troviamo che per il TLC e per il WLLN $$\frac{\sqrt{n}(\hat{p}_n - p)}{\sqrt{\hat{p}_n(1-\hat{p}_n)}} \stackrel{d}{\rightarrow}N(0,1)$$
+Sia $(X_1,...,X_n)$ un campione casuale da $b(1,p)$ e sia $\hat{p}_n=\frac{1}{n} \sum_{i=1}^n X_i$ lo stimatore (corretto e consistente) di p. Troviamo che per il TLC e per la WLLN $$\frac{\sqrt{n}(\hat{p}_n - p)}{\sqrt{\hat{p}_n(1-\hat{p}_n)}} \stackrel{d}{\rightarrow}N(0,1)$$
 e quindi l'intervallo di confidenza con probabilità di copertura $1-\alpha$ approssimato sarà
 $$IC_p(1-\alpha)=
 \left[\hat{p}_n -

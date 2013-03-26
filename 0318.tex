@@ -1,8 +1,9 @@
 %%% lezione 18 marzo %%%
+%%%in fondo lezione 21 marzo %%%
 
 \subsubsection{Distribuzione esatta della statistica pivot: distribuzione t di Student}
 
-Lezione del 18/03, ultima modifica 19/03, Michele Nardin
+Lezione del 18/03, ultima modifica 26/03, Michele Nardin
 \\
 \\
 La distribuzione di Student con $\nu$ gradi di libertà è definita come 
@@ -11,23 +12,24 @@ La funzione di densità è $$f_{t_\nu}(t,\nu)=\frac{\Gamma((\nu + 1)/2)}{\Gamma(
 \frac{1}{\sqrt{\pi \nu}} \frac{1}{[1+t^2/\nu]^{\frac{v+1}{2}}} \mathbbm{1}_\mathbbm{R} (t)$$
 tale funzione è simmetrica, ha la classica forma a campana come la normale, ma a differenza di quest'ultima ha le code più pesanti.
 Risulta che la statistica pivot per la media in campioni poco numerosi 
-\footnote{in realtà in tutti i campioni, è solo che da un certo punto in poi la differenza con la normale è davvero trascurabile! Sulle tavole si riporta solo per $\nu < 120$} (in caso di campionamento da normale) 
-ha distribuzione t. Infatti 
+\footnote{In realtà vale per tutti i campioni, è solo che da un certo punto in poi la differenza con la normale è davvero trascurabile! Sulle tavole si riporta solo per $\nu < 120$} (in caso di campionamento da normale) 
+ha distribuzione esatta t di Student. Infatti 
 $$Q=\frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{S^2_n}{\sigma^2}}}$$
 troviamo al numeratore $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
 mentre al denominatore abbiamo che 
 $$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}= \sqrt{\frac{H}{(n-1)}} $$
-Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$ e quindi risulta esattamente che al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
-Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. (per $n>30$, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti! Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
-Fissato un livello di confidenza $1-\alpha$, consideriamo i quantili della distribuzione t di student 
-(con n-1 gradi di libertà, ove n è la dimensione campionaria) 
+Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$, quindi al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
+
+Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. Per numerosità campionarie $n>30$, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti. Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
+
+Fissato un livello di confidenza $1-\alpha$, consideriamo i quantili della distribuzione t di student (con n-1 gradi di libertà, ove n è la dimensione campionaria) 
 $\pm t_{(\alpha/2;n-1)}$, 
-troviamo che $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}
+troviamo $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}
  \leq t_{(\alpha/2;n-1)}\right) = 1 - \alpha $$
-Notiamo che questa volta vale l'uguaglianza 'vera', non è un'approssimazione! 
+Notiamo che questa volta vale l'uguaglianza 'vera', poiché non stiamo considerando approssimazioni asintotiche. 
 In presenza del campione effettivamente estratto, $(x_1,...,x_n)$, 
 scriviamo $\bar{x}_n$ e $s^2_n$ i valori assunti da media e varianza campionaria,
-l'intervallo di confidenza sarà $$IC_{\mu}(1-\alpha)=
+l'intervallo di confidenza è $$IC_{\mu}(1-\alpha)=
 \left[\bar{x}_n -
  t_{(\alpha / 2;n-1)} 
  \sqrt{\frac{s^2_n}{n}},
@@ -40,14 +42,43 @@ Alcune osservazioni che, pur sembrando banali, è bene tenere a mente:
 \end{enumerate}
 \end{oss}
 
-\subsection{Intervalli di confidenza per la varianza}
+\subsubsection{Intervalli di confidenza per la varianza}
 Sia $(X_1,...,X_n)$ un campione casuale da $N(\mu,\sigma^2)$.
-Consideriamo la statistica pivot $W=\frac{n-1}{\sigma^2} S^2_n$. Abbiamo già mostrato che $W \sim \chi^2_{n-1}$. 
-Ma allora, dato che noi cerchiamo $q_1,q_2$ tc $P(q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2)=1-\alpha$, troviamo che essi sono i quantili di ordine $\alpha / 2$ e $1 - \alpha / 2$ della chiquadro con n-1 gradi di libertà, che indicheremo $q_1=\chi^2_{(n-1,\alpha / 2)}$ e $q_2=\chi^2_{(n-1,1 - \alpha / 2)}$.
+Consideriamo la statistica pivot $$W=\frac{n-1}{\sigma^2} S^2_n$$ Abbiamo già mostrato che $W \sim \chi^2_{n-1}$. 
+Ma allora, dato che noi cerchiamo $q_1,q_2$ tc $$P(q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2)=1-\alpha$$ troviamo che essi sono i quantili di ordine $\alpha / 2$ e $1 - \alpha / 2$ della chiquadro con n-1 gradi di libertà, che indicheremo $q_1=\chi^2_{(n-1,\alpha / 2)}$ e $q_2=\chi^2_{(n-1,1 - \alpha / 2)}$.
 Con qualche passaggio otteniamo:
 $$P(\frac{1}{q_2} \leq \frac{\sigma^2}{(n-1) S^2_n} \leq \frac{1}{q_1})=1-\alpha$$
 $$P(\frac{(n-1) S^2_n}{q_2} \leq \sigma^2 \leq \frac{(n-1) S^2_n}{q_1})=1-\alpha$$
-Troviamo così l'intervallo casuale (e di conseguenza il relativo intervallo di confidenza) $$IC=\left[ \frac{(n-1)S^2_n}{q_2};\frac{(n-1)S^2_n}{q_1} \right]$$
-\subsection{Intervalli di confidenza per la differenza di medie}
-Vogliamo confrontare due distribuzioni, e per farlo confrontiamo la differenza tra le medie.
-Supponiamo di avere 
+Troviamo così l'intervallo casuale (e di conseguenza il relativo intervallo di confidenza, una volta estratto il campione e trovato un valore a $S^2_n$) $$IC=\left[ \frac{(n-1)S^2_n}{q_2};\frac{(n-1)S^2_n}{q_1} \right]$$
+
+\subsubsection{Intervalli di confidenza per la differenza di medie}
+
+Vogliamo confrontare due distribuzioni: \textit{sintetizziamo} la differenza tra due popolazioni tramite la differenza delle loro media. \\ \\
+Supponiamo inizialmente di avere due campioni casuali tra loro indipendenti: 
+
+\noindent $(X_1,...,X_{n_1})$ da una distribuzione D1, con media $\mu_1$ (ignota) e varianza $\sigma_1^2$ (nota)
+
+\noindent $(Y_1,...,Y_{n_2})$ da una distribuzione D2, con media $\mu_2$ (ignota) e varianza $\sigma_2^2$ (nota)
+
+\noindent NB: non necessariamente $n_1$ dev'essere uguale a $n_2$
+\\ \\
+Consideriamo gli stimatori media campionaria per le due medie, che indicheremo con $\bar{X}$ e $\bar{Y}$.
+La statistica pivot che ci interessa per $\Delta=\mu_1-\mu_2$ sarà $$Z=\frac{(\bar{X} - \bar{Y})-(\mu_1 - \mu_2)}{\left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}}$$
+Notiamo che $var(\bar{X} - \bar{Y})=\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}$ dato che $cov(\bar{X} , \bar{Y})=0$ per l'indipendenza.
+Ma allora $Z \stackrel{a}{\sim} N(0,1)$, quindi possiamo trovare un intervallo di confidenza \footnote{Approssimato, visto che conosciamo solo l'andamento asintotico di Z! D1 e D2 non è detto che siano mormali!}
+$$IC_\Delta(1-\alpha)=[(\bar{X} - \bar{Y})-ME;(\bar{X} - \bar{Y})+ME]$$ ove $ME=z_{\alpha/2} \left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}$.
+Al posto delle varianze possiamo usare anche gli stimatori corretti e consistenti varianza campionaria, e giungere allo stesso risultato per il teorema di Slutsky.
+\\ \\
+In generale non conosciamo la varianza delle distribuzioni: in base al problema che dobbiamo affrontare, può essere plausibile supporre di conoscere la distribuzione delle due popolazioni a meno di uno o più parametri. \\ \\ 
+\textbf{Location Model:} Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione normale con media $\mu_1$ e varianza $\sigma_1^2$ (ignote), i loro stimatori $\bar{X}$ e $S^2_1$ e
+ $(Y_1,...,Y_{n_2})$ da distribuzione normale con media $\mu_2$ e varianza $\sigma_2^2$ (ignote) e i loro stimatori $\bar{Y}$ e $S^2_2$. Supponiamo che i due campioni siano tra loro indipendenti ed inoltre che $\sigma_1=\sigma_2=\sigma$.
+Possiamo 'fondere' le informazioni contenute in $S^2_1$ e $S^2_2$: $$(Pooled Variance) \; S^2_p:= \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 - 2} $$ 
+che risulta essere uno stimatore corretto e consistente di $\sigma^2$ (esercizio).
+La statistica Pivot che prendiamo in considerazione sarà $$T=\frac{(\bar{X} - \bar{Y})-(\mu_1 - \mu_2)}{S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}}}$$ la quale risulta essere distribuita come $t_{n_1 + n_2 - 2}$. Ricalcando i passaggi delle applicazioni precedenti, fissato $\alpha$  troviamo l'intervallo casuale per $\Delta$ $$IC = \left[(\bar{X} - \bar{Y}) - t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} ; (\bar{X} - \bar{Y}) + t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} \right]$$
+
+\subsubsection{Intervalli di confidenza per la differenza di proporzioni}
+
+Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione $b(1,p_1)$, con stimatore $\hat{p_1}$ e $(Y_1,...,Y_{n_2})$ da distribuzione $b(1,p_2)$, con stimatore $\hat{p_2}$. Supponiamo che i due campioni siano tra loro indipendenti. Allora $$\Delta=\hat{p_1} - \hat{p_2} \stackrel {a} {\sim} N\left( p_1 - p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)$$ quindi usando la statistica Pivot 
+$$Z=\frac{(\hat{p_1} - \hat{p_2}) - (p_1 - p_2)}{\sqrt{\left( p_1 - p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)}} \stackrel {a} {\sim} N(0,1)$$ trovo l'intervallo di confidenza $$IC_\Delta (1-\alpha) = \left[ 
+(\hat{p_1} - \hat{p_2}) - z_{\alpha / 2} \sqrt{A(p_1,p_2)};(\hat{p_1} - \hat{p_2}) + z_{\alpha / 2} \sqrt{A(p_1,p_2)}
+ \right]$$ ove $A(p_1,p_2)=\left(\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)$. Ovviamente al posto di $p_1$ e $p_2$ uso gli stimatori corretti e consistenti $\hat{p_1}$ e $\hat{p_2}$.
