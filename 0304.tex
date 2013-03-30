@@ -28,25 +28,27 @@ $$\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\cdot \sigma} = \frac{\sqrt{n}(\bar{X_n
 
 \textbf{Esempi/Applicazioni}
 \begin{enumerate}
-\item $X \sim b(n,p)$, $X \stackrel{a}{\sim}N(np,np(1-p))$
+\item $X_n \sim b(n,p)$, $X_n \stackrel{a}{\sim}N(np,np(1-p))$ (ricordiamo che $X_n \sim \sum_{i=1}^n b_i$, ove $b_i \sim b(1,p)$).
+Quando scriviamo $\stackrel{a}{\sim}$ stiamo considerando un "andamento asintotico", ossia sottintendiamo un'approssimazione (via via migliore con l'aumentare di n) giustificata dal TLC (il senso è che per n 'grandi' la distribuzione 'funziona circa così').
 \item $X_1,...,X_n$ vc 
 $P(\lambda =1)$. 
 Considero $Y_n=\sum X_i$.
 Dato che $Y_n \stackrel{a}
-{\sim} N(n\lambda ,n \lambda )$,
- $\frac{Y_n}{n} \stackrel{a}
+{\sim} N(n\lambda ,n \lambda )$ e $\lambda=1$,
+ $\bar{Y}_n:=\frac{Y_n}{n} \stackrel{a}
  {\sim} N(1,1/n)$
-\item Considerato $W_n=\sqrt{n}(Y_n/n-1)=\frac{Y_n/n-1}
-{1/\sqrt{n}}=\frac{\bar{Y_n} - \mathbbm{E}(\bar{Y_n})}
-{\sqrt{Var(Y_n/n)}}$
+
+ Considero quindi $W_n=\sqrt{n}(\frac{Y_n}{n}-1)=\frac{\frac{Y_n}{n}-1}
+{1/\sqrt{n}}=\frac{\bar{Y_n} - \mathbbm{E}(\bar{Y}_n)}
+{\sqrt{Var(\bar{Y}_n)}}$, trovo che $W_n \stackrel{a}{\sim} N(0,1) $
 \end{enumerate}
 
 \begin{teo}
-Sia $\{X_n\}$ una succ di vc iid con FGM $M_{X_n}(t)$ definita e $<\infty$ per $t\in(-h,h) \forall n$, e sia X un'altra vc con FGM $M_X(t)$ definita e $<\infty$ per $t \in (-h_1,h_1), h_1\leq h$. Se $$\lim_{n \rightarrow +\infty} M_{X_n}(t)=M_X(t) \forall |t| \leq h_1$$ allora $X_n \stackrel{d}{\rightarrow} X$.
+Sia $\{X_n\}$ una succ di vc iid, ognuna con con FGM $M_{X_n}(t)$ definita e $<\infty$ per $t\in(-h,h)$, e sia X un'altra vc con FGM $M_X(t)$ definita e $<\infty$ per $t \in (-h_1,h_1), \; h_1\leq h$. Se $$\lim_{n \rightarrow +\infty} M_{X_n}(t)=M_X(t) \; \; \; \forall |t| \leq h_1$$ allora $X_n \stackrel{d}{\rightarrow} X$.
 \end{teo}
 \textbf{Applicazione}
-
-Sia $X_n \sim b(n,p)$. 
+\begin{enumerate}
+\item Sia $X_n \sim b(n,p)$. 
 Ricordiamo che $X_n=\sum X_i$ ove $X_i \sim b(1,p)$, ed inoltre $\mu=\mathbbm{E}(X)=np$.
 Siccome $M_{X_n}(t)=
 \mathbbm{E}(e^{tX_n})=[(1-p)+pe^t]^n=
@@ -54,7 +56,7 @@ Siccome $M_{X_n}(t)=
 $$ M_{X_n}(t) \stackrel{n \rightarrow \infty}{\longrightarrow} 
 e^{\mu(e^t-1)}$$
 che è la FGM di una Poisson di parametro $\mu$.
-
+\end{enumerate}
 \section{Approccio alla Statistica Matematica}
 
 \subsection{Introduzione}

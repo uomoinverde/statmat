@@ -1,18 +1,18 @@
 %%%%lezione 1 marzo%%%%
 
 \subsection{Trasformazioni di variabili casuali}
-Lezione del 01/03, ultima modifica 03/03, Michele Nardin
+Lezione del 01/03, ultima modifica 29/03, Michele Nardin
 \paragraph{Discrete}
 \begin{teo}
 Sia X una vc con funzione di massa $f_X(x)=P(X=x)$, e sia $A_X$ il suo supporto. 
 Sia W=h(X) una nuova vc. Allora $$P(W=w)=\sum_{\{x\in A_X:h(x)=w\}}P(X=x)$$
 \end{teo}
 
-\textbf{Esempi}
+\noindent \textbf{Esempi}
 \begin{enumerate}
 
 \item Sia $X \sim b(n,p)$ con relativa funzione di massa 
-$f_X(x,p)=\binom{n}{p}p^x(1-p)^{n-x}\mathbbm{1}_{0,1,...,n}(x)$,
+$f_X(x,p)=\binom{n}{x}p^x(1-p)^{n-x}\mathbbm{1}_{0,1,...,n}(x)$,
 $n$ noto e $p\in(0,1)$.
 
 Considero quindi $W=n-X$. Come si distribuisce $W$? 
@@ -20,7 +20,7 @@ $$P(W=w)=P(X=n-w)=\binom{n}{n-w}p^{n-w}(1-p)^w\mathbbm{1}_{0,1,...,n}(w)$$
 \item Sia $X$ una vc tale che 
 $f_X(x)=P(X=x)=\left(\frac{1}{2}\right)^x\mathbbm{1}_\mathbbm{N}(x)$, $W=X^3$. 
 %%lasciando una riga vuota va a capo senza dare badbox! figata
-$$P(W=w)=P(X^3=w)=P(X=\sqrt[3]{w})=\left(\frac{1}{2}\right)^{\sqrt[3]{w}}\mathbbm{1}_{1,8,27,...}(w)$$
+$$P(W=w)=P(X^3=w)=P(X=\sqrt[3]{w})=\left(\frac{1}{2}\right)^{\sqrt[3]{w}}\mathbbm{1}_{1,8,27,64,...}(w)$$
 \end{enumerate}
 
 \paragraph{Assolutamente continue}
@@ -29,7 +29,7 @@ Sia X una variabile casuale (ass continua) con funzione di densità $f_X(x)$ e s
 Supponiamo inoltre che $f_X(x)$ sia continua sul supporto di X e che $h^{-1}(w)$ abbia derivata continua sul supporto di W. Allora
 $$f_W(w)=f_X(h^{-1}(w))\left|\frac{d}{dw}h^{-1}(w)\right|\mathbbm{1}_{A_W}(w)$$
 \end{teo}
-\textbf{Esempio}
+\noindent \textbf{Esempio}
 (Standardizzazione di una vc normale)
 Sia $X \sim N(m,s^2)$. 
 Considero $W=h(X)=\frac{X-m}{s}$. 
@@ -40,15 +40,22 @@ $$f_W(w)=f_X(sw+m)|s|=\frac{e^{\frac{-w^2 }{2}}}{\sqrt{2\pi}}$$
 Se $W=h(X)$ ove h è monotona a tratti (un numero finito k) e valgono le condizioni del teorema precedente (su ogni tratto), allora
 $$f_W(w)=\sum_{n=1}^k f_X(h_n^{-1}(w))\left|\frac{d}{dw}h_n^{-1}(w)\right|\mathbbm{1}_{A_W}(w)$$
 \end{teo}
-\textbf{Esempio} (Chi-quadro): Sia $X \sim N(0,1)$ e $W=h(X)=X^2$. $h$ è monotona sui tratti $A_0={0}$, $A_1=(-\infty,0)$, $A_2=(0,+\infty)$. 
-Trovo inoltre $h_1^{-1}(w)=-\sqrt{w}\in A_1 \forall w \geq 0$, mentre $h_2^{-1}(w)=\sqrt{w}\in A_2 \forall w \geq 0$. 
-$\frac{d}{dw} h_1^{-1}(w)=-\frac{1}{2\sqrt{w}}$, $\frac{d}{dw} h_2^{-1}(w)=\frac{1}{2\sqrt{w}}$ sono entrambe continue su $\mathbbm{R}_+$.
+\noindent \textbf{Esempio} (Chi-quadro)
+
+\noindent Sia $X \sim N(0,1)$ e $W=h(X)=X^2$. $h$ è monotona sui tratti $A_0={0}$, $A_1=(-\infty,0)$, $A_2=(0,+\infty)$. 
+
+\noindent Considero $h_1(x)=x^2$ per $x<0$ mentre $h_2(x)=x^2$ per $x>0$.
+
+\noindent Trovo che $h_1^{-1}(w)=-\sqrt{w}$ (NB:$h_1^{-1}(w)\in A_1 \forall w \geq 0$), mentre $h_2^{-1}(w)=\sqrt{w}$ (NB:$h_2^{-1}(w)\in A_2 \forall w \geq 0$).
+ 
+\noindent $\frac{d}{dw} h_1^{-1}(w)=-\frac{1}{2\sqrt{w}}$, $\frac{d}{dw} h_2^{-1}(w)=\frac{1}{2\sqrt{w}}$ sono entrambe continue su $\mathbbm{R}_+$.
 $$f_W(w)=\frac{1}{\sqrt{2\pi}}e^{\frac{-(-\sqrt{w})^2 }{2}}\left|\frac{1}{2\sqrt{w}}\right|+\frac{1}{\sqrt{2\pi}}e^{\frac{-(\sqrt{w})^2 }{2}}\left|\frac{1}{2\sqrt{w}}\right|$$ 
 $$=\frac{1}{\sqrt{2\pi w}}
 e^{\frac{-w}{2}}\mathbbm{1}_{\mathbbm{R}+}
 (w)=\frac{1}{2^{1/2}\Gamma(1/2)}
 w^{\frac{1}{2}-1}e^{\frac{-w}{2}}$$
 Si riconosce che $W \sim \mathcal{G}(\alpha=1/2,\beta=2)$ e si chiama Chi quadrato con $\nu=1$ gradi di libertà.
+
 In generale, una vc Chi Quadro con $\nu=n$ gradi di libertà è $W=\sum_{i=1}^n X_i^2$, ove $X_1,X_2,...,X_n$ sono vc iid N(0,1). Per il teorema sulla FGM di una somma di vc iid si trova immediatamente che $W \sim \mathcal{G}(\alpha=n \cdot 1/2,\beta=2)$.
 \subsection{Convergenze}
 \paragraph{Convergenza in probabilità}
@@ -68,7 +75,7 @@ Inoltre, quando scriviamo $X_n\stackrel{p}{\rightarrow}X$, stiamo sottintendendo
 \item Supponiamo che  $X_n\stackrel{p}{\rightarrow}X$ e  $Y_n\stackrel{p}{\rightarrow}Y$. Allora  $X_n+Y_n\stackrel{p}{\rightarrow}X+Y$
 \item Supponiamo che $X_n\stackrel{p}{\rightarrow}X$ e sia a una costante. Allora $aX_n\stackrel{p}{\rightarrow}aX$ 
 \item Supponiamo che  $X_n\stackrel{p}{\rightarrow}a$ costante, e sia g una funzione reale continua in a. Allora  $g(X_n)\stackrel{p}{\rightarrow}g(a)$
-\item (Corollario di 3.) Se $X_n\stackrel{p}{\rightarrow}a$, allora $X_n^2\stackrel{p}{\rightarrow}a^2$, $\frac{1}{X_n}\stackrel{p}{\rightarrow}\frac{1}{a}$ (se $a\neq0$), $\sqrt{X_n}\stackrel{p}{\rightarrow}{a}$ ($a\geq0$).
+\item (Corollario di 3.) Se $X_n\stackrel{p}{\rightarrow}a$, allora $X_n^2\stackrel{p}{\rightarrow}a^2$, $\frac{1}{X_n}\stackrel{p}{\rightarrow}\frac{1}{a}$ (se $a\neq0$), $\sqrt{X_n}\stackrel{p}{\rightarrow}\sqrt{a}$ ($a\geq0$).
 \item $X_n\stackrel{p}{\rightarrow}X$ e $Y_n\stackrel{p}{\rightarrow}Y$ allora $X_nY_n\stackrel{p}{\rightarrow}XY$
 \end{enumerate}
 \end{teo}

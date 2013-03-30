@@ -62,12 +62,11 @@ $$\mu_s := \mathbbm{E} ((X-\mu'_1)^s)$$
 Vale la seguente relazione tra momenti centrati e non:
 $$\mathbbm{E} ((X-\mu'_1)^s) = \displaystyle\sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m$$
 \end{teo}
-
 Osserviamo che $\mu_2 = \mathbbm{E} ((X-\mu'_1)^2) = Var(X) = \mathbbm{E} (X^2) - (\mathbbm{E} (X))^2 = \mu'_2 - (\mu'_1)^2$
 
 
 \begin{teo}
-Date due (o più) v.c. $X$ e $Y$ aventi $f$ densità / $f$ massa $f_X$ e $f_Y$ e fgm $M_X(t)$ e $M_Y(t)$ rispettivamente e assunte $X$ e $Y$ essere indipendenti, allora si ha
+Date due (o più) v.c. $X$ e $Y$ indipendenti aventi $f$ densità / $f$ massa $f_X$ e $f_Y$ e fgm $M_X(t)$ e $M_Y(t)$ rispettivamente, allora si ha
 
 $$M_{X+Y} = M_X(t) M_Y(t)$$
 \end{teo}
@@ -81,14 +80,14 @@ $$X \stackrel{d}{=} Y$$
 \begin{oss}
 Il teorema appena visto ci dice sostanzialmente che, se esiste, la fgm caratterizza la distribuzione della corrispondente v.c.
 \end{oss}
-\textbf{Esempio}
-Siano $(X_1,...,X_n)$ risultati della replicazione di un esponenzionale casuiale dicotomico $(X_i \sim b(1,p))$. Vogliamo trovare la distribuzione di $S_n := \displaystyle\sum_{i=1}^n X_i$. Calcoliamo quindi la sua fgm:
+\noindent \textbf{Esempio}
+Siano $(X_1,...,X_n)$ risultati della replicazione di un esperimento casuale dicotomico $(X_i \sim b(1,p))$. Vogliamo trovare la distribuzione di $S_n := \displaystyle\sum_{i=1}^n X_i$. Calcoliamo quindi la sua fgm:
 
 $$M_{S_n}(t) = \mathbbm{E}({e^{tS_n}}) = \mathbbm{E}({e^{t \sum_{i=1}^n X_i}}) $$
-$$\stackrel{TEO 1}
+$$\stackrel{TEO 2}
 {=} \displaystyle\prod_{i=1}^n \mathbbm{E}({e^{tX_i}}) = \displaystyle\prod_{i=1}^n M_{X_i}(t) = \displaystyle\prod_{i=1}^n (p e^t + (1-p)) = (p e^t + (1-p))^n$$ ovvero $S_n$ è distribuita come $b(n,p)$ per il Teorema 2.
 
-\textbf{esercizio}
+\noindent \textbf{Esercizio}
 Ripetere il calcolo precedente supponendo $X_i \sim P(\lambda), \forall i$.
 
 \subsection{Famiglia Esponenziale a $k$ parametri}
@@ -97,7 +96,8 @@ Una famiglia di $f$ densità / $f$ massa è detta essere una Famiglia Esponenzia
 $$f_X(x;\theta) = C^*(x) D^*(\theta) \lbrace \displaystyle\sum_{m=1}^k A_m(\theta) B_m (x) \rbrace$$
 
 dove $C^*(x)$ è una funzione della sola $x$, $D^*(\theta)$ è una funzione del solo $\theta$, $A_m(\theta)$ è una funzione del solo $\theta$ e $B_m(x)$ è una funzione della sola $x$.
-\textbf{Esempi}
+
+\noindent \textbf{Esempi}
 \begin{enumerate}
 \item 
 $X \sim G(\alpha, \beta) \Longrightarrow f_X(x; \alpha, \beta) = \frac{1}{\Gamma(\alpha) \beta^\alpha} x^{\alpha -1} e^{- \frac{1}{\beta} x} \mathbbm{1}_{\mathbbm{R}^+}(x)$, $\alpha >0$, $\beta >0$
@@ -110,6 +110,9 @@ e quindi ponendo $D^*(\alpha, \beta) := \frac{1}{\Gamma(\alpha) \beta^\alpha}$, 
 Quindi possiamo riscrivere $f_X(x; n,p)$ come
 $$f_X(x; n,p) = \binom{n}{x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x) (1-p)^n exp(ln(\frac{p}{1-p}) x)$$ con $\frac{p}{1-p}$ detto odd ratio o parametra naturale della famiglia esponenziale.\\
 Quindi ponendo $D^*(p) := (1-p)^n$, $C^*(x) := \binom{n}{x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x)$, $A_1(p) := ln(\frac{p}{1-p})$, $B_1(x) := x$, otteniamo $b(n,p)$ come famiglia esponenziale con $k=1$.
+
+\item X vc con $f_X(x,\vartheta)=\frac{e^{1-x/\vartheta}}{\vartheta}\mathbbm{1}_{(\vartheta,\infty)}(x)$: la distribuzione di X non appartiene a famiglia esponenziale.
+Il fatto che il supporto di $f_X$ dipenda dal parametro $\vartheta$ NON permette a $f_X$ di appartenere ud una famiglia esponenziale!
 \end{enumerate}
 
 \begin{oss}

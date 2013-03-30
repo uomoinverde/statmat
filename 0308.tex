@@ -52,17 +52,20 @@ F_{X_{(m)}}(\theta,x) &=& \mathbb{P}[Y_x\geq m]=\sum_{k=m}^n \mathbb{P}[Y_x=k]= 
 \end{eqnarray*}
 Come nella prima dimostrazione usiamo il fatto che la densità si può vedere come derivata della funzione di ripartizione. Ne segue che per calcolare la densità sarà sufficiente calcolare la derivata in ciascun punto $x$ della distribuzione appena trovata. In particolare si potrà vedere che coesisteranno il termine che vogliamo ottenere con altre due sommatorie, che tuttavia si elidono l'una con l'altra lasciando quindi la relazione espressa dal teorema. Si ha infatti che: 
 \\
-\footnotesize{
+\small{
 \begin{equation*}\label{e:barwq}\begin{split}
 f_{(m)}(\theta,x)&=\frac{\partial}{\partial x}F_{X_{(m)}}(\theta,x)= \\
 &=\sum_{k=m}^n \binom{n}{k}\cdot f_{X}(\theta,x) \bigg\{k F_X^{k-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-k}-(n-k) F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1}\bigg\} \\
-&=m\binom{n}{m}\cdot f_{X}(\theta,x)F_X^{m-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-m} + \\ &\quad \sum_{k=m+1}^n k\binom{n}{k} f_{X}(\theta,x) F_X^{k-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-k}-\sum_{k=m}^n (n-k)\binom{n}{k} F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
+&=m\binom{n}{m}\cdot f_{X}(\theta,x)F_X^{m-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-m} + \\ &\quad \sum_{k=m+1}^n k\binom{n}{k} f_{X}(\theta,x) F_X^{k-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-k}- \\ &\quad\sum_{k=m}^{n-1} (n-k)\binom{n}{k} f_{X}(\theta,x) F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
 &=\frac{n!}{(m-1)!(n-k)!}\cdot f_{X}(\theta,x)F_X^{m-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-m} + \\
-&\quad \sum_{j=m}^{n-1} (j+1)\binom{n}{j+1} f_{X}(\theta,x) F_X^{j}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-j-1}-\sum_{k=m}^{n-1} (n-k)\binom{n}{k} F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
+&\quad \sum_{j=m}^{n-1} (j+1)\binom{n}{j+1} f_{X}(\theta,x) F_X^{j}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-j-1}- \\
+& \quad \sum_{k=m}^{n-1} (n-k)\binom{n}{k} f_{X}(\theta,x) F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
 &=\frac{n!}{(m-1)!(n-k)!}\cdot f_{X}(\theta,x)F_X^{m-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-m} + \\
-&\quad \sum_{j=m}^{n-1} \frac{n!}{j!(n-j-1)!} f_{X}(\theta,x) F_X^{j}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-j-1}-\sum_{k=m}^{n-1} \frac{n!}{k!(n-k-1)!} F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
+&\quad \sum_{j=m}^{n-1} \frac{n!}{j!(n-j-1)!} f_{X}(\theta,x) F_X^{j}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-j-1}- \\
+& \quad \sum_{k=m}^{n-1} \frac{n!}{k!(n-k-1)!} f_{X}(\theta,x) F_X^{k}(\theta,x)\big(1-F_X(\theta,x)\big)^{n-k-1} \\
 &=\frac{n!}{(m-1)!(n-k)!}\cdot f_{X}(\theta,x)F_X^{m-1}(\theta,x) \big(1-F_X(\theta,x)\big)^{n-m}.
-\end{split}\end{equation*}}
+\end{split}\end{equation*}
+}
 \end{proof}
 
 \textbf{Definizione.} Sia $\left(X_{(1)},\ldots,X_{(n)}\right)$ una statistica d'ordine di un campione casuale. Allora possiamo definire le nuove seguenti variabili:
@@ -78,7 +81,7 @@ $$
 \end{array}
 \right\} \mbox{dette ciascuna }\textit{Mediana campionaria};
 $$
-\item Sia $\frac{1}{2(n+1)}<p<1-\frac{1}{2(n+1)}$, che possiamo in ogni caso pensare come $0<p<1$ per $n$ molto grande. A questo punto possiamo definire l'intero $k_p\coloneqq \big\lfloor p(n+1) \big\rfloor + \big\lfloor 2\big(p(n+1)-\lfloor p(n+1) \rfloor \big) \big\rfloor$, che risulta essere così ben definito in quanto compreso tra 1 e $n$ e restituisce l'approssimazione all'intero più vicino al variare di $p$ del reale $p(n+1)$. 
+\item Sia $\frac{1}{2(n+1)}<p<1-\frac{1}{2(n+1)}$, che possiamo in ogni caso pensare come $0<p<1$ per $n$ molto grande. A questo punto possiamo definire l'intero $k_p\coloneqq \big\lfloor p(n+1) \big\rfloor + \big\lfloor 2\big(p(n+1)- 2 \lfloor p(n+1) \rfloor \big) \big\rfloor$, che risulta essere così ben definito in quanto compreso tra 1 e $n$ e restituisce l'approssimazione all'intero più vicino al variare di $p$ del reale $p(n+1)$. 
 \item A questo punto, se scegliamo $\xi_p\in F_X^{-1}(p)$, chiameremo $\xi_p$ \textit{Quantile di popolazione} di ordine $p$. In seguito troveremo utile stimare tale valore. Perciò introduciamo la variabile casuale ad esso collegata $X_{(k_p)}$, detta \textit{Quantile campionario} di ordine $p$. Se $p=\frac{i}{m}$, allora $X_{(k_p)}$ è detta anche $i$-esimo $m$-ile campionario. In particolare con $Q_1$ e $Q_3$ si indicano rispettivamente il primo e il terzo quartile.
 \item Le variabili $LF\coloneqq Q_1-h$ e $UF\coloneqq h+Q_3$, ove $h\coloneqq \frac{3}{2}(Q_3-Q_1)$ sono dette rispettivamente \textit{Lower} e \textit{Upper Fence}. 
 \end{itemize}
