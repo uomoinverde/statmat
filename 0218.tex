@@ -1,7 +1,7 @@
 %%%%lezione 18 febbraio%%%%
 
 \subsection{Funzione generatrice dei momenti}
-Lezione del 18/02, ultima modifica 04/03, Andrea Gadotti
+Lezione del 18/02, ultima modifica 09/04, Andrea Gadotti
 
 \begin{definizione}
 Sia $X$ una variabile casuale (discreta o assolutamente continua). Se esiste $t_0 > 0$ tale per cui $\mathbbm{E}(e^{tX}) < +\infty$ $\forall t \in (-t_0 , t_0)$, chiameremo la funzione 
@@ -20,20 +20,20 @@ $$
 			= p e^t + (1-p)$$	
 
 
-\item $X \sim P(\lambda)$ con $\lambda > 0$. Si ha:
+\item $X \sim \mathcal{P} (\lambda)$ con $\lambda > 0$. Si ha:
 
 $$M_X (t) 	= \mathbbm{E}(e^{tX}) 
 			= \displaystyle\sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!}
 			= e^{\lambda (e^t -1)}$$
 			
 			
-\item $X \sim G(\alpha, \beta)$, ovvero 
+\item $X \sim \mathcal{G} (\alpha, \beta)$, ovvero 
 
 $$f_X (x; \alpha, \beta) := \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x}$$ con $\alpha>0$, $\beta>0$, $x>0$ e 
 
 $$\Gamma(\alpha) := \int_0^{+\infty} \! x^{\alpha -1} e^{-x} \mathrm{d}x$$ 
 
-(nota: $\alpha \in \mathbbm{N} \Longrightarrow \Gamma(\alpha)=(\alpha - 1)$)
+(nota: $\alpha \in \mathbbm{N} \Longrightarrow \Gamma(\alpha)=(\alpha - 1)!$)
 
 Abbiamo che: 
 
@@ -49,7 +49,7 @@ $$M_X (t)	= \mathbbm{E}(e^{tX})
 \begin{definizione}
 Se una variabile casuale ammette FGM derivabile infinite volte in un intorno di $t=0$ e se tutti i suoi momenti sono finiti, allora definiamo il momento di ordine $s$ non centrato: 
 $$\mu'_s := \mathbbm{E} (X^s) = \frac{d^s}{dt^s} M_X (t) \! \mid_{t=0}$$ 
-Il momento di di ordine $s$ centrato in $a \in \mathbbm{R}$ è: 
+Il momento di ordine $s$ centrato in $a \in \mathbbm{R}$ è: 
 
 $$\mu_s (a) := \mathbbm{E} ((X-a)^s)$$
 Ovvero $\mu'_s = \mu_s (0)$. E' chiaro che $\mu'_1 = \mathbbm{E} (X)$.
@@ -60,7 +60,7 @@ $$\mu_s := \mathbbm{E} ((X-\mu'_1)^s)$$
 
 \begin{teo}
 Vale la seguente relazione tra momenti centrati e non:
-$$\mathbbm{E} ((X-\mu'_1)^s) = \displaystyle\sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m$$
+$$\mu_s = \mathbbm{E} ((X-\mu'_1)^s) = \displaystyle\sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m$$
 \end{teo}
 Osserviamo che $\mu_2 = \mathbbm{E} ((X-\mu'_1)^2) = Var(X) = \mathbbm{E} (X^2) - (\mathbbm{E} (X))^2 = \mu'_2 - (\mu'_1)^2$
 
@@ -68,7 +68,7 @@ Osserviamo che $\mu_2 = \mathbbm{E} ((X-\mu'_1)^2) = Var(X) = \mathbbm{E} (X^2) 
 \begin{teo}
 Date due (o più) v.c. $X$ e $Y$ indipendenti aventi $f$ densità / $f$ massa $f_X$ e $f_Y$ e fgm $M_X(t)$ e $M_Y(t)$ rispettivamente, allora si ha
 
-$$M_{X+Y} = M_X(t) M_Y(t)$$
+$$M_{X+Y}(t) = M_X(t) M_Y(t)$$
 \end{teo}
 
 \begin{teo}
@@ -93,7 +93,7 @@ Ripetere il calcolo precedente supponendo $X_i \sim P(\lambda), \forall i$.
 \subsection{Famiglia Esponenziale a $k$ parametri}
 Una famiglia di $f$ densità / $f$ massa è detta essere una Famiglia Esponenziale a $k$ parametri $\theta_1,...,\theta_k$ se la corrispondente $f$ densità / $f$ massa (che è indicizzata da $\theta_1,...,\theta_k$) può essere scritta come
 
-$$f_X(x;\theta) = C^*(x) D^*(\theta) \lbrace \displaystyle\sum_{m=1}^k A_m(\theta) B_m (x) \rbrace$$
+$$f_X(x;\theta) = C^*(x) D^*(\theta) \exp \lbrace \displaystyle\sum_{m=1}^k A_m(\theta) B_m (x) \rbrace$$
 
 dove $C^*(x)$ è una funzione della sola $x$, $D^*(\theta)$ è una funzione del solo $\theta$, $A_m(\theta)$ è una funzione del solo $\theta$ e $B_m(x)$ è una funzione della sola $x$.
 
@@ -108,7 +108,7 @@ e quindi ponendo $D^*(\alpha, \beta) := \frac{1}{\Gamma(\alpha) \beta^\alpha}$, 
 
 \item $X \sim b(n,p) \Longrightarrow f_X(x; n,p) = \binom{n}{x} p^x (1-p)^{n-x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x)$ con $n \in \mathbbm{N}$ noto.
 Quindi possiamo riscrivere $f_X(x; n,p)$ come
-$$f_X(x; n,p) = \binom{n}{x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x) (1-p)^n exp(ln(\frac{p}{1-p}) x)$$ con $\frac{p}{1-p}$ detto odd ratio o parametra naturale della famiglia esponenziale.\\
+$$f_X(x; n,p) = \binom{n}{x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x) (1-p)^n exp(x \ln(\frac{p}{1-p}))$$ con $\frac{p}{1-p}$ detto odd ratio o parametro naturale della famiglia esponenziale.\\
 Quindi ponendo $D^*(p) := (1-p)^n$, $C^*(x) := \binom{n}{x} \mathbbm{1}_{\lbrace 0,1,...,n \rbrace}(x)$, $A_1(p) := ln(\frac{p}{1-p})$, $B_1(x) := x$, otteniamo $b(n,p)$ come famiglia esponenziale con $k=1$.
 
 \item X vc con $f_X(x,\vartheta)=\frac{e^{1-x/\vartheta}}{\vartheta}\mathbbm{1}_{(\vartheta,\infty)}(x)$: la distribuzione di X non appartiene a famiglia esponenziale.
