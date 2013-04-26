@@ -18,7 +18,7 @@ $$Q=\frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\bar{X}_n - \mu}{\sigma /
 troviamo al numeratore $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
 mentre al denominatore abbiamo che 
 $$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}= \sqrt{\frac{H}{(n-1)}} $$
-Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$, quindi al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà.
+Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$, quindi in definitiva al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà, ovvero siamo proprio in presenza di una distribuzione t di Student.
 
 Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quantili della distribuzione t di student per costruire gli intervalli di confidenza. Per numerosità campionarie $n>30$, approssimare la distribuzione t di student con la distribuzione normale offre risultati soddisfacenti. Ricordiamo che per il tlc $Q\rightarrow N(0,1)$)
 

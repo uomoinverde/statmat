@@ -18,14 +18,14 @@ Definiamo Statistica Pivot una funzione $Q((X_1,...,X_n),\vartheta)$ tale che
 Campione casuale da $N(\mu,\sigma^2)$:
 \begin{enumerate}
 \item Supponiamo di conoscere la varianza: allora un esempio di statistica pivot è $$Z_n=\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} $$ la quale, grazie all'ipotesi di campionamento da vc normale, ha distribuzione N(0,1).
-\item Supponiamo di non conoscere la varianza: in tal caso, al posto della varianza usiamo lo stimatore varianza campionaria $S_n^2$, il quale è non distorto (già dimostrato) e consistente (infatti $MSE_{\sigma^2}(S_n^2)=Var(S_n^2) + B^2(S_n^2)=\frac{2\sigma^4}{n-1} \rightarrow 0$) e quindi la statistica pivot in questione sarà $$Q=\frac{\bar{X}_n - \mu}{\S_n / \sqrt{n}}$$ la quale (dimostreremo che) ha distribuzione t-student con n-1 gradi di libertà.
+\item Supponiamo di non conoscere la varianza: in tal caso, al posto della varianza usiamo lo stimatore varianza campionaria $S_n^2$, il quale è non distorto (già dimostrato) e consistente (infatti $\mse_{\sigma^2}(S_n^2)=Var(S_n^2) + B^2(S_n^2)=\frac{2\sigma^4}{n-1} \rightarrow 0$) e quindi la statistica pivot in questione sarà $$Q=\frac{\bar{X}_n - \mu}{\S_n / \sqrt{n}}$$ la quale (dimostreremo che) ha distribuzione t-student con n-1 gradi di libertà.
 \end{enumerate}
 
 Siano $(X_1,...,X_n)$ da una vc avente cdf $F_X(x,\vartheta)$. Vogliamo stimare $\vartheta$: per farlo usiamo uno stimatore $T_n$.
 Quando il campione casuale sarà effettivamente estratto, avremo una n-upla di valori reali $(x_1,...,x_n)$, i quali permettono di calcolare l'effettivo valore della stima: è impensabile però che la stima coincida esattamente con il valore (se X ha distribuzione continua $\mathbbm{P}(T_n=\vartheta)=0$!). Dobbiamo quindi associare a $T_n$ un margine di errore.
 
 \textbf{Esempio introduttivo (exit poll)}
-Vogliamo stimare la proporzione $p_i$ dei voti ricevuti dall'iesimo partito sul totale. Il nostro problema sarà quello di trovare un intervallo centrato nella stima $\hat{p_i}$ , ed un margine d'errore, $ME$, tale per cui, ad un fissata soglia di probabilità $\alpha$ si abbia $$P(p_i \in (\hat{p_i} - ME,\hat{p_i} + ME)=1 - \alpha$$
+Vogliamo stimare la proporzione $p_i$ dei voti ricevuti dall'iesimo partito sul totale. Il nostro problema sarà quello di trovare un intervallo centrato nella stima $\hat{p_i}$ , ed un margine d'errore, $ME$, tale per cui, ad un fissata soglia di probabilità $\alpha$ si abbia $$P(p_i \in (\hat{p_i} - ME,\hat{p_i} + ME))=1 - \alpha$$
 \subsubsection{Costruzione generale}
 In generale, sia $\vartheta_0$ il valore vero del parametro $\vartheta$ che vogliamo stimare, e per semplicità assumiamo che $T_n$ sia un suo stimatore tale che 
 $$\sqrt{n}(T_n - \vartheta_0)\stackrel{d}{\rightarrow}N(0,\sigma_{T_n}^2)$$
@@ -42,10 +42,10 @@ $z_{\alpha / 2}$ si dice Fattore di Affidabilità,
 $\frac{\sigma_{T_n}}{\sqrt{n}}$ si dice Standard Error dello stimatore $T_n$.
 
 Sia ora $(x_1,...,x_n)$ una determinazione campionaria (ossia i dati effettivamente osservati da un campione casuale) (cioè una n-upla) e sia $T_n(x_1,...,x_n)=t_n$ l'effettivo valore assunto dallo stimatore.
-Definiamo \textbf{l'intervallo di confidenza con probabilità di copertura $1-\alpha$} $$IC_\vartheta (1-\alpha) := \left[t_n - z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}}, t_n + z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}}\right]$$
+Definiamo di seguito \textbf{l'intervallo di confidenza con probabilità di copertura $1-\alpha$} $$IC_\vartheta (1-\alpha) := \left[t_n - z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}}, t_n + z_{\alpha / 2} \frac{\sigma_{T_n}}{\sqrt{n}}\right]$$
 La probabilità di copertura viene anche detta livello di confidenza.
 
-Nella pratica, $\sigma^2_{T_n}$ non è noto a priori. Possiamo però usare lo stimatore varianza campionaria di $T_n$, $S^2_{T_n}$, il quale sappiamo che converge in probabilità a $\sigma^2_{T_n}$. Allora, per il teorema di Slutsky, troviamo che 
+Nella pratica, $\sigma^2_{T_n}$ non è noto a priori. Possiamo però usare lo stimatore varianza campionaria di $T_n$, $S^2_{T_n}$, il quale sappiamo che converge in probabilità a $\sigma^2_{T_n}$. Allora, per il teorema 10 (di Slutsky), troviamo che 
 $$Z_n=\frac{\sqrt{n}(T_n - \vartheta_0)}{S_{T_n}} = \frac{\sqrt{n}}{S_{T_n}} T_n - \frac{\sqrt{n}}{S_{T_n}} \vartheta_0 \stackrel{d}{\rightarrow}N(0,1)$$ Possiamo quindi ripetere il ragionamento fatto poco sopra usando la varianza campionaria al posto di $S^2_{T_n}$, e quindi costruire l'intervallo di confidenza con probabilità di copertura pari a $1 - \alpha$ come $$IC_\vartheta (1-\alpha) := \left[t_n - z_{\alpha / 2} \frac{S_{T_n}}{\sqrt{n}}, t_n + z_{\alpha / 2} \frac{S_{T_n}}{\sqrt{n}}\right]$$
 \subsubsection{Intervallo di confidenza per la media $\mu$}
 Sia $(X_1,...,X_n)$ un campione casuale, media e varianza incognite. Siano $\bar{X}_n$ e $S^2_n$ gli stimatori di media e varianza della popolazione. Allora per il TLC e per il teorema di Slutsky si ha che 
