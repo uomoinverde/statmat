@@ -14,8 +14,8 @@ tale funzione è simmetrica, ha la classica forma a campana come la normale, ma 
 Risulta che la statistica pivot per la media in campioni poco numerosi 
 \footnote{In realtà vale per tutti i campioni, è solo che da un certo punto in poi la differenza con la normale è davvero trascurabile! Sulle tavole si riporta solo per $\nu < 120$} (in caso di campionamento da normale) 
 ha distribuzione esatta t di Student. Infatti 
-$$Q=\frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{S^2_n}{\sigma^2}}}$$
-troviamo al numeratore $\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
+$$Q=\frac{\overline{X}_n - \mu}{S_n / \sqrt{n}}=\frac{\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{S^2_n}{\sigma^2}}}$$
+troviamo al numeratore $\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} \sim N(0,1)$, (grazie al fatto che le $X_i$ sono equi distribuite normalmente) 
 mentre al denominatore abbiamo che 
 $$\sqrt{\frac{S^2_n}{\sigma^2}}= \sqrt{\frac{(n-1)S^2_n}{(n-1) \sigma^2}}= \sqrt{\frac{H}{(n-1)}} $$
 Abbiamo già dimostrato che $H=\frac{(n-1)S^2_n}{\sigma^2} \sim \chi^2_{n-1}$, quindi in definitiva al denominatore abbiamo la radice di una chiquadro diviso i suoi gradi di libertà, ovvero siamo proprio in presenza di una distribuzione t di Student.
@@ -24,16 +24,16 @@ Quindi, quando il campione casuale è poco numeroso, è conveniente usare i quan
 
 Fissato un livello di confidenza $1-\alpha$, consideriamo i quantili della distribuzione t di student (con n-1 gradi di libertà, ove n è la dimensione campionaria) 
 $\pm t_{(\alpha/2;n-1)}$, 
-troviamo $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\bar{X}_n - \mu}{S_n / \sqrt{n}}
+troviamo $$ P\left(-t_{(\alpha/2;n-1)} \leq \frac{\overline{X}_n - \mu}{S_n / \sqrt{n}}
  \leq t_{(\alpha/2;n-1)}\right) = 1 - \alpha $$
 Notiamo che questa volta vale l'uguaglianza 'vera', poiché non stiamo considerando approssimazioni asintotiche. 
 In presenza del campione effettivamente estratto, $(x_1,...,x_n)$, 
-scriviamo $\bar{x}_n$ e $s^2_n$ i valori assunti da media e varianza campionaria,
+scriviamo $\overline{x}_n$ e $s^2_n$ i valori assunti da media e varianza campionaria,
 l'intervallo di confidenza è $$IC_{\mu}(1-\alpha)=
-\left[\bar{x}_n -
+\left[\overline{x}_n -
  t_{(\alpha / 2;n-1)} 
  \sqrt{\frac{s^2_n}{n}},
-  \bar{x}_n + t_{(\alpha / 2;n-1)}\sqrt{\frac{s^2_n}{n}}\right]$$
+  \overline{x}_n + t_{(\alpha / 2;n-1)}\sqrt{\frac{s^2_n}{n}}\right]$$
 \begin{oss}
 Alcune osservazioni che, pur sembrando banali, è bene tenere a mente:
 \begin{enumerate}
@@ -62,19 +62,19 @@ Supponiamo inizialmente di avere due campioni casuali tra loro indipendenti:
 
 \noindent NB: non necessariamente $n_1$ dev'essere uguale a $n_2$
 \\ \\
-Consideriamo gli stimatori media campionaria per le due medie, che indicheremo con $\bar{X}$ e $\bar{Y}$.
-La statistica pivot che ci interessa per $\Delta=\mu_1-\mu_2$ sarà $$Z=\frac{(\bar{X} - \bar{Y})-(\mu_1 - \mu_2)}{\left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}}$$
-Notiamo che $var(\bar{X} - \bar{Y})=\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}$ dato che $cov(\bar{X} , \bar{Y})=0$ per l'indipendenza.
+Consideriamo gli stimatori media campionaria per le due medie, che indicheremo con $\overline{X}$ e $\overline{Y}$.
+La statistica pivot che ci interessa per $\Delta=\mu_1-\mu_2$ sarà $$Z=\frac{(\overline{X} - \overline{Y})-(\mu_1 - \mu_2)}{\left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}}$$
+Notiamo che $var(\overline{X} - \overline{Y})=\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}$ dato che $cov(\overline{X} , \overline{Y})=0$ per l'indipendenza.
 Ma allora $Z \stackrel{a}{\sim} N(0,1)$, quindi possiamo trovare un intervallo di confidenza \footnote{Approssimato, visto che conosciamo solo l'andamento asintotico di Z! D1 e D2 non è detto che siano mormali!}
-$$IC_\Delta(1-\alpha)=[(\bar{X} - \bar{Y})-ME;(\bar{X} - \bar{Y})+ME]$$ ove $ME=z_{\alpha/2} \left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}$.
+$$IC_\Delta(1-\alpha)=[(\overline{X} - \overline{Y})-ME;(\overline{X} - \overline{Y})+ME]$$ ove $ME=z_{\alpha/2} \left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}$.
 Al posto delle varianze possiamo usare anche gli stimatori corretti e consistenti varianza campionaria, e giungere allo stesso risultato per il teorema di Slutsky.
 \\ \\
 In generale non conosciamo la varianza delle distribuzioni: in base al problema che dobbiamo affrontare, può essere plausibile supporre di conoscere la distribuzione delle due popolazioni a meno di uno o più parametri. \\ \\ 
-\textbf{Location Model:} Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione normale con media $\mu_1$ e varianza $\sigma_1^2$ (ignote), i loro stimatori $\bar{X}$ e $S^2_1$ e
- $(Y_1,...,Y_{n_2})$ da distribuzione normale con media $\mu_2$ e varianza $\sigma_2^2$ (ignote) e i loro stimatori $\bar{Y}$ e $S^2_2$. Supponiamo che i due campioni siano tra loro indipendenti ed inoltre che $\sigma_1=\sigma_2=\sigma$.
+\textbf{Location Model:} Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione normale con media $\mu_1$ e varianza $\sigma_1^2$ (ignote), i loro stimatori $\overline{X}$ e $S^2_1$ e
+ $(Y_1,...,Y_{n_2})$ da distribuzione normale con media $\mu_2$ e varianza $\sigma_2^2$ (ignote) e i loro stimatori $\overline{Y}$ e $S^2_2$. Supponiamo che i due campioni siano tra loro indipendenti ed inoltre che $\sigma_1=\sigma_2=\sigma$.
 Possiamo 'fondere' le informazioni contenute in $S^2_1$ e $S^2_2$: $$(Pooled Variance) \; S^2_p:= \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 - 2} $$ 
 che risulta essere uno stimatore corretto e consistente di $\sigma^2$ (esercizio).
-La statistica Pivot che prendiamo in considerazione sarà $$T=\frac{(\bar{X} - \bar{Y})-(\mu_1 - \mu_2)}{S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}}}$$ la quale risulta essere distribuita come $t_{n_1 + n_2 - 2}$. Ricalcando i passaggi delle applicazioni precedenti, fissato $\alpha$  troviamo l'intervallo casuale per $\Delta$ $$IC = \left[(\bar{X} - \bar{Y}) - t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} ; (\bar{X} - \bar{Y}) + t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} \right]$$
+La statistica Pivot che prendiamo in considerazione sarà $$T=\frac{(\overline{X} - \overline{Y})-(\mu_1 - \mu_2)}{S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}}}$$ la quale risulta essere distribuita come $t_{n_1 + n_2 - 2}$. Ricalcando i passaggi delle applicazioni precedenti, fissato $\alpha$  troviamo l'intervallo casuale per $\Delta$ $$IC = \left[(\overline{X} - \overline{Y}) - t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} ; (\overline{X} - \overline{Y}) + t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} \right]$$
 
 \subsubsection{Intervalli di confidenza per la differenza di proporzioni}
 
