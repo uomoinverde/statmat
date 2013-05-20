@@ -1,5 +1,5 @@
 \subsection{Teoria asintotica}
-Lezione del 04/03, ultima modifica 05/03, Michele Nardin
+Lezione del 04/03, ultima modifica 09/04, Michele Nardin
 
 \begin{teo}
 \noindent
@@ -11,19 +11,21 @@ Supponiamo che una funzione g(X) sia derivabile in $\vartheta$ e che $g'(\varthe
 \end{teo}
 
 \textbf{Esempi}
-\begin{enumerate}
-\item Considero $$Y_n=\frac{\chi^2_n-n}{\sqrt{2n}}=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$$ ove $\chi^2_n$ è la chiquadro con n gradi di libertà. 
+Considero $$Y_n=\frac{\chi^2_n-n}{\sqrt{2n}}=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$$ ove $\chi^2_n$ è la chiquadro con n gradi di libertà. 
 Ricordiamo che $\mathbbm{E}(\chi^2_n)=n$ e che $Var(\chi^2_n)=2n$ (discende dal fatto che $\chi^2_n \sim \mathcal{G}(\alpha=n/2,\beta=2)$. 
-Siccome $Y_n \stackrel{d}{\rightarrow} N(0,1)$, scrivendo $Y_n$ nella forma $Y_n=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$ riconosciamo che la prima parte delle ipotesi del $\Delta$-method sono soddisfatte.
+Affermiamo che $Y_n \stackrel{d}{\rightarrow} N(0,1)$. Infatti:
+$$Y_n = \frac{\chi^2_n-n}{\sqrt{2n}} = \frac{\sum_{i=1}^n X_i^2 - n \cdot 1}{\sqrt{n} \sqrt{2}}$$
+dove $X_i \sim N(0,1)$, e quindi $X_i^2 \sim \chi^2_1$, quindi le $X_i^2$ hanno media $\mu=1$ e varianza $\sigma^2=2$. Quindi per il Teorema centrale del Limite (vedi sotto) si ha quanto voluto.\\
+Scrivendo ora $Y_n$ nella forma $Y_n=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$ riconosciamo che la prima parte delle ipotesi del $\Delta$-method sono soddisfatte.
 Considero quindi $g(t)=\sqrt{t}$, che è derivabile in $\vartheta=1/\sqrt{2}$, $g'(t)=\frac{1}{2\sqrt{t}}|_{\vartheta=1/\sqrt{2}}=2^{-3/4}$.
 Allora $$\sqrt{n}(g\left(\frac{\chi^2_n}{\sqrt{2}n}\right)-g(\vartheta))=
 \sqrt{n}\left(\sqrt{\frac{\chi^2_n}{\sqrt{2}n}}-\sqrt{\frac{1}{\sqrt{2}}}\right)
 \stackrel{d}{\rightarrow}N(0,1^2\cdot 2^{-3/2})$$
-\end{enumerate}
 
 \begin{teo}
 (Teorema centrale del limite) Siano $X_1,...X_n$ vc iid dotate di media $\mu$ e varianza finita $\sigma^2$. Allora 
-$$\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\cdot \sigma} = \frac{\sqrt{n}(\bar{X_n}-\mu)}{\sigma}\stackrel{d}{\rightarrow}N(0,1) $$
+$$\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\cdot \sigma} = \frac{\sqrt{n}(\overline{X}_n-\mu)}{\sigma}\stackrel{d}{\rightarrow}N(0,1)$$
+con $\overline{X}_n$ media aritmetica delle $X_i$.
 \end{teo}
 
 \textbf{Esempi/Applicazioni}
@@ -55,7 +57,7 @@ Siccome $M_{X_n}(t)=
 [1+\frac{\mu}{n}(e^t - 1)]^n$, 
 $$ M_{X_n}(t) \stackrel{n \rightarrow \infty}{\longrightarrow} 
 e^{\mu(e^t-1)}$$
-che è la FGM di una Poisson di parametro $\mu$.
+che è la FGM di una Poisson di parametro $\mu$, ovvero $X_n \stackrel{d}{\rightarrow} \mathcal{P}(n,p).$
 \end{enumerate}
 \section{Approccio alla Statistica Matematica}
 
