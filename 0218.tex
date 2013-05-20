@@ -83,7 +83,7 @@ Il teorema appena visto ci dice sostanzialmente che, se esiste, la fgm caratteri
 \noindent \textbf{Esempio}
 Siano $(X_1,...,X_n)$ risultati della replicazione di un esperimento casuale dicotomico $(X_i \sim b(1,p))$. Vogliamo trovare la distribuzione di $S_n := \displaystyle\sum_{i=1}^n X_i$. Calcoliamo quindi la sua fgm:
 
-$$M_{S_n}(t) = \mathbbm{E}({e^{tS_n}}) = \mathbbm{E}({e^{t \sum_{i=1}^n X_i}}) $$
+$$M_{S_n}(t) = \mathbbm{E} \left( {e^{t S_n}} \right)  = \mathbbm{E} \left( {e^{t \sum_{i=1}^n X_i}} \right) $$
 $$\stackrel{TEO 2}
 {=} \displaystyle\prod_{i=1}^n \mathbbm{E}({e^{tX_i}}) = \displaystyle\prod_{i=1}^n M_{X_i}(t) = \displaystyle\prod_{i=1}^n (p e^t + (1-p)) = (p e^t + (1-p))^n$$ ovvero $S_n$ è distribuita come $b(n,p)$ per il Teorema 2.
 

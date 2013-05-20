@@ -45,10 +45,12 @@ Alcune osservazioni che, pur sembrando banali, è bene tenere a mente:
 \subsubsection{Intervalli di confidenza per la varianza}
 Sia $(X_1,...,X_n)$ un campione casuale da $N(\mu,\sigma^2)$.
 Consideriamo la statistica pivot $$W=\frac{n-1}{\sigma^2} S^2_n$$ Abbiamo già mostrato che $W \sim \chi^2_{n-1}$. 
-Ma allora, dato che noi cerchiamo $q_1,q_2$ tc $$P(q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2)=1-\alpha$$ troviamo che essi sono i quantili di ordine $\alpha / 2$ e $1 - \alpha / 2$ della chiquadro con n-1 gradi di libertà, che indicheremo $q_1=\chi^2_{(n-1,\alpha / 2)}$ e $q_2=\chi^2_{(n-1,1 - \alpha / 2)}$.
+Ma allora, dato che noi cerchiamo $q_1,q_2$ t.c. 
+$$P \left( q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2 \right) =1-\alpha$$ 
+troviamo che essi sono i quantili di ordine $\alpha / 2$ e $1 - \alpha / 2$ della chiquadro con n-1 gradi di libertà, che indicheremo $q_1=\chi^2_{(n-1,\alpha / 2)}$ e $q_2=\chi^2_{(n-1,1 - \alpha / 2)}$.
 Con qualche passaggio otteniamo:
-$$P(\frac{1}{q_2} \leq \frac{\sigma^2}{(n-1) S^2_n} \leq \frac{1}{q_1})=1-\alpha$$
-$$P(\frac{(n-1) S^2_n}{q_2} \leq \sigma^2 \leq \frac{(n-1) S^2_n}{q_1})=1-\alpha$$
+$$P \left( \frac{1}{q_2} \leq \frac{\sigma^2}{(n-1) S^2_n} \leq \frac{1}{q_1} \right) =1-\alpha$$
+$$P \left( \frac{(n-1) S^2_n}{q_2} \leq \sigma^2 \leq \frac{(n-1) S^2_n}{q_1} \right) =1-\alpha$$
 Troviamo così l'intervallo casuale (e di conseguenza il relativo intervallo di confidenza, una volta estratto il campione e trovato un valore a $S^2_n$) $$IC=\left[ \frac{(n-1)S^2_n}{q_2};\frac{(n-1)S^2_n}{q_1} \right]$$
 
 \subsubsection{Intervalli di confidenza per la differenza di medie}
