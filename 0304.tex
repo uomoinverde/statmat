@@ -10,7 +10,7 @@ tale che
 Supponiamo che una funzione g(X) sia derivabile in $\vartheta$ e che $g'(\vartheta)\neq0$. Allora $$\sqrt{n}(g(X_n)-g(\vartheta))\stackrel{d}{\rightarrow}N(0,\sigma^2(g'(\vartheta))^2)$$
 \end{teo}
 
-\textbf{Esempi}
+\noindent\textbf{Esempio}
 Considero $$Y_n=\frac{\chi^2_n-n}{\sqrt{2n}}=\sqrt{n}\left(\frac{\chi^2_n}{\sqrt{2}n}-\frac{1}{\sqrt{2}}\right)$$ ove $\chi^2_n$ è la chiquadro con n gradi di libertà. 
 Ricordiamo che $\mathbbm{E}(\chi^2_n)=n$ e che $Var(\chi^2_n)=2n$ (discende dal fatto che $\chi^2_n \sim \mathcal{G}(\alpha=n/2,\beta=2)$. 
 Affermiamo che $Y_n \stackrel{d}{\rightarrow} N(0,1)$. Infatti:
@@ -28,7 +28,7 @@ $$\frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n}\cdot \sigma} = \frac{\sqrt{n}(\overlin
 con $\overline{X}_n$ media aritmetica delle $X_i$.
 \end{teo}
 
-\textbf{Esempi/Applicazioni}
+\noindent\textbf{Esempi/Applicazioni}
 \begin{enumerate}
 \item $X_n \sim b(n,p)$, $X_n \stackrel{a}{\sim}N(np,np(1-p))$ (ricordiamo che $X_n \sim \sum_{i=1}^n b_i$, ove $b_i \sim b(1,p)$).
 Quando scriviamo $\stackrel{a}{\sim}$ stiamo considerando un "andamento asintotico", ossia sottintendiamo un'approssimazione (via via migliore con l'aumentare di n) giustificata dal TLC (il senso è che per n 'grandi' la distribuzione 'funziona circa così').
@@ -48,7 +48,9 @@ Dato che $Y_n \stackrel{a}
 \begin{teo}
 Sia $\{X_n\}$ una succ di vc iid, ognuna con con FGM $M_{X_n}(t)$ definita e $<\infty$ per $t\in(-h,h)$, e sia X un'altra vc con FGM $M_X(t)$ definita e $<\infty$ per $t \in (-h_1,h_1), \; h_1\leq h$. Se $$\lim_{n \rightarrow +\infty} M_{X_n}(t)=M_X(t) \; \; \; \forall |t| \leq h_1$$ allora $X_n \stackrel{d}{\rightarrow} X$.
 \end{teo}
-\textbf{Applicazione}
+
+\noindent\textbf{Applicazione}
+
 \begin{enumerate}
 \item Sia $X_n \sim b(n,p)$. 
 Ricordiamo che $X_n=\sum X_i$ ove $X_i \sim b(1,p)$, ed inoltre $\mu=\mathbbm{E}(X)=np$.
@@ -59,14 +61,16 @@ $$ M_{X_n}(t) \stackrel{n \rightarrow \infty}{\longrightarrow}
 e^{\mu(e^t-1)}$$
 che è la FGM di una Poisson di parametro $\mu$, ovvero $X_n \stackrel{d}{\rightarrow} \mathcal{P}(n,p).$
 \end{enumerate}
-\section{Approccio alla Statistica Matematica}
-
-\subsection{Introduzione}
+\newpage
+%%%modificato titolo della sezione: sottolineamo il fatto che la prima parte del corso è applicativa
+\section{Approccio applicativo alla Statistica Matematica}
+Questa sezione corrisponde alla parte di corso svolta dalla seconda settimana di marzo fino a metà aprile, che riguarda gli aspetti pratici della statistica: verranno introdotte le statistiche d'ordine, gli intervalli di confidenza e i test per verifiche d'ipotesi.
 
 \begin{definizione} (Campione Casuale)
 Il vettore casuale $(X_1,...,X_n)$ si dice Campione Casuale relativamente ad una vc $X \sim F_X(x,\vartheta)$ se i suoi elementi sono vc i.i.d.
 \end{definizione}
-\textbf{Osservazione}
+
+\noindent\textbf{Osservazione}
 Il fatto che le vc siano i.i.d. implica che $$F_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n F_{X_i} (X_i)$$ e $$f_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n f_{X_i} (X_i)$$
 
 \begin{definizione} (Statistica)
@@ -75,23 +79,25 @@ Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione associata alla vc $
 \noindent Ogni funzione $$T(X_1,...,X_n):\Omega \longrightarrow \mathbbm{R}^k$$ che NON dipende da parametri incogniti è detta Statistica.
 \end{definizione}
 
-\textbf{Osservazioni}
-Le cose scritte tra virgolette '' sono concetti e/o definizioni non ancora introdotti, che vengono usati per dare un'idea intuitiva di quello che si andrà a vedere, cose che poi durante il corso verranno trattate con rigore.
-\begin{enumerate}
-\item Una statistica T è una 'caratteristica numerica' del campione: si presta a $sintetizzare$ l'informazione su $\vartheta$ contenuta nel campione.
-\item $\sum_{i=1}^n X_i$ e $\sum_{i=1}^n X_i^2$ sono entrambe statistiche: sono alla base di due 'stimatori' molto importanti:
+%%Ho tolto le osservazioni di seguito, se poi riteniamo di rimetterle ok, altrimenti io le considero superflue e fuorvianti.
 
-Media Campionaria: $\bar{X}_n =\frac{1}{n}\sum X_i$
+%\textbf{Osservazioni}
+%Le cose scritte tra virgolette '' sono concetti e/o definizioni non ancora introdotti, che vengono usati per dare un'idea intuitiva di quello che si andrà a vedere, cose che poi durante il corso verranno trattate con rigore.
+%\begin{enumerate}
+%\item Una statistica T è una 'caratteristica numerica' del campione: si presta a $sintetizzare$ l'informazione su $\vartheta$ contenuta nel campione.%
+%\item $\sum_{i=1}^n X_i$ e $\sum_{i=1}^n X_i^2$ sono entrambe statistiche: sono alla base di due 'stimatori' molto importanti:
 
-Varianza Campionaria: $S_n^2=\frac{1}{n-1} \sum (X_i-\bar{X}_n)^2 = \frac{1}{n-1} \sum X_i^2 - \frac{n}{n-1}\bar{X}_n^2$
-\item Ogni statistica è una vc: ha quindi una distribuzione, che dipende dal parametro.
+%Media Campionaria: $\bar{X}_n =\frac{1}{n}\sum X_i$
 
-\textbf{Esempio} Considero $\bar{X}=\frac{1}{n} \sum X_i$ ove $X_i \sim N(\mu,\sigma^2)$. Allora $\bar{X} \sim N(\mu,\frac{\sigma^2}{n})$. Da questo si potrà dedurre la "bontà" di $\bar{X}$ come "stimatore" di $\mu$.
-\item Tra tutti i modi di sintetizzare l'informazione contenuta in $(X_1,...,X_n)$ relativamente a $\vartheta$, siamo interessati a quelli che NON tralasciano informazioni o quote di informazioni rilevanti per il parametro.
-\item In relazione ad uno stimatore potremmo essere interessati ad alcune proprietà, in particolare a queste due:
+%Varianza Campionaria: $S_n^2=\frac{1}{n-1} \sum (X_i-\bar{X}_n)^2 = \frac{1}{n-1} \sum X_i^2 - \frac{n}{n-1}\bar{X}_n^2$
+%\item Ogni statistica è una vc: ha quindi una distribuzione, che dipende dal parametro.
 
-$\cdot$ Accuratezza [concetto legato alla media dello stimatore] ($Non$ $distorsione$)
+%\textbf{Esempio} Considero $\bar{X}=\frac{1}{n} \sum X_i$ ove $X_i \sim N(\mu,\sigma^2)$. Allora $\bar{X} \sim N(\mu,\frac{\sigma^2}{n})$. Da questo si potrà dedurre la "bontà" di $\bar{X}$ come "stimatore" di $\mu$.
+%\item Tra tutti i modi di sintetizzare l'informazione contenuta in $(X_1,...,X_n)$ relativamente a $\vartheta$, siamo interessati a quelli che NON tralasciano informazioni o quote di informazioni rilevanti per il parametro.
+%\item In relazione ad uno stimatore potremmo essere interessati ad alcune proprietà, in particolare a queste due:
 
-$\cdot$ Precisione [concetto legato alla varianza dello stimatore] ($efficienza$ o $consistenza$)
-\end{enumerate}
+%$\cdot$ Accuratezza [concetto legato alla media dello stimatore] ($Non$ $distorsione$)
+
+%$\cdot$ Precisione [concetto legato alla varianza dello stimatore] ($efficienza$ o $consistenza$)
+%\end{enumerate}
 %Fine lezione del 4 marzo. ultima modifica 5 marzo, 14.08, Michele

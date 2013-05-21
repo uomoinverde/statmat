@@ -1,21 +1,22 @@
 \subsection{Statistiche d'ordine}
 Lezioni 08 e 11 Marzo, ultima modifica 21/03, Scritte da: Marco Peruzzetto
 
-\textbf{Definizione.} Sia $\left(X_1,\ldots ,X_n\right)$ un campione casuale con distribuzione $F_X\left(x,\theta\right)$, densità $f_X\left(x,\theta\right)$ e supporto $\supp\{X\}\coloneqq (a,b)\subset\mathbb{R}$ ove $X\in \{X_1,\ldots,X_n\}$ e $-\infty\leq a<b\leq +\infty$. Definiamo ricorsivamente le seguenti variabili casuali:
+\begin{definizione} Sia $\left(X_1,\ldots ,X_n\right)$ un campione casuale con distribuzione $F_X\left(x,\theta\right)$, densità $f_X\left(x,\theta\right)$ e supporto $\supp\{X\}\coloneqq (a,b)\subset\mathbb{R}$ ove $X\in \{X_1,\ldots,X_n\}$ e $-\infty\leq a<b\leq +\infty$. Definiamo ricorsivamente le seguenti variabili casuali:
 \begin{itemize}
 \item $X_{(1)}\coloneqq \min\left(\{X_1,\ldots,X_n\}\right)$;
 \item $X_{(i)}\coloneqq \min\left(\{X_1,\ldots,X_n\}\setminus\{X_{(1)},\ldots,X_{(i-1)}\}\right)$ $\forall 1<i\leq n$. 
 \end{itemize}
-Chiameremo allora $X_{(i)}$ la $i$-esima \textit{Statistica d'Ordine} del campione.\\ 
-\\
+Chiameremo allora $X_{(i)}$ la $i$-esima \textit{Statistica d'Ordine} del campione.
+\end{definizione}
+
 \textit{Osservazione:} La statistica d'ordine consiste semplicemente nel vettore per il quale le variabili casuali vengono appunto ordinate, in base al valore che assumono in un determinato punto del loro dominio comune, in ordine crescente. In particolare $X_{(i)}$ sarà l' $i$-esima variabile più piccola. Naturalmente, se il campione ha lunghezza $n$, allora $X_{(n)}=\max\left(\{X_1,\ldots,X_n\}\right)$. 
 Osserviamo che la funzione $\left(X_1,\ldots,X_n\right)\longmapsto \left(X_{(1)},\ldots,X_{(n)}\right)$ è essa stessa una Statistica.
-\begin{theorem}
+\begin{teo}
 Sia $\left(X_1,\ldots,X_n\right)$ un campione casuale come sopra. Allora si ottiene $\forall$ $1\leq m\leq n$ che la densità dell' $m$-esima statistica d'ordine è data da: 
 \begin{displaymath}
 f_{X_{(m)}}\left(x,\theta\right)=\frac{n!}{(m-1)!(n-m)!}f_X\left(x,\theta\right)\cdot F_X\left(x,\theta\right)^{m-1}\cdot \big(1-F_X\left(x,\theta\right)\big)^{n-m}
 \end{displaymath}
-\end{theorem}
+\end{teo}
 Daremo due dimostrazioni, la seconda più bella della prima.
 \begin{proof} (a cura di Marco Perruzzetto) Innanzi tutto si ha che il supporto $(a,b)$ può essere partizionato in $n$ parti, per cui evidentemente si ha: 
 \footnotesize{
@@ -114,21 +115,32 @@ perciò, in definitiva, $2\mathbb{E}[T_n]=0$ ovvero $\mathbb{E}[T_n]=0$. Quindi,
  $=\frac{1}{n-1}\left(\sum_{i=1}^n \mathbb{E}[(X_i-\mu)^2]-\sum_{i=1}^n\mathbb{E}[(\overline{X}_n-\mu)^2]\right)$
 $=\frac{1}{n-1}\cdot (n-1)\sigma^2=\sigma^2.$ Perciò $S_n^2$ è uno stimatore non distorto di $\sigma^2$. Notiamo che lo stimatore $S_n^*\coloneqq \frac{1}{n}\sum_{i=1}^n (X_i-\overline{X}_n)^2$ avrebbe distorsione $-\frac{\sigma^2}{n}$, e dunque è peggiore della varianza campionaria, anche se è asintoticamente non distorto. \\ 
 \end{enumerate}
-Calcoleremo adesso la varianza della varianza campionaria. Assumiamo per il momento che il campione provenga da una distribuzione normale $N(\mu,\sigma^2)$. In tal caso mostriamo che $\frac{n-1}{\sigma^2}S_n^2 \sim \chi_{n-1}^2$ e dunque si avrà subito $\var[S_n^2]=\frac{2\sigma^4}{n-1}$. Infatti, $\frac{n-1}{\sigma^2}S_n^2=\sum_{i=1}^n \left(\frac{X_i-\overline{X}_n}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}-\frac{\overline{X}_n-\mu}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2-n\left(\frac{\overline{X}_n-\mu}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2-\left(\frac{\overline{X}_n-\mu}{\frac{\sigma}{\sqrt{n}}}\right)^2\Rightarrow \sum_{i=1}^n \left(\sim \chi_1^2\right)-\left(\sim \chi_1^2\right)\Rightarrow \frac{n-1}{\sigma^2}S_n^2 \sim \chi_{n-1}^2$, ove abbiamo usato il seguente teorema: 
-\begin{theorem}
+Calcoleremo adesso la varianza della varianza campionaria. Assumiamo per il momento che il campione provenga da una distribuzione normale $N(\mu,\sigma^2)$. In tal caso mostriamo che $\frac{n-1}{\sigma^2}S_n^2 \sim \chi_{n-1}^2$ e dunque si avrà subito $\var[S_n^2]=\frac{2\sigma^4}{n-1}$. Infatti, $\frac{n-1}{\sigma^2}S_n^2=\sum_{i=1}^n \left(\frac{X_i-\overline{X}_n}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}-\frac{\overline{X}_n-\mu}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2-n\left(\frac{\overline{X}_n-\mu}{\sigma}\right)^2=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2-\left(\frac{\overline{X}_n-\mu}{\frac{\sigma}{\sqrt{n}}}\right)^2\Rightarrow \sum_{i=1}^n \left(\sim \chi_1^2\right)-\left(\sim \chi_1^2\right)\Rightarrow \frac{n-1}{\sigma^2}S_n^2 \sim \chi_{n-1}^2$, ove abbiamo usato il seguente teorema: \\
+\\
+\begin{teo}
 Sia $(X_1,\ldots,X_n)$ un campione casuale ove la funzione generatrice di ciascuna $X_i$, $1\leq i\leq n$ è $M_{X}(t)$. Allora $M_{\overline{X}_n}(t)=(M_{X}(\frac{t}{n}))^n$.
-\end{theorem}
+\end{teo}
+$\vspace{3 mm}$
 per mostrare che $\overline{X}_n\sim N(\mu, \frac{\sigma^2}{n})$. Infatti: \\ 
 $M_{\overline{X}_n}(t)=(M_{X}(\frac{t}{n}))^n=\left(e^{\mu\frac{t}{n}+\frac{\sigma^2 t^2}{2n^2}}\right)^n=e^{\mu t+\frac{\sigma^2}{n}\cdot\frac{t}{2}}$, da cui la tesi. \\
 
-\begin{theorem}
+\begin{teo}
 Sia $(X_1,\ldots,X_n)$ un campione casuale da una popolazione con distribuzione discreta o assolutamente continua dove la densità associata sia della forma $f(x,\theta)=C(x)D(\theta)\exp\{\sum_{m=1}^k A_m(\theta)B_m(x)\}$ con $k$ naturale positivo. Siano $T_1,\ldots,T_k$ statistiche definite $\forall 1\leq m\leq k$ da $T_m(X_1,\ldots,X_n)\coloneqq \sum_{i=1}^n B_m(X_i)$. Allora la distribuzione di $(T_1,\ldots,T_k)$ sarà ancora della forma esponenziale:
 $$f_{(T_1,\ldots,T_k)}(\theta,t_1,\ldots,t_k)=C(t_1,\ldots,t_k)D(\theta)^n exp\bigg\{\sum_{i=1}^k A_m(\theta)t_m\bigg\}$$.
-\end{theorem}
-\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale. Supponiamo che $X\sim \bi(1,p)$. Allora la densità sarà discreta, ossia sarà $f(p,x)=\mathbb{P}[X=x]=\mathbbm{1}_{\{0,1\}}(x)(1-p)\exp\big\{x \log\big(\frac{p}{1-p}\big)\big\}$. Applicando il teorema otteniamo $T_1(X_1,\ldots,X_n)=$ $\sum_{i=1}^n B_1(X_i)=\sum_{i=1}^n X_i$ da cui si deduce subito che $T_1\sim \bi(n,p)$. In particolare possiamo scriverne la densità: $f_{T_1}(p,t_1)=\mathbbm{1}_{\{0,\ldots,n\}}(t_1)\binom{n}{t_1}(1-p)^n\exp\{t_1 \log\big(\frac{p}{1-p}\big)\}$. \\ \textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale e supponiamo che il nostro campione casuale abbia distribuzione uniforme $\uni([0,\theta])$. Vogliamo stimare $\theta$. Supponiamo che, essendo $\theta$ il massimo valore che ciascuna variabile può assumere, un plausibile buon stimatore possa essere proprio il massimo della statistica ordinata, ovvero $T_n(X_1,\ldots,X_n)\coloneqq X_{(n)}$. Per il teorema di pagina 8, ne conosciamo già la distribuzione: $f_{T_n}(\theta,x)=\frac{n!}{(n-1)!(n-n)!}\frac{1}{\theta}\left(\frac{x}{\theta}\right)^{n-1}\left(1-\frac{x}{\theta}\right)^{n-n}=\frac{n}{\theta^n}x^{n-1}$. Allora $\mathbb{E}[T_n]=\int_0^\theta \frac{n}{\theta^n}x^n dx=\frac{n}{n+1}\theta \neq \theta\Longrightarrow B_{\theta}[T_n]=\frac{-\theta}{n+1}$. Ne segue che è distorto, ma asintoticamente non distorto per $\theta$. Possiamo anche calcolarne la varianza: $\var[T_n]=\mathbb{E}[T_n^2]-\mathbb{E}[T_n]^2=\int_0^\theta \frac{n}{\theta^n}x^{n+1} dx -\frac{n}{n+1}=\frac{n\theta^2}{(n+1)^2(n+2)}$
-$\xrightarrow[n\rightarrow \infty]{}0$. Perciò il massimo $X_{(n)}$ rimane in ogni caso uno stimatore affidabile. Osserviamo che possiamo tuttavia introdurre un nuovo stimatore che ci assicura la non distorsione, ovvero $T_n^*\coloneqq \frac{n+1}{n}T$, che possiede le proprietà cercate. \\ \\
+\end{teo}
+
+\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale. Supponiamo che $X\sim \bi(1,p)$. Allora la densità sarà discreta, ossia sarà $f(p,x)=\mathbb{P}[X=x]=\mathbbm{1}_{\{0,1\}}(x)(1-p)\exp\big\{x \log\big(\frac{p}{1-p}\big)\big\}$. Applicando il teorema otteniamo $T_1(X_1,\ldots,X_n)=$ $\sum_{i=1}^n B_1(X_i)=\sum_{i=1}^n X_i$ da cui si deduce subito che $T_1\sim \bi(n,p)$. In particolare possiamo scriverne la densità: $f_{T_1}(p,t_1)=\mathbbm{1}_{\{0,\ldots,n\}}(t_1)\binom{n}{t_1}(1-p)^n\exp\{t_1 \log\big(\frac{p}{1-p}\big)\}$. \\ 
+\noindent\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale e supponiamo che il nostro campione casuale abbia distribuzione uniforme $\uni([0,\theta])$. Vogliamo stimare $\theta$. Supponiamo che, essendo $\theta$ il massimo valore che ciascuna variabile può assumere, un plausibile buon stimatore possa essere proprio il massimo della statistica ordinata, ovvero $T_n(X_1,\ldots,X_n)\coloneqq X_{(n)}$. Per il teorema di pagina 8, ne conosciamo già la distribuzione: 
+$$f_{T_n}(\theta,x) = \frac{n!}{(n-1)!(n-n)!}\frac{1} {\theta} \left( \frac{x}{\theta} \right)^{n-1} \left (1 - \frac{x}{\theta}\right)^{n-n} = \frac{n}{\theta^n}x^{n-1}$$ 
+Allora $\mathbb{E}[T_n]=\int_0^\theta \frac{n}{\theta^n}x^n dx=\frac{n}{n+1}\theta \neq \theta\Longrightarrow B_{\theta}[T_n]=\frac{-\theta}{n+1}$. 
+Ne segue che è distorto, ma asintoticamente non distorto per $\theta$. 
+Possiamo anche calcolarne la varianza: $\var[T_n]=\mathbb{E}[T_n^2]-\mathbb{E}[T_n]^2=\int_0^\theta \frac{n}{\theta^n}x^{n+1} dx -\frac{n}{n+1}=\frac{n\theta^2}{(n+1)^2(n+2)}$
+$\xrightarrow[n\rightarrow \infty]{}0$. 
+Perciò il massimo $X_{(n)}$ rimane in ogni caso uno stimatore affidabile. Osserviamo che possiamo tuttavia introdurre un nuovo stimatore che ci assicura la non distorsione, ovvero $T_n^*\coloneqq \frac{n+1}{n}T$, che possiede le proprietà cercate. \\ \\
+
 \textbf{Definizione.} Sia $(X_1,\ldots,X_n)$ un campione casuale con distribuzione $F(\theta,x)$, ove $\theta\in \Theta\subset \mathbb{R}$. Sia poi $T_n$ una statistica $\forall n\in \mathbb{N}$. Diremo $T_n$ essere uno stimatore \textit{consistente} di $\theta$ $:\Longleftrightarrow$ $T_n(X_1,\ldots,X_n)\xrightarrow[n\rightarrow \infty]{\mathbb{P}} \theta$. \\ \\
-\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale, ove $X\in \mathcal{L}^2(\mathbb{R)}$. Indichiamo come al solito media e varianza rispettivamente con $\mu$ e $\sigma^2$. Allora abbiamo:
+
+\noindent\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale, ove $X\in \mathcal{L}^2(\mathbb{R)}$. Indichiamo come al solito media e varianza rispettivamente con $\mu$ e $\sigma^2$. Allora abbiamo:
 \begin{enumerate}
 \item La media campionaria $\overline{X}_n\coloneqq \frac{1}{n}\sum_{i=1}^n X_i\xrightarrow[n\rightarrow \infty]{\mathbb{P}} \mu$, grazie alla legge debole dei grandi numeri poiché $\lim_{n\rightarrow +\infty} \mathbb{P}[(\overline{X}_n-\mu)>\varepsilon ]=0$, $\forall \varepsilon >0$.
 \item Consideriamo adesso la varianza campionaria $$S_n^2\coloneqq \frac{1}{n-1}\sum_{i=1}^n (X_i-\overline{X}_n)^2=\frac{n}{n-1}\left(\frac{1}{n}\sum_{i=1}^n X_i^2-\overline{X}_n^2\right)$$. Abbiamo ora i seguenti tre termini:
@@ -152,9 +164,9 @@ Ne segue quindi che $S_n^2 \xrightarrow[n\rightarrow \infty]{\mathbb{P}} \sigma^
 \item $\lo_2\big(T_n,a(\theta)\big)\coloneqq \big(T_n-a(\theta)\big)^2$. Essa ammette anche come possibile funzione di rischio $\ri_2\big(T_n,a(\theta)\big)\coloneqq \mathbb{E}_{\theta}[T_n-a(\theta)]^2$; se tuttavia $a=\id_{\Theta}$, allora la funzione $\mse_{\theta}(T_n)\coloneqq \ri_2\big(T_n,\theta\big)$ prende il nome di \textit{Mean Square Error} (oppure \textit{Errore Quadratico Medio}).
 \end{enumerate}
 \textit{Osservazione.} Semplicemente aggiungendo e sottraendo il valore $\mathbb{E}[T_n]$ si ottiene subito la seguente uguaglianza: $\mse_{\theta}(T_n)=\var_\theta [T_n]+B_\theta [T_n]^2$.
-\begin{theorem}
+\begin{teo}
 Sia $T_n$ uno stimatore di $\theta$ (non necessariamente non distorto). Allora si ha che $\lim_{n\rightarrow +\infty} \mse_\theta (T_n)=0$ è condizione sufficiente (ma non necessaria) per la consistenza di $T_n.$
-\end{theorem}
+\end{teo}
 \begin{proof} Si ha infatti la seguente semplice catena di diseguaglianze: 
 \begin{eqnarray*}
 \mathbb{P}[|T_n-\theta|>\varepsilon] &=& \int_{|T_n-\theta|>\varepsilon} f_{T_n}(\theta,t_n)dt_n \\ 
