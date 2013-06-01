@@ -161,9 +161,9 @@ Ne segue quindi che $S_n^2 \xrightarrow[n\rightarrow \infty]{\mathbb{P}} \sigma^
 \textbf{Definizione.} Possiamo già definire due tipologie di funzioni di perdita che spesso vengono utilizzate in statistica: 
 \begin{enumerate}[noitemsep]
 \item $\lo_1\big(T_n,a(\theta)\big)\coloneqq |T_n-a(\theta)|$, chiamata \textit{Errore assoluto};
-\item $\lo_2\big(T_n,a(\theta)\big)\coloneqq \big(T_n-a(\theta)\big)^2$. Essa ammette anche come possibile funzione di rischio $\ri_2\big(T_n,a(\theta)\big)\coloneqq \mathbb{E}_{\theta}[T_n-a(\theta)]^2$; se tuttavia $a=\id_{\Theta}$, allora la funzione $\mse_{\theta}(T_n)\coloneqq \ri_2\big(T_n,\theta\big)$ prende il nome di \textit{Mean Square Error} (oppure \textit{Errore Quadratico Medio}).
+\item $\lo_2\big(T_n,a(\theta)\big)\coloneqq \big(T_n-a(\theta)\big)^2$. Essa ammette anche come possibile funzione di rischio $\ri_2\big(T_n,a(\theta)\big)\coloneqq \mathbb{E}_{\theta} \left[(T_n-a(\theta))^2\right]$; se tuttavia $a=\id_{\Theta}$, allora la funzione $\mse_{\theta}(T_n)\coloneqq \ri_2\big(T_n,\theta\big)$ prende il nome di \textit{Mean Square Error} (oppure \textit{Errore Quadratico Medio}).
 \end{enumerate}
-\textit{Osservazione.} Semplicemente aggiungendo e sottraendo il valore $\mathbb{E}[T_n]$ si ottiene subito la seguente uguaglianza: $\mse_{\theta}(T_n)=\var_\theta [T_n]+B_\theta [T_n]^2$.
+\textit{Osservazione.} Semplicemente aggiungendo e sottraendo il valore $\mathbb{E}[T_n]^2$ si ottiene subito la seguente uguaglianza: $\mse_{\theta}(T_n)=\var_\theta [T_n]+B_\theta [T_n]^2$.
 \begin{teo}
 Sia $T_n$ uno stimatore di $\theta$ (non necessariamente non distorto). Allora si ha che $\lim_{n\rightarrow +\infty} \mse_\theta (T_n)=0$ è condizione sufficiente (ma non necessaria) per la consistenza di $T_n.$
 \end{teo}

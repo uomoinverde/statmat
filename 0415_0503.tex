@@ -1,0 +1,373 @@
+Lezioni dal 15/04 al 06/05 comprese. Autore: Marco Peruzzetto.\\
+Questa parte comprende ed amplia le cose viste a lezione, estendendo alcune dimostrazioni e osservazioni. Quanto non fatto in classe verrà denotato da un (*).\\
+\\
+\textbf{Definizione:} Sia $\vec{X}\coloneqq (X_1,\ldots X_n)$ un vettore casuale da distribuzione $F(\vec{x}, \theta)$ per $\theta\in \Theta$ e sia $f_{X_i}(x_i,\theta)$ la corrispondente funzione densità di ciascuna $X_i$, $\forall 1\leq i\leq n$. Indicheremo con $\vec{x}=(x_1,\ldots,x_n)$ una qualsiasi possibile determinazione del vettore $\vec{X}$. Essa conterrà tutta l'informazione in merito a $\theta$. Possiamo allora definire la \textit{Funzione di Verosimiglianza} come la funzione:
+$$L\left(\theta, \vec{x}\right)\coloneqq f_{\vec{X}}(\vec{x},\theta)=f_{(X_1,\ldots,X_n)}(x_i,\ldots,x_n,\theta)\mbox{ , } \theta\in \Theta, $$ che rappresenta quindi la funzione di densità dell'intero vettore in dipendenza del parametro $\theta$. Nel caso in cui il vettore casuale sia un campione casuale, allora tutte le variabili casuali di cui esso è composto saranno i.i.d., ragion per cui la funzione di massima verosimiglianza assumerà la seguente tipica forma:
+$$L\left(\theta, \vec{x}\right)=\prod_{i=1}^n f_{X_i}\left(x_i, \theta\right) \mbox{ , } \theta\in \Theta.$$
+Esiste anche la \textit{Funzione di Log-Verosimiglianza} definita come $l(\theta,\vec{x})\coloneqq \log\big(L(\theta, \vec{x})\big)$. 
+\\ 
+\\
+\textit{Esempio:} Sia $(X_1,\ldots,X_n)\sim Poisson(\theta)$. Allora $$L(\theta, \vec{x})=\prod_{i=1}^n \frac{e^{-\theta}\theta^{x_i}}{x_i !}\mathbbm{1}_{\mathbb{N}}(x_i)=\frac{e^{-n\theta}\theta^{\sum_{i=1}^n x_1}}{\prod_{i=1}^n x_i !}\prod_{i=1}^n \mathbbm{1}_{\mathbb{N}}(x_i)$$ da cui $$l(\theta, \vec{x})=\log(\theta)\sum_{i=1}^n x_i   -n\theta - \sum_{i=1}^n \log(x_i !).$$ 
+\\ \\
+\textit{Osservazioni:} \begin{itemize}
+
+\item La funzione di verosimiglianza dà un valore alla probabilità che $\vec{x}$ provenga da $F_{\vec{X}}(\vec{x},\theta)$ per tutti i differenti valori di $\theta\in \Theta$.
+
+%\item L'approccio della verosimiglianza al problema della stima produce automaticamente un candidato stimatore. Infatti essa rappresenta una quantità numerica che esprime l'ordine di preferenza circa $\theta$ sulla base dell'informazione contenuta in $\vec{x}$.
+
+\item Nella funzione di verosimiglianza è stato volontariamente invertito il parametro $\theta$ con il parametro $\vec{x}$ rispetto, ad esempio, alla funzione densità. La ragione si basa sulla diversa interpretazione della stessa: a tutti gli effetti la funzione di verosimiglianza non è altro che la funzione densità del vettore casuale $\vec{X}$. Quindi essa può essere vista in due modi diversi: il primo interpreta la funzione $L$ come una funzione di $\vec{x}$, e quindi del risultato, una volta fissato il valore del parametro (perciò $L$ esattamente la densità), mentre il secondo la interpreta come una funzione del parametro $\theta$, per un fissato valore del risultato $\vec{x}$. Proprio in quest'ultimo caso ha senso parlare di verosimiglianza: il valore assunto da $L$ indica quanto verosimilmente il valore di un parametro $(\theta)$ sia corretto rispetto al risultato che si possiede $(\vec{x})$. 
+
+\item (*) Data una determinazione $\vec{x}$ di $\vec{X}$, la funzione $L(\cdot, \vec{x})$, essendo la densità del vettore casuale, esprime la probabilità che $\vec{X}$ assuma proprio il valore $\vec{x}$. Ciò avviene in modo diretto se le variabili componenti il vettore sono discrete e tramite integrazione se continue. Ha senso allora chiedersi, data una determinazione $\vec{x}_0$ di $\vec{X}$, quale sia (se esiste) un possibile valore $\theta_0\in \Theta$ capace di massimizzare il valore di $L(\theta_0,\vec{x}_0)$. Massimizzare tale valore significa infatti per quanto detto, andare a massimizzare la probabilità che $\vec{X}$ assuma il valore $\vec{x}_0$. Ciò avverrà direttamente se il vettore casuale è discreto, ma anche se è continuo, e ciò banalmente grazie alla monotonia dell'integrale, in quanto, se riusciamo a massimizzare la funzione con $\theta$ anche l'integrale (ovviamente integrando in $d\vec{x}$) sarà massimo (rivedere).
+
+\item L'importanza di cercare il valore del parametro che massimizzi $L$ fissata la determinazione risiede nel fatto che spesso in statistica si ha a che fare con poche determinazioni e si parte dunque dall'evidente presupposto che se il campionamento effettuato ci ha fornito quelle specifiche determinazioni, esse debbano essere mediamente le più probabili. Tale presupposto viene in effetti denominato \textit{Principio di ``Rational Belief''}. La probabilità che dato quel campione casuale si ottengano quelle determinazioni la immagineremo quindi come la massima possibile. Cercheremo dunque un $\theta\in \Theta$ che soddisfi a ciò. È inevitabile che attraverso la verosimiglianza si possano ottenere degli stimatori del parametro.
+
+\item La funzione di $\log$-verosimiglianza è stata introdotta pressoché per il semplice motivo di semplificare i calcoli quando si cerca di andare a massimizzare la funzione di verosimiglianza. Essa risulta dunque essere comoda, in quanto, essendo il logaritmo una funzione strettamente crescente, il massimizzante di $l(\cdot,\cdot)$ coinciderà con quello di $L(\cdot,\cdot)$.
+\end{itemize}
+\textit{Esempio} (Problema dei Pesci): Dato un lago, lo scopo è cercare di stimare la grandezza $N$ della popolazione dei pesci che vi vivono. Un modo può essere il seguente: si pescano esattamente $N_1$ pesci, i quali vengono in qualche modo marcati. In seguito, dopo aver permesso un mescolamento, si esegue un'ulteriore pesca, di $n$ pesci. Si nota che fra questi ve ne sono $n_1$ marcati. Vogliamo capire quale sia il valore di $N$ più plausibile. Nel nostro caso avremo un vettore casuale composto da una sola variabile, ovvero $\vec{X}=(X)$, la quale ha valori in $\mathbb{N}$ (ed è quindi discreta) e restituisce i possibili valori di $n_1$. La sua densità sarà allora fornita in modo diretto e coincide con la funzione di verosimiglianza in quanto vi è una singola variabile casuale nel vettore. L'insieme dei parametri sarà anch'esso $\mathbb{N}$. Chiaramente vogliamo stimare il più plausibile valore di $\theta=N$. Avremo dunque: 
+$L(N)\coloneqq L(N,n_1)=\mathbb{P}[X=n_1]=\frac{\binom{N}{n_1}\binom{N-N_1}{n-n_1}}{\binom{N}{n}}.$ Per effettuare un esempio concreto: con $N_1=300$ e $n=80$, se la nostra determinazione ottenuta fosse $n_1=30$, allora il parametro che massimizza la probabilità sarebbe $N\sim 1200$. È quindi plausibile che nel lago viva una quantità di pesci che si aggira effettivamente intorno ai 1200 esemplari.
+\\  \\
+\textbf{Definizione:} Assumiamo che la funzione di verosimiglianza sia dervabile per il parametro $\theta$. Allora la funzione $S(\theta)\coloneqq \frac{\partial}{\partial \theta}\l(\theta, \vec{x})$ viene detta \textit{Score Function}. L'equazione $S(\theta)=0$ è chiamata \textit{Equazione di Stima}. 
+\\
+\\
+\textit{Osservazione:} Osserviamo che poiché la funzione densità di una qualsiasi variabile casuale è sempre positiva o nulla, in quanto prodotto, lo dovrà essere anche la parte di $L(\cdot,\cdot)$ che non dipende da $\theta$. Ne segue che, se vogliamo massimizzare la funzione di verosimiglianza, possiamo direttamente limitarci a considerare solo i valori di $\theta\in \Theta$ che rendano $L(\cdot,\cdot)$ strettamente positiva per ciascuna determinazione $\vec{x}$ fissata o scelta. Dunque si può restringere senza perdere generalità l'insieme $\Theta$ in modo da avere valori che non permettono a $L(\cdot,\cdot)$ di annullarsi. $S(\theta)$ risulta quindi avere una buona definizione, in quanto non è necessario effettuare ulteriori ipotesi su $l(\cdot,\cdot)$, essendo:  
+$$S(\theta)=\frac{\partial}{\partial\theta}l(\theta,\vec{x})=\frac{\partial}{\partial\theta}\log\big(L(\theta,\vec{x})\big)=\frac{1}{L(\theta,\vec{x})}\frac{\partial}{\partial\theta}L(\theta,\vec{x}).$$
+\textbf{Definizione:} La funzione di verosimiglianza induce uno stimatore del parametro $\theta$. Esso sarà chiamato \textit{Stimatore di Massima Verosimiglianza} ed è così definito: $\hat{\theta}_n=\hat{\theta}_n(\vec{X})\coloneqq \ar\big\{\max_{\theta\in \Theta}\{L(\theta,\vec{X})\}\big\}=\ar\big\{\max_{\theta\in \Theta}\{l(\theta,\vec{X})\}\big\}$.
+\\
+\\
+\textit{Osservazioni:}
+\begin{itemize}
+\item Da ora in poi l'argomento delle funzioni $L(\cdot,\cdot)$ e $l(\cdot,\cdot)$ verrà interpretato a seconda della convenienza e del senso sia come $(\theta,\vec{x})$, ovvero come determinazione, oppure come $(\theta, \vec{X})$, ovvero vettore casuale. Osserviamo che in quest'ultimo caso, le funzioni $L$ e $l$ diventano esse stesse automaticamente variabili casuali o stimatori, che dir si voglia. Ciò si ripercuote inevitabilmente sulle funzioni ad esse collegate, ad esempio su $S(\theta)$.
+\item Se $L(\cdot,\cdot)$ o $l(\cdot,\cdot)$ sono derivabili rispetto a $\theta$, la funzione indipendente da $\theta$ che risolve $\forall \vec{x}$ l'equazione di stima $S(\theta)=0$ fornisce effettivamente lo stimatore di massima verosimiglianza. Oppure, equivalentemente, potremmo dire che lo stimatore di massima verosimiglianza $\hat{\theta}_n(\vec{X})$ è quello che soddisfa l'equazione $S\big(\hat{\theta}_n(\vec{X})\big)=0$.
+\item In generale non vi è garanzia che lo stimatore di massima verosimiglianza esista, oppure, se esiste, che esso sia unico. Tuttavia nel caso di famiglie di densità che rispettino certe ipotesi di regolarità (per esempio le famiglie esponenziali) tale problema non si pone.
+\item Anche assumendo che tale stimatore esista e sia unico, non è detto che sia sempre ottenibile analiticamente. Talvolta sarà necessario ricorrere a metodi numerici per la risoluzione dell'equazione di stima.
+\end{itemize}
+\textit{Esempi:}
+\begin{enumerate}
+\item Riprendiamo l'esempio precedente ove avevamo il campione casuale con variabili distribuite come poissoniane di parametro $\theta$. 
+La funzione di log-verosimiglianza era data da $$l(\theta, \vec{x})=\log(\theta)\sum_{i=1}^n x_i   -n\theta - \sum_{i=1}^n \log(x_i !)$$
+sicché otteniamo subito che $$S(\theta)=\frac{1}{\theta}\sum_{i=1}^n x_i   -n$$
+Si deduce allora immediatamente l'equazione di stima $\frac{1}{\theta}\sum_{i=1}^n x_i   -n=0 \Rightarrow \theta=\frac{1}{n}\sum_{i=1}^n x_i$
+Ma allora $$\hat{\theta}_n(\vec{X})=\overline{X}_n=\frac{1}{n}\sum_{i=1}^n X_i$$ che è la media campionaria.\\
+\\
+\item Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim U[(0,\theta)]$. 
+Allora $$f_X(x,\theta)\coloneqq \frac{1}{\theta}\mathbbm{1}_{[0,\theta]}(x)$$ 
+Perciò $$L(\theta, \vec{x})=\frac{1}{\theta^n}\prod_{i=1}^n\mathbbm{1}_{[0,\theta]}(x_i)=\frac{1}{\theta^n}\mathbbm{1}_{[X_{(n)},+\infty]}(\theta)\Rightarrow \hat{\theta}_n(\vec{X})=X_{(n)}.$$\\
+\\
+\item Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim \exp(\beta)$, $\beta>0$. 
+Allora $f_X(x,\theta)\coloneqq \beta e^{-\beta x}\mathbbm{1}_{\mathbb{R}_+}(x)$. 
+Perciò $$L(\theta, \vec{x})=\big(\beta^n e^{-\beta\sum_{i=1}^n x_i}\big)\mathbbm{1}_{\mathbb{R}_+^n}(\vec{x})\Rightarrow l(\theta, \vec{x})=n\log(\beta)-\beta\sum_{i=1}^n x_i$$ 
+Otterremo allora l'equazione di stima $0=S(\beta)=n\beta-\sum_{i=1}^n x_i$, da cui subito si deduce che anche in questo caso $\hat{\theta}_n=\overline{X}_n$.\\
+\\
+\item \textit{(Troncamento)} Sia sempre $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim \exp(\beta)$. Naturalmente ciascuna variabile casuale ha come codominio i reali non negativi. Possiamo supporre di aver effettuato gli $n$ rilevamenti dal campione casuale e di essere riusciti a individuarne esattamente $m$ puntualmente (che senza perdita di generalità immagineremo essere i primi $m$), mentre dei restanti $n-m$ immaginiamo di aver rilevato solamente che il loro valore supera una certa soglia fissta $T>0$. Il campione contiene quindi due tipi di informazione da coniugare nella funzione di massima verosimiglianza, che avrà stavolta una forma un po' diversa. La indicheremo con $L'$. Otteniamo: \\ 
+
+\begin{eqnarray*}
+L'(\beta,\vec{x}) &=&\prod_{i=1}^m f_{X_i}(x_i,\beta)\cdot\prod_{i=m+1}^n \mathbb{P}[X_i>T] \\
+&=& \prod_{i=1}^m f_{X_i}(x_i,\beta)\cdot\prod_{i=m+1}^n \left(1-F_{X_i}(T,\beta)\right) \\
+&=& \prod_{i=1}^m \beta e^{-\beta x_i} \cdot\prod_{i=m+1}^n \int_T^{+\infty} \beta e^{-\beta x_i}dx_i \\
+&=& \beta^m e^{-\beta \sum_{i=1}^m x_i} \cdot e^{-\beta (n-m)T}
+\end{eqnarray*}
+
+Da cui $$l'(\beta,\vec{x})\coloneqq \log\left(L'(\beta,\vec{x})\right)=m\log(\beta)-\beta\sum_{i=1}^m x_i -\beta (n-m)T.$$ 
+Inoltre possiamo definire anche qui una score function nel modo naturale: $$S'(\beta)\coloneqq \frac{\partial}{\partial\beta}l'(\beta,\vec{x})$$ da cui, uguagliando a 0 si può ottenere l'equazione di stima $$\frac{m}{\beta}-\sum_{i=1}^m x_i-(n-m)T=0$$ 
+Si deduce così lo stimatore di massima verosimiglianza con troncamento a $T$, dato da $$\hat{\beta}_n'(\vec{X})=\frac{\sum_{i=1}^m X_i +(n-m)T}{m}.$$
+\end{enumerate}
+
+\section{Efficienza}
+Dato uno stimatore $T_n$ di un campione casuale $\vec{X}\coloneqq (X_1,\ldots,X_n)$ possiamo partire dal concetto di errore quadratico medio $\mse_\theta(T_n)=\var_\theta(T_n)+B_\theta^2(T_n)$. Lo scopo sarà quello di cercare stimatori che minimizzino il più possibile tale valore. Il problema presenta alcune difficoltà: per fare un piccolo esempio, sia $\theta_0\in \Theta$ e consideriamo il seguente stimatore banale $U_n(\vec{X})\coloneqq \theta_0$. È ora evidente che se da una parte $\mse_{\theta_0}(U_n)=0$, sicché nessun altro stimatore può essere uniformemente migliore di $U_n$, dall'altra appare chiaro che di un siffatto stimatore non ci si possa attendere molto, e nemmeno fidare, in quanto esso ignora completamente tutta l'informazione contenuta nel vettore casuale. La difficoltà di trovare stimatori che abbiano errore quadratico medio minimo è dunque legata a due aspetti principali: spesso la struttura di $\mse$ è complicata in quanto contiene aspetti legati al parametro $\theta$; inoltre la classe degli stimatori competitori di $\theta$ è quasi sempre troppo ampia. \\ Cercheremo allora di semplificare il problema restringendo un po' il campo: considereremo solo gli stimatori non distorti, per andare poi a cercare tra questi quelli con varianza minima.  
+\\
+\\
+\textit{Esempio:} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim Poisson(\lambda)$. In tal caso si verifica subito che $\mathbb{E}[X]=\var[X]=\lambda$. Ne segue che sia lo stimatore media campionaria $\overline{X}_n$ sia lo stimatore varianza campionaria $S_n^2$ sono due stimatori non distorti di $\lambda$. Si ha tuttavia che $\var[\overline{X}_n]=\frac{\lambda}{n}\leq\frac{\lambda}{n}\left(1+\frac{2n\lambda}{n-1}\right)=\var[S_n^2]$. Preferiremo dunque la media campionaria. Ma consideriamo ora il seguente stimatore così definito, per $a\in [0,1]$ fissato, $W_{n,a}(\vec{X})\coloneqq a\overline{X}_n +(1-a)S_n^2$. Anch'esso è non distorto. Sorgono così due difficoltà da affrontare: ammesso che $\overline{X}_n$ sia migliore (i.e. con varianza più piccola) di $S_n^2$, esso è anche migliore di ogni stimatore $W_{n,a} \forall a$ oppure esso è il migliore tra tutti gli stimatori non distorti di $\lambda$? Esiste un limite inferiore alla varianza? Se infatti esso esistesse, darebbe operatività alla scelta dello stimatore, in quanto se trovassimo uno stimatore che raggiunge tale limite, sapremo che non è necessario cercare ulteriormente per migliorare le nostre possibilità. Ebbene, tale limite esiste sicuramente, sotto alcune ulteriori ipotesi di regolarità da addure alla non distorsione per gli stimatori.
+\\
+\\
+\textbf{Definizione:} Una \textit{Famiglia Regolare} è una famiglia di densità che soddisfa le seguenti condizioni di regolarità:
+\begin{enumerate}[noitemsep]
+\item \textit{Condizione di Indentificabilità:} i valori delle densità sono distinti al variare del parametro, ovvero $\theta\neq \theta' \Longrightarrow f_X(x,\theta)\neq f_X(x,\theta')$.
+\item Le funzioni densità hanno supporto comune $\forall \theta\in\Theta$ e il loro supporto non dipende in alcun modo dal parametro $\theta$.
+\item Le funzioni sono di classe $C^2$ rispetto alla variabile $\theta$
+\item Rispetto a $\theta$, è lecito lo scambio tra le derivate e l'integrale.
+\end{enumerate}
+\textbf{Definizione:} Sia $\vec{X}=(X_1,\ldots, X_n)$ un campione casuale. Allora la funzione
+\begin{align*}
+I:\Theta &\longrightarrow  \mathbb{R} \\
+I(\theta)  &\coloneqq   \mathbb{E}_\theta[S(\theta)^2]=\mathbb{E}_\theta\Bigg[\left(\frac{\partial}{\partial \theta}l(\theta,\vec{X})\right)^2\Bigg]
+\end{align*}
+viene denominata \textit{Informazione di Fisher} del campione casuale.
+\\
+\\
+\textit{Osservazioni:}
+\begin{itemize}
+\item Il prossimo teorema ci garantirà nel caso di famiglie regolari che il limite inferiore della varianza di un qualsiasi stimatore non distorto di $\theta$ è la quantità $\frac{1}{I(\theta)}$. Notiamo inoltre che più la varianza di uno stimatore si avvicina a tale quantità, più è significativa la sintesi dell'informazione circa $\theta$ contenuta nel vettore $\vec{X}$ realizzata dallo stimatore non distorto.
+\item Spesso si usano anche le seguenti notazioni per l'informazione di Fisher, ovvero $I(\theta)$, $I_n(\theta)$, $nI_1(\theta)$. Infatti dato un vettore casuale qualsiasi $\vec{X}=(X_1\ldots,X_n)$, la sua funzione densità, ovvero $L(\cdot,\cdot)$ non si spezza necessariamente nel prodotto delle densità di ciascuna componente $X_i$. Ciò avviene invece nel caso in cui tutte le variabili casuali siano indipendenti: in tal caso si può scrivere $I_{\vec{X}}(\theta)=\sum_{i=1}^n I_{X_i}(\theta)$. Se poi siamo di fronte ad un campione casuale, allora le variabili casuali sono addirittura $i.i.d.$, e di conseguenza $I_{\vec{X}}(\theta)=nI_{X_1}(\theta)$, da cui la notazione.
+\item Si può dimostrare facilmente che, dato un campione casuale $\vec{X}\coloneqq (X_1,\ldots,X_n)$ con densità nella famiglia regolare, vale la seguente uguaglianza: 
+$$\mathbb{E}_\theta\Bigg[\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2\Bigg]=-\mathbb{E}_\theta\Bigg[\frac{\partial^2}{\partial\theta^2}l(\theta,\vec{X})\Bigg]$$ 
+In effetti, come già visto, si ha: $\frac{\partial}{\partial\theta}L(\theta,\vec{X})=L(\theta,\vec{X})\frac{\partial}{\partial\theta}l(\theta,\vec{X})$. Perciò, derivando si ottiene subito che:
+\begin{eqnarray*}
+\frac{\partial^2}{\partial\theta^2}L(\theta,\vec{X}) &=& L(\theta,\vec{X})\frac{\partial^2}{\partial\theta^2}l(\theta,\vec{X})+\frac{\partial}{\partial\theta}L(\theta,\vec{X})\frac{\partial}{\partial\theta}l(\theta,\vec{X})\\
+&=& L(\theta,\vec{X})\frac{\partial^2}{\partial\theta^2}l(\theta,\vec{X})+L(\theta,\vec{X})\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2.
+\end{eqnarray*}
+Si può quindi ricavare $\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2=\frac{1}{L(\theta,\vec{X})}\frac{\partial^2}{\partial\theta^2}L(\theta,\vec{X})-\frac{\partial^2}{\partial\theta^2}l(\theta,\vec{X})$. Per provare l'asserto basterà dunque verificare che il valore di aspettazione del primo addendo del secondo termine dell'uguaglianza sia nullo. Si ha:
+\begin{eqnarray*}
+\mathbb{E}\Big[\frac{1}{L(\theta,\vec{X})}\frac{\partial^2}{\partial\theta^2}L(\theta,\vec{X})\Big]
+&=& \int_{\mathbb{R}^n} \frac{1}{L(\theta,\vec{x})}\frac{\partial^2}{\partial\theta^2}L(\theta,\vec{x})\cdot L(\theta,\vec{x})\cdot d\vec{x} \\
+&=& \int_{\mathbb{R}^n} \frac{\partial^2}{\partial\theta^2}L(\theta,\vec{x})\cdot d\vec{x} \\
+&=& \frac{\partial^2}{\partial\theta^2}\int_{\mathbb{R}^n} L(\theta,\vec{x})\cdot d\vec{x} \\
+&=& \frac{\partial^2}{\partial\theta^2} 1=0.
+\end{eqnarray*}
+\end{itemize}
+\textbf{Definizione:} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale e $T_n=T_n(\vec{X})$, $V_n=V_n(\vec{X})$ due stimatori non distorti di $\theta$. Allora:
+\begin{itemize}[noitemsep]
+\item Diremo \textit{Efficienza assoluta o di Bahadur} di $T_n$ il valore $\eff(T_n)\coloneqq \frac{\frac{1}{I(\theta)}}{\var_\theta[T_n]}$.
+\item Diremo \textit{Efficienza relativa} di $T_n$ e $V_n$ il valore $\eff(T_n,V_n)\coloneqq \frac{\var_\theta[T_n]}{\var_\theta[V_n]}$.
+\item Diremo che $T_n$ è \textit{Efficiente} se $\eff(T_n)=1$. Nel caso in cui $\eff(T_n)>1$ lo stimatore $T_n$ si dirà anche \textit{Super-Efficiente}. In generale, si dirà che $T_n$ è più (meno) efficiente di $V_n$ se $\eff(T_n,V_n)< (>)1$.
+\item Diremo che $T_n$ è \textit{Asintoticamente Efficiente} se $\lim_{n\rightarrow\infty} \eff(T_n)=1$.
+\end{itemize}
+\begin{theorem} \textbf{(Rao-Cramér).}
+Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale di densità $f_{\vec{X}}(\vec{x},\theta)$ appartenente alla famiglia regolare con $\theta\in \Theta \subset \mathbb{R}$ un insieme di parametri. Sia poi $g:\Theta\longrightarrow \Theta$ una funzione derivabile e assumiamo l'informazione di Fisher $I(\theta)\neq 0$ $\forall \theta\in \Theta$. Allora, per qualsiasi stimatore $T_n=T_n(\vec{X})$ non distorto del parametro $g(\theta)$, vale $\var_\theta[T_n]\geq \big(g'(\theta)\big)^2\cdot\frac{1}{I(\theta)}$.
+\end{theorem}
+
+\begin{proof}
+Poiché $T_n$ è uno stimatore non distorto di $g(\theta)$, abbiamo:\\
+$g(\theta)=\mathbb{E}_\theta [T_n]=\int_{\mathbb{R}^n} T_n(\vec{x})f_{\vec{X}}(\vec{x},\theta)d\vec{x}=\int_{\mathbb{R}^n} T_n(\vec{x})L(\theta,\vec{x})d\vec{x}$, con $\theta\in \Theta$. Perciò, derivando sotto il parametro $\theta$ e grazie alle ipotesi di regolarità otteniamo: \\
+\begin{eqnarray*}
+g'(\theta) &=& \frac{\partial}{\partial\theta}\int_{\mathbb{R}^n} T_n(\vec{x})L(\theta,\vec{x})d\vec{x}= \int_{\mathbb{R}^n} T_n(\vec{x})\left(\frac{\partial}{\partial\theta}L(\theta,\vec{x})\right)d\vec{x} \\
+&=& \int_{\mathbb{R}^n} T_n(\vec{x})L(\theta,\vec{x})\left(\frac{\partial}{\partial\theta}l(\theta,\vec{x})\right)d\vec{x} = \int_{\mathbb{R}^n} T_n(\vec{x})\left(\frac{\partial}{\partial\theta}l(\theta,\vec{x})\right)f_{\vec{X}}(\vec{x},\theta)d\vec{x} \\
+&=& \mathbb{E}_\theta \Big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta}l(\theta,\vec{X})\Big].
+\end{eqnarray*}
+Osserviamo ora per prima cosa che:
+\begin{eqnarray*}
+\mathbb{E}_\theta \Big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\Big] &= & \int_{\mathbb{R}^n}  \left(\frac{\partial}{\partial\theta}l(\theta,\vec{x})\right)L(\theta,\vec{x})d\vec{x}=\int_{\mathbb{R}^n} \left(\frac{\partial}{\partial\theta}L(\theta,\vec{x})\right)d\vec{x}\\
+&=& \frac{\partial}{\partial\theta}\int_{\mathbb{R}^n}L(\theta,\vec{x})d\vec{x}=\frac{\partial}{\partial\theta}\int_{\mathbb{R}^n}f_{\vec{X}}(\vec{x},\theta)d\vec{x}\\ 
+&=& \frac{\partial}{\partial\theta} 1=0
+\end{eqnarray*}
+Ne seguono direttamente le due seguenti relazioni:
+\begin{itemize}
+\item $\cova_\theta \big[T_n(\vec{X}),\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]=\mathbb{E}_\theta\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]-\mathbb{E}_\theta\big[T_n(\vec{X})\big]\cdot \mathbb{E}_\theta\big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]=\mathbb{E}_\theta\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]-\mathbb{E}_\theta\big[T_n(\vec{X})\big]\cdot 0=\mathbb{E}_\theta\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]=g'(\theta)$;
+
+\item $\var_\theta \big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]= \mathbb{E}_\theta\bigg[\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2\bigg]-\mathbb{E}_\theta\big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]^2=\mathbb{E}_\theta\bigg[\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2\bigg]$, di conseguenza $\var_\theta \big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\big]=I_n(\theta).$
+\end{itemize}
+D'altra parte, dalla disuguaglianza di Cauchy-Schwarz abbiamo:
+\begin{eqnarray*}
+\big(g'(\theta)\big)^2 &=& \cova_\theta \Big[T_n(\vec{X}),\frac{\partial}{\partial\theta}l(\theta,\vec{X})\Big]^2\\ &\leq & \var_\theta[T_n(\vec{X})]\cdot\var_\theta \Big[\frac{\partial}{\partial\theta}l(\theta,\vec{X})\Big]=\var_\theta[T_n(\vec{X})]\cdot I_n(\theta),
+\end{eqnarray*}
+grazie alle relazioni appena introdotte. La tesi segue subito, ricordando che sia la varianza che l'informazione di Fisher sono quantità positive.
+\end{proof} 
+
+\textit{Controesempio:} Le ipotesi di regolarità del teorema sono necessarie. Consideriamo infatti il cmpione casuale $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim U([0,\theta])$. La sua densità non appartiene alla famiglia regolare in quanto ha il supporto dipendente dal parametro $\theta$. Uno stimatore non distorto di $\theta$ abbiamo già visto essere $T_n(\vec{X})\coloneqq \frac{n-1}{n}X_{(n)}$. Tuttavia $\var[T_n]<\frac{1}{I(\theta)}$ e di conseguenza è stimatore super-efficiente. La tesi del teorema non è dunque valida in questo caso.
+\\
+\\
+\textbf{Lemma 1.} \textit{Sotto le usuali condizioni di regolarità, esiste uno stimatore non distorto $T_n$ di $\theta$ efficiente, ossia tale che la sua varianza raggiunge il limite inferiore di Rao-Cramér, se e solo se $S(\theta)=\frac{\partial}{\partial\theta}l(\theta,\vec{X})=I_n(\theta)\left(T_n(\vec{X})-\theta\right)$}.
+
+\begin{proof}
+Grazie alla disuguaglianza di Cauchy-Schwarz abbiamo la seguente relazione $\cova_\theta^2[T_n(\vec{X}), \frac{\partial}{\partial\theta}l(\theta,\vec{X})]\leq \var_\theta[T_n(\vec{X})]\cdot\var_\theta[\frac{\partial}{\partial\theta}l(\theta,\vec{X})]$, nella  quale sussiste l'uguaglianza sse vi è linarità tra i due termini, ovvero sse $\exists a,b\in \mathbb{R}$ tali che $\frac{\partial}{\partial\theta}l(\theta,\vec{X})=a+bT_n(\vec{X})$. Come già calcolato nella precedente dimostrazione, il valore di aspettazione del primo membro dell'uguaglianza è nullo, perciò $0=\mathbb{E}_\theta[\frac{\partial}{\partial\theta}l(\theta,\vec{X})]= \mathbb{E}_\theta[a+bT_n(\vec{X})]=\mathbb{E}_\theta[a]+\mathbb{E}_\theta[bT_n(\vec{X})]=a+b\theta \Rightarrow a=-b\theta$. Quindi $\frac{\partial}{\partial\theta}l(\theta,\vec{X})=b(T_n(\vec{X})-\theta)$. Se moltiplichiamo tutto per $\frac{\partial}{\partial\theta}l(\theta,\vec{X})$ abbiamo che $\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2=bT_n(\vec{X})\frac{\partial}{\partial\theta}l(\theta,\vec{X})-b\theta \frac{\partial}{\partial\theta}l(\theta,\vec{X})$. Calcolando infine nuovamente il valore di aspettazione e riprendendo alcuni risultati ottenuti dalla dimostrazione del teorema di Rao-Cramér abbiamo che: \\
+$I(\theta)=\mathbb{E}_\theta\Big[\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\right)^2\Big]=b\mathbb{E}_\theta[T_n(\vec{X})\frac{\partial}{\partial\theta}l(\theta,\vec{X})]-b\theta\mathbb{E}_\theta [\frac{\partial}{\partial\theta}l(\theta,\vec{X})]=b\cdot 1-b\theta\cdot 0$ e di conseguenza si ha $b=I(\theta)$, da cui si deduce immediatamente la tesi.
+
+\end{proof}
+\textit{Esempio:} Consideriamo ancora $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim Poisson(\lambda)$. Sappiamo che la sua densità appartiene alla famiglia regolare. Avevamo introdotto $\forall a\in [0,1]$ fissato gli stimatori non distorti $W_{n,a}(\vec{X})\coloneqq a\overline{X}_n +(1-a)S_n^2$ e ci eravamo chiesti quale fosse il migliore. Ebbene, tra tutti essi, la risposta è proprio $W_{n,1}=\overline{X}_n$, la media campionaria. Infatti si ha, come già visto, che la score function è data da $S(\lambda)=-n+\frac{1}{\lambda}\sum_{i=1}^n X_i=n\left(\frac{1}{\lambda}\overline{X}_n-1\right)$. Se ora calcoliamo $I_n(\lambda)=-\mathbb{E}_{\lambda}[\frac{\partial^2}{\partial\lambda^2}l(\lambda,\vec{X})]= -\mathbb{E}_{\lambda}[\frac{d}{d\lambda} S(\lambda)]= -\mathbb{E}_{\lambda}[-\frac{1}{\lambda^2}\overline{X}_n]=\frac{1}{\lambda^2}\cdot n\lambda=\frac{n}{\lambda}$, otteniamo che $S(\lambda)= (\overline{X}_n-\lambda)\cdot \frac{n}{\lambda}=(\overline{X}_n-\lambda)\cdot I(\lambda)$ e possiamo concludere grazie il Lemma 1.
+\\
+\\
+\textbf{Lemma 2.} \textit{Sotto le usuali ipotesi di regolarità, sia $I(\theta)\neq 0$ $\forall \theta\in \Theta$ e supponiamo che esista uno stimatore $T_n$ non distorto di $\theta$ efficiente. Se $\hat{\theta}_n$ è lo stimatore di massima verosimiglianza di $\theta$, allora vale $T_n=\hat{\theta}_n$.}
+
+\begin{proof}
+Il limite inferiore di Rao-Cramér non è una quantità nulla. Inoltre come già osservato e grazie al Lemma 1 si ha:
+$$0=S\big(\hat{\theta}_n(\vec{X})\big)= \big(T_n(\vec{X})-\hat{\theta}_n(\vec{X})\big)I_n\big(\hat{\theta}_n(\vec{X})\big),$$ da cui $T_n(\vec{X})-\hat{\theta}_n(\vec{X})=0$ e quindi la tesi.
+
+\end{proof}
+\textit{Controesempio:} Non sempre lo stimatore di massima verosimiglianza è anche stimatore efficiente, e dunque, per il Lemma 2, non sempre esiste uno stimatore efficiente. Sia infatti 
+$\vec{X}\coloneqq (X_1,\ldots,X_n)\sim f_X(x,\theta)\coloneqq \theta x^{\theta -1}\cdot\mathbbm{1}_{(0,1)}(x)$ campione casuale, con $\theta>0$. 
+Ora, $\frac{\partial^2}{\partial\theta^2}\log \big(f(x,\theta)\big)=-\frac{1}{\theta^2}\Rightarrow I_1(\theta)=-\mathbb{E}[-\frac{1}{\theta^2}]=\frac{1}{\theta^2}\Rightarrow I_n(\theta)=\frac{n}{\theta^2}$. Però $S(\theta)=\frac{\partial}{\partial\theta}l(\theta,\vec{X})=\frac{\partial}{\partial\theta}\log\left(\prod_{i=1}^n \theta X_i^{\theta -1}\right)=\frac{n}{\theta}+\sum_{i=1}^n \log(X_i).$ L'equazione di stima $S(\theta)=0$ ci fornisce allora $\hat{\theta}_n(\vec{X})=\frac{n}{\sum_{i=1}^n \log(X_i)}$, lo stimatore di massima verosimiglianza. Vogliamo ora trovare la sua distribuzione. Definiamo innanzi tutto il nuovo vettore casuale $\vec{Y}\coloneqq (Y_1,\ldots,Y_n)$ dove $\forall i=1..n$ si ha $Y_i \coloneqq \log(X_i)$. Osserviamo che il logaritmo è una funzione monotona crescente, e possiamo applicare il teorema 1.1 per ottenere che la densità delle nuove variabili è $f_Y(y,\theta)=\theta (e^{-y})^{\theta -1}|-e^{-y}|\cdot \mathbbm{1}_{\mathbb{R}_+}(y)=\theta e^{-\theta y}\mathbbm{1}_{\mathbb{R}_+}(y)$, e $\theta>0.$ Dunque, $\vec{Y}\sim G(\alpha =1, \beta = \frac{1}{\theta})$. Poiché $\vec{X}$ è un vettore indipendente, segue necessariamente che anche $\vec{Y}$ lo sia; quindi, grazie alla proprietà di riproducibilità della densità Gamma $W\coloneqq \sum_{i=1}^n Y_i \sim G(\alpha' =n, \beta=\frac{1}{\theta})$. Si può mostrare che: $$\mathbb{E}[W^k]=\frac{(n+k-1)!}{\theta (n-1)!}.$$ Ricordando che $\hat{\theta}_n=nW^{-1}$ possiamo calcolare subito i valori di aspettazione
+\begin{itemize}[noitemsep]
+\item $\mathbb{E}_\theta[\hat{\theta}_n]=\mathbb{E}_\theta [nW^{-1}]=n\mathbb{E}_\theta [W^{-1}]=\frac{n}{n-1}\theta \neq \theta$, perciò è stimatore distorto, anche se asintoticamente non distorto.
+\item $\mathbb{E}[(\hat{\theta}_n)^2]=\mathbb{E}[n^2 W^{-2}]=n^2\mathbb{E}[W^{-2}]=\frac{\theta^2 n^2}{(n-2)(n-1)}$
+\end{itemize}
+e dunque $\var[\hat{\theta}_n]=\mathbb{E}[(\hat{\theta}_n)^2]-\mathbb{E}[\hat{\theta}_n]^2=\frac{n^2\theta^2}{(n-1)^2(n-2)^2}>\frac{1}{I(\theta)}=\frac{\theta}{n}.$ Ne segue che $\hat{\theta}_n$ non è stimatore efficiente di $\theta$ anche se $\eff(\hat{\theta}_n) \xrightarrow[n\rightarrow \infty]{} 1$.
+
+\subsection{Estensione a un vettore di parametri:}
+Possiamo, al posto di un singolo parametro, andare a considerare un vettore di parametri $\vec{\theta}\coloneqq (\theta_1,\ldots,\theta_k)\in \Theta^k$, $\Theta\subset\mathbb{R}$ che indicizza la distribuzione di una variabile casuale $X$. Ad esempio la distribuzione Gamma dipende da due parametri solitamente indicati con $\alpha$ e $\beta$. In particolare, modellare un fenomeno con un numero di parametri che sia il più piccolo possibile assume un valore importante per quanto riguarda la stabilità degli stimatori. A ciò è stato dato il nome piuttosto eloquente di \textit{Principio di Parsimonia}. Nel caso di un vettore di parametri si potrà allora estendere il concetto di Informazione di Fisher ottenendo una matrice.
+\\
+\\
+\textbf{Definizione.} Sia $\vec{X}$ un campione casuale e $\vec{\theta}\coloneqq (\theta_1,\ldots,\theta_k)$ un campione di parametri. Allora la \textit{Matrice di Informazione di Fisher} è la matrice $I(\vec{\theta})\in \mathcal{M}(k\times k, \mathbb{R})$ il cui $i$-$j$-esimo elemento è dato dal numero $$\mathbb{E}_{\vec{\theta}}\Big[\frac{\partial}{\partial\theta_i}l(\vec{\theta},\vec{X})\cdot \frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\Big].$$
+\\
+\\
+\textbf{Proposizione.} (*) \textit{Per ogni vettore casuale $\vec{X}$ si ha che la matrice di informazione di Fisher è simmetrica e semidefinita positiva.}
+\begin{proof}(*)
+Il fatto che sia simmetrica è pressoché immediato e viene direttamente dalla definizione. Per mostrare che è anche semidefinita positiva, sia $w(\vec{\theta})\coloneqq \big(\frac{\partial}{\partial\theta_1}l(\vec{\theta},\vec{X}), \ldots, \frac{\partial}{\partial\theta_k}l(\vec{\theta},\vec{X})\big)$. Si vede subito che $I(\vec{\theta})=\mathbb{E}_{\vec{\theta}}[w(\vec{\theta})^t\cdot w(\vec{\theta})].$ Sia ora $\vec{u}\in \mathbb{R}^k\setminus\{0\}$. Dobbiamo mostrare che $(u\cdot I(\vec{\theta})\cdot u^t)\geq 0$. Ebbene, sfruttando la linearità del valore di aspettazione, otteniamo che: 
+\begin{eqnarray*}
+u I(\vec{\theta})u^t&=& u \mathbb{E}_{\vec{\theta}}[w(\vec{\theta})^t\cdot w(\vec{\theta})] u^t=\mathbb{E}_{\vec{\theta}}[u\cdot w(\vec{\theta})^t\cdot w(\vec{\theta})\cdot u^t] \\
+&=& \mathbb{E}_{\vec{\theta}}[u\cdot w(\vec{\theta})^t\cdot ((u\cdot w(\vec{\theta})^t)^t] \\
+&=& \mathbb{E}_{\vec{\theta}}[\|u\cdot w(\vec{\theta})^t\|^2]\geq 0.
+\end{eqnarray*}
+\end{proof}
+\textit{Osservazione:} Osserviamo che le ipotesi di regolarità definite per il caso unidimensionale, possono essere espanse al caso $k$-dimensionale nel modo più naturale, ovvero supponendo che esse valgano per ciascuno dei parametri $\theta_i$, $\forall 1\leq i\leq k$. Ebbene, sotto le usuali ipotesi di regolarità, si ottiene facilmente con quanto già mostrato che $I(\theta)_{ij}=-\mathbb{E}_{\vec{\theta}}\big[\frac{\partial^2}{\partial\theta_i\partial\theta_j}l(\vec{\theta},\vec{x})\big]$. Osserviamo che vi è coerenza con la simmetria della matrice di informazione: essendo le densità di classe $C^2$, vale il teorema di Schwarz sullo scambio delle derivate. 
+\\
+\\
+\textbf{Lemma.} (*) \textit{Siano $A\in \mathcal{M}(n\times n, \mathbb{R})$ una matrice simmetrica e definita positiva, e $b\in \mathbb{R}^n$. Allora, se definiamo la funzione 
+\begin{eqnarray*}
+f : \mathbb{R}^n &\longrightarrow & \mathbb{R} \\
+f(x) &\coloneqq & x\cdot A \cdot x^t -2b\cdot x^t
+\end{eqnarray*}
+abbiamo che $f$ ha un unico punto di minimo $\hat{x}\coloneqq b\cdot A^{-1}$.}
+
+
+
+\begin{proof}(*)
+Scriviamo per semplicità $x=(x_1,\ldots,x_n)$, $b=(b_1,\ldots,b_n)$ e $A=(a_{ij})_{ij}$. utilizzeremo il metodo della matrice hessiana. Abbiamo che:
+$$f(x)=\sum_{i,j=1}^n x_i a_{ij}x_j  -   2\sum_{h=1}^n b_h x_h= \sum_{k=1}^n a_{kk}x_k^2  +  2\sum_{i=2}^n\sum_{j=1}^{i-1} x_i a_{ij} x_j   -2\sum_{h=1}^n b_h x_h $$ dove l'ultima uguaglianza viene direttamente dal fatto che $A$ è una matrice simmetrica. Definendo ora $\sum_{1}^0 \coloneqq 0$,  calcoliamo la $r$-esima derivata, $\forall 1\leq r\leq n$:
+\begin{eqnarray*}
+\frac{\partial}{\partial x_r}f(x) &=& 2a_{rr}x_r +2\sum_{j=1}^{r-1}  a_{rj}x_j +2\sum_{i=r+1}^n x_i a_{ir}  -2b_r  \\
+&=& 2a_{rr}x_r +2\sum_{j=1}^{r-1}  a_{rj}x_j +2\sum_{i=r+1}^n x_i a_{ri}   -2b_r \\
+&=& 2a_{rr}x_r +2\sum_{s=1, s\neq r}^n a_{sr}x_s  -2b_r \\
+&=& 2\sum_{s=1}^n a_{rs}x_s  -2b_r = 2(A_r \cdot x^t) -2b_r,
+\end{eqnarray*}
+ove $A_r$ è la $r$-esima riga della matrice $A$. Ora, per trovare i possibili punti stazionari sarà necessario eguagliare a 0 tutte le derivate parziali e risolvere il sistema. Non avendo termini quadratici esso sarà lineare:
+
+$$
+\left\{
+\begin{array}{lr}
+\frac{\partial}{\partial x_1}f(x)  =  0 \\
+\vdots   \\
+\frac{\partial}{\partial x_n}f(x)  =  0 
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{lr} 
+2(A_1 \cdot x^t) -2b_1 =0 \\
+\vdots \\
+2(A_n \cdot x^t) -2b_n =0
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{lr} 
+A_1 \cdot x^t= b_1  \\
+\vdots \\
+A_n \cdot x^t = b_n
+\end{array}
+\right.
+\Leftrightarrow
+A\cdot x^t = b^t.
+$$
+Allora, poiché la matrice $A$ è invertibile, otterremo l'unico punto stazionario $\hat{x}^t=A^{-1}\cdot b^t$, ed essendo la matrice simmetrica, sarà $\hat{x}=b\cdot A^{-1}$. Per verificare adesso che si tratta di un punto di minimo, andiamo a calcolare la matrice hessiana di tutte le derivate seconde. Palesemente $f$ è una funzione di classe $C^{\infty}$, ragion per cui deve valere il teorema di Schwarz sullo scambio delle derivate seconde. In generale $\forall 1\leq s,t \leq n$, si avrà:
+$$\frac{\partial^2}{\partial x_s\partial x_t} f(x)=\frac{\partial}{\partial x_s}\left(\frac{\partial}{\partial x_t} f(x)\right)=\frac{\partial}{\partial x_s}\left(2\sum_{i=1}^n a_{ti}x_i  -2b_t\right)=2a_{ts}.$$
+Ne segue quindi che la matrice hessiana di f sarà $\forall x\in \mathbb{R}^n$ data da $2A$. Essa risulta quindi definita positiva e conferma di conseguenza che $\hat{x}$ è un punto di minimo.
+\end{proof}
+
+%\newpage
+$\vspace{1cm}$
+
+\begin{theorem}
+\textbf{(Rao-Cramér).} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale di densità $f_{\vec{X}}(\vec{x},\vec{\theta})$ appartenente alla famiglia regolare e $\theta\in \Theta \subset \mathbb{R}^k$ un insieme di parametri. Sia poi $g:\Theta\longrightarrow \mathbb{R}$ una funzione derivabile e assumiamo che la matrice di informazione di Fisher $I(\theta)$ sia invertibile $\forall \theta\in \Theta$. Definiamo ora il vettore $\gamma(\vec{\theta})\coloneqq \big(\frac{\partial}{\partial\theta_1}g(\vec{\theta}),\ldots, \frac{\partial}{\partial\theta_n}g(\vec{\theta})\big)$. Allora, per ogni stimatore $T=T(\vec{X})$ non distorto del numero $g(\vec{\theta})$ si ha che $\var[T]\geq \gamma(\vec{\theta})\cdot I^{-1}(\vec{\theta}) \cdot \gamma(\vec{\theta})^{t}$.
+\end{theorem}
+
+
+\begin{proof} (*)
+La dimostrazione si articola sfruttando alcuni passaggi già utilizzati nel caso unidimensionale. Innanzi tutto $\forall 1\leq j \leq k$ si ha:
+\begin{eqnarray*}
+\frac{\partial}{\partial\theta_j}g(\vec{\theta}) &=& \frac{\partial}{\partial\theta_j}\mathbb{E}_{\vec{\theta}}[T]=\frac{\partial}{\partial\theta_j}\int_{\mathbb{R}^n} T(\vec{x})f_{\vec{X}}(\vec{x},\vec{\theta})d\vec{x}=\frac{\partial}{\partial\theta_j}\int_{\mathbb{R}^n} T(\vec{x})L(\vec{\theta},\vec{x})d\vec{x} \\
+&=& \int_{\mathbb{R}^n} T(\vec{x})\frac{\partial}{\partial\theta_j}L(\vec{\theta},\vec{x})d\vec{x}= \int_{\mathbb{R}^n} T(\vec{x})\left(\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{x})\right)L(\vec{\theta},\vec{x}) d\vec{x} \\
+&=& \mathbb{E}_{\vec{\theta}}\Big[T(\vec{x})\cdot\left(\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{x})\right)\Big].
+\end{eqnarray*}
+Osserviamo allora che essendo 
+\begin{eqnarray*}
+\mathbb{E}_{\vec{\theta}} \Big[\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\Big] &= & \int_{\mathbb{R}^n}  \frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{x})L(\vec{\theta},\vec{x})d\vec{x}=\int_{\mathbb{R}^n} \left(\frac{\partial}{\partial\theta_j}L(\vec{\theta},\vec{x})\right)d\vec{x}\\
+&=& \frac{\partial}{\partial\theta_j}\int_{\mathbb{R}^n}L(\vec{\theta},\vec{x})d\vec{x}=\frac{\partial}{\partial\theta_j}\int_{\mathbb{R}^n}f_{\vec{X}}(\vec{x},\vec{\theta})d\vec{x}\\ 
+&=& \frac{\partial}{\partial\theta_j} 1=0,
+\end{eqnarray*}
+$\cova_{\vec{\theta}} \big[T_n(\vec{X}),\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\big]=\mathbb{E}_{\vec{\theta}}\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\big]-\mathbb{E}_{\vec{\theta}}\big[T_n(\vec{X})\big]\cdot \mathbb{E}_{\vec{\theta}}\big[\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\big]=\mathbb{E}_{\vec{\theta}}\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\big]-\mathbb{E}_{\vec{\theta}}\big[T_n(\vec{X})\big]\cdot 0=\mathbb{E}_{\vec{\theta}}\big[T_n(\vec{X})\cdot\frac{\partial}{\partial\theta_j}l(\vec{\theta},\vec{X})\big]=\frac{\partial}{\partial\theta_j}g(\vec{\theta}).$
+\\
+\\
+Fatto ciò, sia ora $\vec{c}=(c_1,\ldots,c_k)\in \mathbb{R}^k$ e definiamo ora la seguente funzione: $W(\vec{x}, \vec{\theta})\coloneqq \sum_{i=1}^k c_i \frac{\partial}{\partial \theta_i} l(\vec{\theta}, \vec{x})$. È chiaro che $W(\vec{X}, \vec{\theta})$ sarà allora una variabile casuale. Vogliamo calcolare il valore di $\var[T(\vec{X})-W(\vec{X}, \vec{\theta})]$. Per prima cosa osserviamo che, sfruttando la linearità del valore atteso,
+\begin{eqnarray*}
+\var[T-W] &=& \mathbb{E}[(T-W)^2]-\mathbb{E}[(T-W)]^2 \\
+&=& \mathbb{E}[T^2-2TW+W^2]-(\mathbb{E}[T]-\mathbb{E}[W])^2 \\
+&=& \mathbb{E}[T^2]-2\mathbb{E}[TW]+\mathbb{E}[W^2]-\mathbb{E}[T]^2 +2\mathbb{E}[T]\mathbb{E}[W] -\mathbb{E}[W]^2 \\
+&=& \var[T] -2\cova[T, W] +\var[W]
+\end{eqnarray*}
+Adesso osserviamo invece che i conti si possono semplificare in quanto
+$$
+\mathbb{E}[W(\vec{X}, \vec{\theta})]=\mathbb{E}\Big[\sum_{i=1}^k c_i \frac{\partial}{\partial \theta_i} l(\vec{\theta}, \vec{X})\Big]=\sum_{i=1}^k c_i \mathbb{E}\Big[\frac{\partial}{\partial \theta_i} l(\vec{\theta}, \vec{X})\Big]=\sum_{i=1}^k c_i\cdot 0 = 0.
+$$
+Perciò otteniamo subito che:
+\begin{eqnarray*}
+\cova[T(\vec{X}), W(\vec{X},\vec{\theta})]&=&\mathbb{E}[T(\vec{X}) W(\vec{X},\vec{\theta})]-\mathbb{E}[T(\vec{X})]\mathbb{E}[ W(\vec{X},\vec{\theta})] \\
+&=& \mathbb{E}[T(\vec{X}) W(\vec{X},\vec{\theta})] \\
+&=& \mathbb{E}\Big[\sum_{i=1}^k c_i T(\vec{X})\frac{\partial}{\partial \theta_i} l(\vec{\theta}, \vec{X})\Big]=\sum_{i=1}^k c_i\mathbb{E}\Big[T(\vec{X})\frac{\partial}{\partial \theta_i} l(\vec{\theta}, \vec{X})\Big] \\
+&=& \sum_{i=1}^k c_i \cova_{\vec{\theta}} \big[T_n(\vec{X}),\frac{\partial}{\partial\theta_i}l(\vec{\theta},\vec{X})\big] = \sum_{i=1}^k c_i \frac{\partial}{\partial\theta_i}g(\vec{\theta}) \\
+&=& \vec{c}\cdot \gamma(\vec{\theta})^t;
+\end{eqnarray*}
+\begin{eqnarray*}
+\var[W(\vec{X}, \vec{\theta})]&=&\mathbb{E}[\big(W(\vec{X}, \vec{\theta})\big)^2]-\mathbb{E}[W(\vec{X}, \vec{\theta})]^2=\mathbb{E}[\big(W(\vec{X}, \vec{\theta})\big)^2] \\
+&=& \mathbb{E}\Big[\big(\sum_{i=1}^k c_i \frac{\partial}{\partial\theta_i} l(\vec{\theta}, \vec{X})\big)^2\Big] \\
+&=& \mathbb{E}\Big[\sum_{i=1}^k \sum_{j=1}^k \left(c_i \frac{\partial}{\partial\theta_i} l(\vec{\theta}, \vec{X})\right)\left(\frac{\partial}{\partial\theta_j} l(\vec{\theta}, \vec{X}) c_j\right)\Big] \\
+&=& \sum_{i=1}^k \sum_{j=1}^k   c_i \mathbb{E}\Big[\frac{\partial}{\partial\theta_i} l(\vec{\theta}, \vec{X})\cdot \frac{\partial}{\partial\theta_j} l(\vec{\theta}, \vec{X})\Big]c_j \\
+&=& \sum_{i=1}^k \sum_{j=1}^k   c_i I_{ij}(\vec{\theta})c_j = \vec{c}\cdot I(\vec{\theta})\cdot (\vec{c})^t.
+\end{eqnarray*}
+Osservando infine che la varianza di una qualsiasi variabile casuale è un numero sempre positivo, otteniamo la relazione definitiva: 
+$$0\leq \var[T(\vec{X})-W(\vec{X}, \vec{\theta})]= \var[T(\vec{X})] + \vec{c}\cdot I(\vec{\theta})\cdot (\vec{c})^t -2\vec{c}\cdot \gamma(\vec{\theta})^t.$$
+Poiché ciò deve valere $\forall \vec{c}\in \mathbb{R}^k$ possiamo allore scrivere:
+$$ 0\leq \min_{\vec{c}\in \mathbb{R}^k} \{\var[T(\vec{X})-W(\vec{X}, \vec{\theta})]\}=\var[T(\vec{X})] + 
+ \min_{\vec{c}\in \mathbb{R}^k} \{\vec{c}\cdot I(\vec{\theta})\cdot (\vec{c})^t -2\vec{c}\cdot \gamma(\vec{\theta})^t\}.$$
+Ora, la matrice di informazione di Fisher è per ipotesi invertibile, sicché, grazie alla precedente proposizione, essa è quindi definita positiva. Possiamo allora applicare il lemma, secondo cui il minimizzatore è: 
+$$\hat{c}\coloneqq \arg\big\{\min_{\vec{c}\in \mathbb{R}^k} \{\vec{c}\cdot I(\vec{\theta})\cdot (\vec{c})^t -2\vec{c}\cdot \gamma(\vec{\theta})^t\}\big\}= \gamma(\vec{\theta})\cdot I^{-1}(\vec{\theta}).$$
+Sostituendo allora $\hat{c}$ nella varianza e ricordando che $I(\vec{\theta})$ è simmetrica (e quindi anche la sua inversa) si ottiene infine la tesi:
+\begin{eqnarray*}
+0\leq \min_{\vec{c}\in \mathbb{R}^k} \{\var[T(\vec{X})-W(\vec{X}, \vec{\theta})]\} &=& \var[T(\vec{X})] + \hat{c}\cdot I(\vec{\theta})\cdot (\hat{c})^t -2\hat{c}\cdot \gamma(\vec{\theta})^t \\
+&=& \var[T(\vec{X})] - \gamma(\vec{\theta})\cdot I^{-1}(\vec{\theta}) \cdot \gamma(\vec{\theta})^t.
+\end{eqnarray*}
+\end{proof}
+
+
+\textbf{Corollario.} \textit{Nelle ipotesi del teorema di Rao-Cramér, se $\forall 1\leq i,j\leq k$ abbiamo che $T_j=T_j(\vec{X})$ è uno stimatore non distorto del parametro $\theta_j$, allora $\var[T_j(\vec{X})]\geq I_{jj}^{-1}(\vec{\theta})$. }
+\\
+\\
+\textit{Esempio:} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim N(\mu, \sigma^2)$ un campione casuale. 
+Allora  $$L(\mu,\sigma^2, \vec{x})=\prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{1}{2\sigma^2}(x_1-\mu)^2}= (2\pi\sigma^2)^{-\frac{n}{2}} e^{\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2}$$ La funzione di log-verosimiglianza sarà allora $$l(\mu,\sigma^2,\vec{x})=-\frac{n}{2}\log(2\pi\sigma^2)-\frac{1}{\sigma^2}\sum_{i=1}^n (x_i-\mu)^2.$$ Facilmente possiamo calcolare la matrice di informazione di Fisher, che risulterà:
+$$
+{I(\vec{\theta})}=\left(
+\begin{array}{cc}
+\frac{n}{\sigma^2} & 0 \\
+0 & \frac{n}{2\sigma^4}
+\end{array}
+\right)
+\mbox{,  e quindi }
+{\left(I(\vec{\theta})\right)^{-1}}=\left(
+\begin{array}{cc}
+\frac{\sigma^2}{n} & 0 \\
+0 & \frac{2\sigma^4}{n}
+\end{array}
+\right)
+$$
+Osserviamo anche che $\var[\overline{X}_n]=\frac{\sigma^2}{n}$ e $\var[S_n^2]=\frac{2\sigma^4}{n-1}>\frac{2\sigma^4}{n}$, dove sono stati calcolati i valori dell'inversa della matrice di Fisher. Si deduce allora dal teorema di Rao-Cramér che la media campionaria è stimatore efficiente per $\mu$, mentre non lo è la varianza campionaria per $\sigma^2$, anche se lo è asintoticamente.
+Coerentemente, gli stimatori di massima verosimiglianza si possono ottenere risolvendo il sistema composto dalle rispettive score-functions dei parametri,
+$$
+\left\{
+\begin{array}{lr}
+\frac{\partial}{\partial\mu}l(\mu,\sigma^2,\vec{X})=0 \\
+\frac{\partial}{\partial\sigma^2}l(\mu,\sigma^2,\vec{X})=0
+\end{array}
+\right.
+$$
+che ci restituisce le due soluzioni $\hat{\mu}_n=\overline{X}_n$ e $\hat{\sigma^2}_n=\frac{n}{n-1}S_n^2$. Notiamo infine che i due valori non diagonali della matrice di Fisher sono nulli perché ci troviamo in distribuzione normale, ove la non correlazione implica anche l'indipendenza.
+\\
+\\
+\textit{Osservazione:} Sia $Z\sim N(0,1)$ una variabile casuale. Allora vale la seguente relazione: $$\mu_{2s}\coloneqq \mathbb{E}[Z^{2s}]=\frac{(2s)!}{2^s s!}$$ Essa risulta comoda per il calcolo dei momenti delle variabili normali, tenendo conto che $X\coloneqq \mu+\sigma Z \Longrightarrow X\sim N(\mu,\sigma^2)$.
+\\ 
+\\
+\textit{Esempio:} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim f_X(x,\eta)\coloneqq \eta e^{-\eta(x-3)}\mathbbm{1}_{[3,+\infty]}$, con $\eta>0$. 
+Vogliamo calcolare il limite inferiore di Rao-Cramér per uno stimatore non distorto di $g(\eta)\coloneqq \frac{1}{\eta}$, 
+individuare possibilmente un siffatto stimatore e, dopo averlo trovato, calcolare se esso sia o meno efficiente. 
+In base al teorema di Rao-Cramér si ha che 
+$$I(g(\eta))=\left(g'(\eta)\right)^2\frac{1}{I(\eta)}=\frac{1}{\eta^4}\frac{1}{I(\eta)}.$$ 
+
+Per calcolare $I(\eta)$, troviamo innanzi tutto la funzione di log-verosimiglianza. 
+Si ha per prima cosa che: \\
+$$L(\eta, \vec{x})=\eta^n e^{-\eta\sum_{i=1}^n (x_i-3)} \Rightarrow l(\eta,\vec{x})=n\log(\eta)-\eta\sum_{i=1}^n (x_i-3)$$ Possiamo calcolare adesso $$I(\eta)=-\mathbb{E}_\eta \Big[\frac{\partial^2}{\partial\eta^2} l(\eta,\vec{x})\Big]=-\mathbb{E}_\eta [-\frac{n}{\eta^2}]=\frac{n}{\eta^2}.$$ 
+Ne segue subito che il limite inferiore cercato sarà allora
+ $$I(g(\eta))=\frac{1}{\eta^4}\cdot \frac{\eta^2}{n}=\frac{1}{n\eta^2}.$$
+
+Per trovare un possibile stimatore, ricordiamo la relazione già dimostrata durante la dimostrazione del teorema di Rao-Cramér $\mathbb{E}[S(\eta)]=0$. 
+Ne segue che 
+$0=\mathbb{E}_\eta\Big[\frac{\partial}{\partial\eta}l(\eta,\vec{X})\Big]=
+\mathbb{E}_\eta[\frac{n}{\eta}-\sum_{i=1}^n (X_i-3)]=
+n\mathbb{E}_\eta[\frac{1}{\eta} -(\overline{X}_n-3)]=
+n\left(\frac{1}{\eta}-\mathbb{E}_\eta[\overline{X}_n-3]\right)$ da cui  $$T_n(\vec{X})\coloneqq (\overline{X}_n-3)$$ è lo stimatore cercato. Ora, è semplice calcolare che $$\var[T_n]=\var[\overline{X}_n]=\frac{1}{n^2}\sum_{i=1}^n \var[X_i]=\frac{1}{n}\var[X]=\frac{1}{n\eta^2}$$ Ne segue che lo stimatore cercato è effettivamente anche efficiente.

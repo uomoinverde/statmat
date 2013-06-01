@@ -1,0 +1,80 @@
+
+\section{Sufficienza}
+
+\textbf{Introduzione alla sufficienza} (scritta da Michele Nardin)\\
+\\
+Rinfreschiamo il concetto di distribuzione condizionata:
+\begin{definizione} (Caso discreto)
+Siano X, Y variabili casuali discrete e supponiamo P(X=x) $\neq$ 0.
+La distribuzione condizionata di Y dato X=x è 
+$$P_{Y|X} := P(Y = y | X=x) = \frac{P(Y=y \cap X=x)}{P(X=x)}$$
+(Caso continuo) Siano X, Y variabili casuali definite su $(\Omega, \mathcal{E}, P)$, con funzioni di densità $f_X, f_Y$ rispettivamente, e densità congiunta $f_{X,Y}$. Ovviamente è assurdo richiedere che P(X=x)$\neq$ 0. Allora si ragiona tramite densità condizionate: supponendo che $f_X(x)\neq 0$
+$$f_{Y|X}(y | X=x):= \frac{f_{X,Y}(x,y)}{f_X(x)}$$ si dice densità condizionata di Y dato X=x 
+\end{definizione}
+\noindent \textbf{NB:} $f_{Y|X}(y | X=x) = f_Y(y)$ per ogni y se e solo se X e Y sono indipendenti.\\
+\\
+La sufficienza di una statistica definisce formalmente la capacità di tale funzione di rappresentare in maniera $sintetica$ l'informazione contenuta nel campione, senza perdita di $informazione$ $rilevante$.
+
+Intuitivamente si può pensare alla proprietà di conservazione dell'informazione rilevante in questo modo: qualsiasi altra statistica, calcolata a partire dallo stesso campione, non porta più informazioni rispetto a $\vartheta$ di quante ne abbia già portato la statistica sufficiente.
+Per questo, banalmente, l'intero campione è sicuramente una statistica sufficiente (molto poco sintetica, ma a volte non c'è di meglio).
+
+Sia $(X_1,X_2,...,X_n)$ un campione casuale da una distribuzione avente funzione di ripartizione $F_X(x,\vartheta)$. Sia inoltre $T_n(X_1,...,X_n)$ uno stimatore di $\vartheta$ avente funzione di ripartizione $F_{T_n}(t, \vartheta)$.\\
+
+\begin{definizione}
+La statistica $T_n$ viene detta sufficiente per $\vartheta$ se la distribuzione di $X_1,...,X_n$ condizionata a $T_n = t_n$ non dipende da $\vartheta$.
+\end{definizione}
+
+Abbiamo quindi formalizzato le richieste fatte sopra: il fatto che la distribuzione condizionata (del vettore allo stimatore) non dipenda da $\vartheta$ implica di fatto l'impossibilità di perdere informazioni rilevanti su $\vartheta$ stesso, e cioè, lo stimatore $T_n$ contiene tutte le informazioni necessarie riguardanti $\vartheta$ per fare inferenza sul parametro incognito.\\
+In altre parole, \textit{le informazioni contenute in $T_n$} riguardo a $\vartheta$ \textit{sono le stesse contenute nell'intero campione}.\\
+Vedremo che la sufficienza può essere verificata usando il teorema di fattorizzazione di Neyman, che di fatto fornisce una caratterizzazione 'più comoda' da verificare (rispetto all'uso brutale della definizione) per assicurarsi che una data statistica abbia la proprietà desiderata.\\
+\\
+\noindent\textbf{Sufficienza} (Lezione del 06/05, Scritta da Marco Peruzzetto)\\
+\\
+\textbf{Definizione.} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale avente densità $f_X(x,\theta)$ e sia $T_n$ una statistica. Allora $T_n$ è detta \textit{Statistica Sufficiente} per $\theta$ se la densita del vettore $\vec{X}$ condizionata a $T_n(\vec{X})=t_n$ non dipende da $\theta.$
+\\
+\\
+\textit{Esempi:} 
+
+
+\begin{enumerate}
+
+\item Sia $\vec{X}=(X_1,\ldots,X_n)\sim b(1,p)$. Allora $T_n(\vec{X})\coloneqq \sum_{i=1}^n X_i$ è una statistica sufficiente per $p$. Infatti, in base alla definizione di statistica sufficiente, si ottiene che $$f_{\vec{X}|T_n(\vec{X})}(\vec{x},t_n)\coloneqq \frac{f_{(\vec{X},T_n(\vec{X}))}(\vec{x},t_n)}{f_{T_n(\vec{X})}(t_n)}=\frac{p^{t_n}(1-p)^{n-t_n}}{\binom{n}{t_n}p^{t_n}(1-p){n-t_n}}=\frac{1}{\binom{n}{t_n}}$$ e dunque non dipende dal parametro $\theta$.
+
+
+\item Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim G(\alpha=2,\beta)$. Allora $T_n(\vec{X})\coloneqq \sum_{i=1}^n X_i$ è sufficiente per $\beta$. Infatti, si ha innanzi tutto che $T_n(\vec{X})\sim G(2n,\beta)$ grazie all'indipendenza di $\vec{X}$ e alla proprietà di riproducibilità di $G$. Allora 
+\begin{eqnarray*}
+f_{\vec{X}|T_n(\vec{X})}(\vec{x},t_n) &\coloneqq & \frac{f_{(\vec{X},T_n(\vec{X}))}(\vec{x},t_n)}{f_{T_n(\vec{X})}(t_n)}=\frac{f_{\vec{X}}(\vec{x})}{f_{T_n(\vec{X})}(t_n)} \\
+&=& \frac{\prod_{i=1}^n \frac{1}{\Gamma(2)\beta^2}x_i^{2-1}e^{-\frac{1}{\beta}x_i}}{\frac{1}{\Gamma(2n)\beta^{2n}}t_n^{2n-1}e^{-\frac{1}{\beta}t_n}}
+\end{eqnarray*}
+e si vede quindi che si semplificano tutti i termini in $\beta$, per cui è sufficiente.
+
+
+
+\item Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale avente funzione di densità $f_X(x,\theta)\coloneqq e^{-(x-\theta)}\mathbbm{1}_{(\theta, +\infty)}(x)$, $\theta>0$. 
+Allora la statistica d'ordine $X_{(1)}$ è sufficiente per $\theta$. Infatti: 
+$$f_{X_{(1)}}(x,\theta)=ne^{-n(x-\theta)}$$ ed otteniamo subito che $$f_{\vec{X} | X_{(1)}}(\vec{x},x_{(1)},\theta)=\frac{f_{\vec{X}}(\vec{x},\theta)}{f_{X_{(1)}}(x_{(1)})}=\frac{\prod_{i=1}^n e^{-(x_i-\theta)}\mathbbm{1}_{(\theta,+\infty)}(x_i)}{ne^{-n(x_{(1)}-\theta)}\mathbbm{1}_{(\theta,+\infty)}(x_{(1)})}=\frac{e^{-\sum_{i=1}^n x_i}}{ne^{-nx_{(1)}}}$$ che non dipende dal parametro $\theta$.
+
+\end{enumerate}
+
+$\vspace{5mm}$
+
+\begin{teo} [di Fattorizzazione (Neyman)] Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale avente densità $f_X(x,\theta)$. Allora $T_n=T_n(\vec{X})$ è statistica sufficiente per $\theta$ se e solo se esistono due funzioni non negative $g,h$, con
+\begin{enumerate}
+\item[$(\cdot)$] $h=h(\vec{x})$ e NON dipende da $\theta$
+\item[$(\cdot)$] $g=g(\theta, t_n(\vec{x}))$ dipende da $\theta$ e da  $(X_1,\ldots,X_n)$ solo attraverso $t_n$
+ \end{enumerate}
+tali che $\forall \vec{x}_0\in \mathfrak{X}$ e $\forall \theta_0\in \Theta$, la funzione di verosimiglianza possa essere scritta come $$L(\theta_0,\vec{x}_0)=h(\vec{x}_0)\cdot g(\theta_0, t_n(\vec{x}_0))$$
+\end{teo}
+
+\begin{proof}
+$[\Rightarrow].$ Sia ha:
+$$L(\theta,\vec{x})=f_{\vec{X}|T_n=t_n}(\vec{x},t_n,\theta)\cdot f_{T_n}(t_n,\theta)=f_{\vec{X}|T_n=t_n}(\vec{x},t_n)\cdot f_{T_n}(t_n,\theta),$$
+dove la prima uguaglianza viene dalla definizione di densità condizionata, mentre la seconda viene dalla sufficienza di $T_n$, per cui la densità condizionata non dipende dal parametro $\theta.$ Possiamo scegliere allora $h=f_{\vec{X}|T_n=t_n}$ e $g=f_{T_n}$. 
+\\
+$[\Leftarrow].$ Dimostreremo qui il caso in cui il campione casuale sia composto da variabili discrete. Sia quindi $L(\theta,\vec{x})=h(\vec{x})\cdot g(\theta, t_n(\vec{x}))$ e definiamo il nuovo insieme $A_{t_n}\coloneqq \{\vec{x}\in \mathfrak{X}:T_n(\vec{x})=t_n\}$. Allora
+$$f_{T_n}(t_n)=\sum_{\vec{x}\in A_{t_n}} L(\theta,\vec{x})=\sum_{\vec{x}\in A_{t_n}} h(\vec{x})\cdot g(\theta, t_n(\vec{x}))=g(\theta, t_n(\vec{x}))\cdot \sum_{\vec{x}\in A_{t_n}} h(\vec{x}),$$
+perciò, per definizione di densità condizionata si ottiene che:
+$$f_{\vec{X}|T_n=t_n}(\vec{x},t_n)=\frac{L(\theta,\vec{x})}{f_{T_n}(t_n)}=\frac{h(\vec{x})\cdot g(\theta, t_n(\vec{x}))}{g(\theta, t_n(\vec{x}))\cdot \sum_{\vec{x}\in A_{t_n}} h(\vec{x})}=\frac{h(\vec{x})}{\sum_{\vec{x}\in A_{t_n}} h(\vec{x})}.$$
+Essa non dipende quindi dal parametro $\theta$, sicché è sufficiente. La dimostrazione per il caso continuo è analoga.
+
+\end{proof}

@@ -17,3 +17,6 @@
 \contentsline {subsection}{\numberline {1.2.3}Test per la verifica di ipotesi}{24}
 \contentsline {subsection}{\numberline {1.2.4}Esempi di statistiche test (generali e particolari)}{28}
 \contentsline {chapter}{\numberline {2}Seconda parte del corso}{34}
+\contentsline {section}{\numberline {2.1}Efficienza}{38}
+\contentsline {subsection}{\numberline {2.1.1}Estensione a un vettore di parametri:}{43}
+\contentsline {section}{\numberline {2.2}Sufficienza}{48}
