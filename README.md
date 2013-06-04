@@ -1,4 +1,4 @@
-DISPENSE DI STATISTICA MATEMATICA
+Dispense di Statistica Matematica
 =================================
 
 Queste sono le dispense (non ufficiali) per il corso di Statistica Matematica dell'Università degli Studi di Trento, tenuto dal Prof. Pier Luigi Novi Inverardi.
@@ -14,7 +14,6 @@ Note
 ----
 
 Le dispense contengono sicuramente errori e imprecisioni, forse anche concettuali. Qualsiasi Pull Request è fortemente gradita.
-
 Per qualsiasi esigenza puoi scrivere a cognome.nome@gmail.com, dove cognome e nome sono relativi al primo autore indicato sopra.
 
 
