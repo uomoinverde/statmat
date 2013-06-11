@@ -7,7 +7,7 @@ Queste sono le dispense (non ufficiali) per il corso di Statistica Matematica de
 Autori
 ------
 
-Le dispense sono scritte dagli studenti Gadotti Andrea, Nardin Michele, Perruzzetto Marco
+Le dispense sono scritte dagli studenti Andrea Gadotti, Michele Nardin, Marco Perruzzetto.
 
 
 Note
