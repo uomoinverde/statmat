@@ -1,0 +1,43 @@
+%%%%lezione 20 maggio%%%%
+
+Lezione del 20/05, ultima modifica 21/06, Andrea Gadotti
+
+\section{Proprietà degli stimatori di massima verosimiglianza}
+
+Gli stimatori di massima verosimiglianza godono delle seguenti proprietà:
+
+\begin{enumerate}
+
+\item[(1)] \textbf{Relazione con statistiche sufficienti:} gli stimatori di MV sono funzioni di statistiche sufficienti. Infatti
+$$L(\theta, \underline{x})=g(t_n(x),\theta) h(x) \Longrightarrow l(\theta, \underline{x})=\log(g(t_n(x),\theta)) + \log(h(x))$$
+e quindi lo stimatore di massima verosimiglianza risulterà funzione della sola $t_n$.
+\item[(2)] \textbf{Proprietà di invarianza:} se $\hat{\theta}_n$ è stimatore di MV per $\theta$ e $g(\theta)$ una funzione di $\theta$, allora $g(\hat{\theta}_n)$ è stimatore di MV per $g(\theta)$.
+\item[(3)] \textbf{Efficienza (per n finito):} nel caso in cui la distribuzione provenga da una famiglia regolare, se esiste uno stimatore non distorto $T_n$ di $\theta$ la cui varianza raggiunge il limite inferiore di Rao-Cramer, tale stimatore coincide con lo stimatore di MV di $\theta$. (nota: in generale gli stimatori di MV sono distorti)
+\item[(4)] \textbf{Consistenza:} gli stimatori di MV sono consistenti
+\begin{itemize}
+\item in senso forte (ovvero sono \emph{quadraticamente consistenti}):
+$$\mse_{\theta}(T_n)=\var_{\theta}(T_n)+B_{\theta}(T_n) \stackrel{n \rightarrow \infty}{\longrightarrow} 0$$
+\item in senso debole (ovvero sono \emph{semplicemente consistenti})
+$$\mathbb{P}(|\hat{\theta}_n-\theta|>\varepsilon) \stackrel{n \rightarrow \infty}{\longrightarrow} 0$$
+\end{itemize}
+\item[(5)] \textbf{Efficienza (per $n \rightarrow \infty$):} sotto condizioni molto generali di regolarità, lo stimatore di MV $\hat{\theta}_n$ è asintoticamente efficiente, ovvero $\hat{\theta}_n$ è tale che:
+\begin{enumerate}
+\item[a)] $\lim_{n \rightarrow \infty} \mathbb{E}_{\theta}(\hat{\theta}_n)=\theta \; \; \forall \theta \in \Theta$
+\item[b)] $\lim_{n \rightarrow \infty} \var_{\theta}(\hat{\theta}_n)=\frac{1}{I(\theta)} \; \; \forall \theta \in \Theta$
+\end{enumerate}
+\item[(6)] \textbf{Distribuzione asintotica:} sempre sotto alcune ipotesi di regolarità, lo stimatore di massima verosimiglianza per $n$ grande ha distribuzione normale, ovvero
+$$\hat{\theta}_n \stackrel{a}{\sim} N \left( \theta, \frac{1}{I(\theta)} \right)$$
+Questo risultato risulta molto utile in ambito inferenziale:
+\begin{esempio}
+$$IC_{\theta}(\-\alpha)=\left[ \hat{\theta}_n - z_{1-\alpha/2} \frac{1}{\sqrt{I(\hat{\theta}_n)}}, \; \; \hat{\theta}_n + z_{1-\alpha/2} \frac{1}{\sqrt{I(\hat{\theta}_n)}} \right]$$
+dove possiamo anche sfruttare la proprietà $I(\hat{\theta}_n)= n I_1(\hat{\theta}_n)$.
+\end{esempio}
+\begin{oss}
+Sia $g(\theta)$ una funzione continua di $\theta$ e derivabile in $\theta_0$ tale che $g'(\theta_0) \neq 0$. Allora
+$$\sqrt{n} (g(\hat{\theta}_n - g(\theta_0)) \stackrel{d}{\longrightarrow} N \left( 0, \frac{(g'(\theta_o))^2}{I(\theta_0)} \right)$$
+dove notiamo che, per la proprietà (1), $g(\hat{\theta}_n)$ è lo stimatore di MV per $g(\theta)$.\\
+La dimostrazione è immediata usando il $\Delta$-method.
+\\
+\\
+\end{oss}
+\end{enumerate}

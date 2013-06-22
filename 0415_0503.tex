@@ -75,10 +75,11 @@ Si deduce così lo stimatore di massima verosimiglianza con troncamento a $T$, d
 \section{Efficienza}
 Dato uno stimatore $T_n$ di un campione casuale $\vec{X}\coloneqq (X_1,\ldots,X_n)$ possiamo partire dal concetto di errore quadratico medio $\mse_\theta(T_n)=\var_\theta(T_n)+B_\theta^2(T_n)$. Lo scopo sarà quello di cercare stimatori che minimizzino il più possibile tale valore. Il problema presenta alcune difficoltà: per fare un piccolo esempio, sia $\theta_0\in \Theta$ e consideriamo il seguente stimatore banale $U_n(\vec{X})\coloneqq \theta_0$. È ora evidente che se da una parte $\mse_{\theta_0}(U_n)=0$, sicché nessun altro stimatore può essere uniformemente migliore di $U_n$, dall'altra appare chiaro che di un siffatto stimatore non ci si possa attendere molto, e nemmeno fidare, in quanto esso ignora completamente tutta l'informazione contenuta nel vettore casuale. La difficoltà di trovare stimatori che abbiano errore quadratico medio minimo è dunque legata a due aspetti principali: spesso la struttura di $\mse$ è complicata in quanto contiene aspetti legati al parametro $\theta$; inoltre la classe degli stimatori competitori di $\theta$ è quasi sempre troppo ampia. \\ Cercheremo allora di semplificare il problema restringendo un po' il campo: considereremo solo gli stimatori non distorti, per andare poi a cercare tra questi quelli con varianza minima.  
 \\
-\\
+
 \textit{Esempio:} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)\sim Poisson(\lambda)$. In tal caso si verifica subito che $\mathbb{E}[X]=\var[X]=\lambda$. Ne segue che sia lo stimatore media campionaria $\overline{X}_n$ sia lo stimatore varianza campionaria $S_n^2$ sono due stimatori non distorti di $\lambda$. Si ha tuttavia che $\var[\overline{X}_n]=\frac{\lambda}{n}\leq\frac{\lambda}{n}\left(1+\frac{2n\lambda}{n-1}\right)=\var[S_n^2]$. Preferiremo dunque la media campionaria. Ma consideriamo ora il seguente stimatore così definito, per $a\in [0,1]$ fissato, $W_{n,a}(\vec{X})\coloneqq a\overline{X}_n +(1-a)S_n^2$. Anch'esso è non distorto. Sorgono così due difficoltà da affrontare: ammesso che $\overline{X}_n$ sia migliore (i.e. con varianza più piccola) di $S_n^2$, esso è anche migliore di ogni stimatore $W_{n,a} \forall a$ oppure esso è il migliore tra tutti gli stimatori non distorti di $\lambda$? Esiste un limite inferiore alla varianza? Se infatti esso esistesse, darebbe operatività alla scelta dello stimatore, in quanto se trovassimo uno stimatore che raggiunge tale limite, sapremo che non è necessario cercare ulteriormente per migliorare le nostre possibilità. Ebbene, tale limite esiste sicuramente, sotto alcune ulteriori ipotesi di regolarità da addure alla non distorsione per gli stimatori.
 \\
 \\
+\subsection{Teorema di Rao-Cramér}
 \textbf{Definizione:} Una \textit{Famiglia Regolare} è una famiglia di densità che soddisfa le seguenti condizioni di regolarità:
 \begin{enumerate}[noitemsep]
 \item \textit{Condizione di Indentificabilità:} i valori delle densità sono distinti al variare del parametro, ovvero $\theta\neq \theta' \Longrightarrow f_X(x,\theta)\neq f_X(x,\theta')$.
@@ -121,9 +122,9 @@ Si può quindi ricavare $\left(\frac{\partial}{\partial\theta}l(\theta,\vec{X})\
 \item Diremo che $T_n$ è \textit{Efficiente} se $\eff(T_n)=1$. Nel caso in cui $\eff(T_n)>1$ lo stimatore $T_n$ si dirà anche \textit{Super-Efficiente}. In generale, si dirà che $T_n$ è più (meno) efficiente di $V_n$ se $\eff(T_n,V_n)< (>)1$.
 \item Diremo che $T_n$ è \textit{Asintoticamente Efficiente} se $\lim_{n\rightarrow\infty} \eff(T_n)=1$.
 \end{itemize}
-\begin{theorem} \textbf{(Rao-Cramér).}
+\begin{teo}[di Rao-Cramér]
 Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale di densità $f_{\vec{X}}(\vec{x},\theta)$ appartenente alla famiglia regolare con $\theta\in \Theta \subset \mathbb{R}$ un insieme di parametri. Sia poi $g:\Theta\longrightarrow \Theta$ una funzione derivabile e assumiamo l'informazione di Fisher $I(\theta)\neq 0$ $\forall \theta\in \Theta$. Allora, per qualsiasi stimatore $T_n=T_n(\vec{X})$ non distorto del parametro $g(\theta)$, vale $\var_\theta[T_n]\geq \big(g'(\theta)\big)^2\cdot\frac{1}{I(\theta)}$.
-\end{theorem}
+\end{teo}
 
 \begin{proof}
 Poiché $T_n$ è uno stimatore non distorto di $g(\theta)$, abbiamo:\\
@@ -255,9 +256,8 @@ Ne segue quindi che la matrice hessiana di f sarà $\forall x\in \mathbb{R}^n$ d
 %\newpage
 $\vspace{1cm}$
 
-\begin{theorem}
-\textbf{(Rao-Cramér).} Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale di densità $f_{\vec{X}}(\vec{x},\vec{\theta})$ appartenente alla famiglia regolare e $\theta\in \Theta \subset \mathbb{R}^k$ un insieme di parametri. Sia poi $g:\Theta\longrightarrow \mathbb{R}$ una funzione derivabile e assumiamo che la matrice di informazione di Fisher $I(\theta)$ sia invertibile $\forall \theta\in \Theta$. Definiamo ora il vettore $\gamma(\vec{\theta})\coloneqq \big(\frac{\partial}{\partial\theta_1}g(\vec{\theta}),\ldots, \frac{\partial}{\partial\theta_n}g(\vec{\theta})\big)$. Allora, per ogni stimatore $T=T(\vec{X})$ non distorto del numero $g(\vec{\theta})$ si ha che $\var[T]\geq \gamma(\vec{\theta})\cdot I^{-1}(\vec{\theta}) \cdot \gamma(\vec{\theta})^{t}$.
-\end{theorem}
+\begin{teo}[di Rao-Cramér] Sia $\vec{X}\coloneqq (X_1,\ldots,X_n)$ un campione casuale di densità $f_{\vec{X}}(\vec{x},\vec{\theta})$ appartenente alla famiglia regolare e $\theta\in \Theta \subset \mathbb{R}^k$ un insieme di parametri. Sia poi $g:\Theta\longrightarrow \mathbb{R}$ una funzione derivabile e assumiamo che la matrice di informazione di Fisher $I(\theta)$ sia invertibile $\forall \theta\in \Theta$. Definiamo ora il vettore $\gamma(\vec{\theta})\coloneqq \big(\frac{\partial}{\partial\theta_1}g(\vec{\theta}),\ldots, \frac{\partial}{\partial\theta_n}g(\vec{\theta})\big)$. Allora, per ogni stimatore $T=T(\vec{X})$ non distorto del numero $g(\vec{\theta})$ si ha che $\var[T]\geq \gamma(\vec{\theta})\cdot I^{-1}(\vec{\theta}) \cdot \gamma(\vec{\theta})^{t}$.
+\end{teo}
 
 
 \begin{proof} (*)
