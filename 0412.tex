@@ -44,8 +44,11 @@ $$
 con $\sigma_1^2 > \sigma_0^2$.
 Notiamo che $\frac{n-1}{\sigma_0^2} S_n^2 \stackrel{H_0}{\sim} \chi_{n-1}^2 =: W$. (Nota: come in molti esempi precedenti, il fatto che sia "intelligente" tirare fuori queste osservazioni che portano all'analisi di distribuzioni conosciute è "calato dall'alto", almeno per ora).\\
 Imponiamo:
-$$\alpha = P \left( \frac{n-1}{\sigma^2} S_n^2 \mid \sigma^2=\sigma_0^2 \right) = P \left( \frac{n-1}{\sigma_0^2} S_n^2 \right)$$
-Quindi $k=w_{\alpha;n-1}$. In conclusione, rifiuto $H_0$ se $W \geq w_{\alpha;n-1}$.\\
+$$\alpha = P(S_n^2 \geq k \mid H_0) = P \left( \frac{n-1}{\sigma^2} S_n^2 \geq \frac{n-1}{\sigma^2} k \mid \sigma^2=\sigma_0^2 \right) = P \left( \frac{n-1}{\sigma_0^2} S_n^2 \geq \frac{n-1}{\sigma_0^2} k \right) = P \left( W \geq \frac{n-1}{\sigma_0^2} k \right)$$
+Quindi $\frac{n-1}{\sigma_0^2} k =w_{\alpha;n-1}$. \footnote{Ricordiamo che per la distribuzione chi-quadro, con $w_{\alpha;n-1}$ intendiamo il valore tale che $P(\chi_{n-1}^2 \geq w_{\alpha;n-1}$)} 
+
+\noindent In conclusione, rifiuto $H_0$ se $W \geq w_{\alpha;n-1}$, ovvero se $S_n^2 \geq k = \frac{ \sigma_0^2 \: w_{\alpha,n-1}}{n-1}$.\\
+\\
 \textbf{Esempio} In riferimento al caso generale appena trattato, supponiamo di avere $n=25$, $\sigma_0^2=15$, $\sigma_1^2=20$, $s_n^2=17,4$ e $\alpha=0,05$. Allora:
 $$k=w_{0,05;(25-1)} = w_{0,05;24} = 36,415 > 27,84 = \frac{25-1}{15} 17,4 = \frac{n-1}{\sigma_0^2} s_n^2 = w$$
 In conclusione, non rifiutiamo $H_0$.\\

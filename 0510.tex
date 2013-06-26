@@ -1,0 +1,133 @@
+
+\newpage
+
+\vspace*{\fill}
+\noindent \large Attenzione: da questo punto in poi, le dispense sono state scritte durante la sessione d'esame. Per questo motivo, gli autori non hanno potuto dedicarvi il tempo e l'attenzione che un lavoro di questo tipo richiede. Crediamo che possano essere comunque più precise e complete degli appunti presi in classe, ma non garantiamo nulla. Appena possibile le dispense verranno ricontrollate e rese definitive.
+\vspace*{\fill}
+\newpage
+
+
+%%%%lezione 10 maggio%%%%
+
+Lezione del 10/05, ultima modifica 10/06, Andrea Gadotti\\
+\\
+Il teorema di fattorizzazione costituisce un criterio per l'individuazione, se esiste, di una statistica sufficiente.
+\\
+\\
+\textbf{Esempio} Sia $(X_1,...,X_n)$ da $N(\mu,\sigma^2)$.
+\begin{enumerate}
+\item [(a)] se $\mu$ è noto, allora cerco una statistica sufficiente per $\sigma^2$.\\
+$T_n (X_1,...,X_n) = \displaystyle\sum_{i=1}^n (X_i-\mu)^2$
+\item [(b)] Se $\sigma^2$ è noto, allora cerco una statistica sufficiente per $\mu$.
+\item [(c)] Se $\mu$ e $\sigma^2$ non sono noti, allora cerco una statistica congiuntamente sufficiente per $\mu$ e $\sigma^2$.\\
+$S_n (X_1,...,X_n) = \left( \sum_{i=1}^n X_i, \sum_{i=1}^n (X_i - \overline{X}_n^2) \right)$.
+\end{enumerate}
+
+Risulta quindi evidente che il concetto di statistica sufficiente è \emph{problem dependent}.
+\\
+\begin{esempio} Sia $(X_1,...,X_n)$ da $U(\theta, \theta +1)$ con $\theta \in \mathbb{R}$. Vogliamo trovare una statistica sufficiente per $\theta$.\\
+Calcoliamo innanzitutto la funzione di verosimiglianza:
+\begin{eqnarray}
+L(\theta;\underline{x}) &=& \displaystyle\prod_{i=1}^n \mathbbm{1}_{[\theta; \theta +1]}(x_i)\\
+&=& \displaystyle\prod_{i=1}^n \mathbbm{1}_{\mathbb{R}}(x_i) \mathbbm{1}_{[\theta; \theta +1]}(x_{(n)}) \mathbbm{1}_{[\theta; \theta +1]}(x_{(1)})\\
+&=& \displaystyle\prod_{i=1}^n \mathbbm{1}_{\mathbb{R}}(x_i) \mathbbm{1}_{[X_{(n)}-1; X_{(n)}]}(\theta)
+\end{eqnarray}
+Notiamo che l'ultima espressione è il prodotto di due funzioni dove la prima dipende solo dal campione, mentre la seconda dipende sia dal parametro $\theta$ che dal campione. Quindi grazie al teorema di fattorizzazione di Neyman abbiamo che $(X_{(1)},X_{(n)})$ è statistica sufficiente per $U$.\\
+Nota: poiché $U_{(\theta, \theta +1)}$ non appartiene alla famiglia regolare non è necessariamente vero che \emph{dimensione statistica sufficiente = dimensione vettore parametri}. Infatti in questo caso abbiamo $2 \neq 1$.
+\end{esempio}
+
+\begin{oss} Spesso vediamo il campione casuale come diverso da una statistica, che è funzione del campione. Ma esso porta in sè tutta l'informazione disponibile relativamente al vettore parametrico. Anche il campione stesso è una statistica, in particolare è una statistica sufficiente, l'unico problema è che non è per nulla "sintetico".
+\end{oss}
+
+\textbf{Problema:} esiste una statistica sufficiente che sia migliore (ovvero più sintetica) delle altre, a parità di informazione contenuta circa $\theta$? In effetti una tale statistica esiste e viene detta \textit{statistica sufficiente minimale}.
+
+
+\subsection{Statistiche sufficienti minimali}
+
+\textbf{Esempio introduttivo} Pensiamo di replicare $n=4$ volte una prova bernoulliana con probabilità di successo $p$. Consideriamo lo spazio campionario $\varkappa$, composto da $2^4=16$ elementi. Vogliamo fare inferenza su $p$. Definiamo di seguito tre statistiche differenti:
+
+\begin{enumerate}
+\item [1)] $Y_1 := $ risultato della prima prova
+\item [2)] $Y_2 := $ numero di successi nelle quattro prove
+\item [3)] $Y_3 := (Y_1,Y_2)$
+\end{enumerate}
+
+A questo punto notiamo che:
+
+\begin{enumerate}
+\item [1)] $Y_1$ non è una statistica sufficiente per $p$ (il fatto che ci sia stato un successo o meno nella prima prova non ci dà alcuna informazione rispetto a $p$)
+\item [2)] $Y_2$ è statistica sufficiente per $p$ (cfr. Teorema di fattorizzazione) e consiste in un unico valore, ovvero la somma degli elementi del campione
+\item [3)] $Y_3$ consiste in due valori, ovvero è un vettore di dimensione 2. È statistica sufficiente per $p$, ma è eccessivamente raffinata per il problema che vogliamo affrontare, poiché l'apporto di $Y_1$ è inutile. Infatti $Y_3$ non è statistica sufficiente minimale per $p$.
+\end{enumerate}
+
+\begin{definizione}
+Una statistica $T_n(X_1,...,X_n)$ è detta \textit{statistica sufficiente minimale} per $\theta$ se:
+\begin{enumerate}
+\item [1)] è statistica sufficiente per $\theta$
+\item [2)] assume valori distinti solamente in punti dello spazio campionario $\varkappa$ a cui corrispondono verosimiglianze non equivalenti, ovvero se $\forall \underline{x_1}, \underline{x_2} \in \varkappa$ vale 
+$$T_n(\underline{x_1}) \neq T_n(\underline{x_2}) \Longleftrightarrow L(\theta, \underline{x_1}) \neq L(\theta, \underline{x_2}) \; \; \forall \theta \in \Theta$$
+\end{enumerate}
+\end{definizione}
+
+\begin{teo}[di Lehmann-Scheffé]
+Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione di densità $f(x;\theta)$ e sia $S_n=S_n(X_1,...,X_n)$ tale che, prese le determinazioni campionarie $\underline{x}$ e $\underline{y}$, il rapporto tra le funzioni di verosimiglianza valutate in $\underline{x}$ e $\underline{y}$, è funzione che non dipende da $\theta$ se e solo se $S_n(\underline{x})=S_n(\underline{y})$. Allora $S_n(X_1,...,X_n)$ è statistica sufficiente minimale per $\theta$. Ovvero:
+$$\frac{L(\theta;\underline{x})}{L(\theta;\underline{y})}=m(\underline{x},\underline{y}) \Longleftrightarrow S_n(\underline{x})=S_n(\underline{y})$$
+$\Longrightarrow S_n(X_1,...,X_n)$ è statistica sufficiente minimale per $\theta$.
+\end{teo}
+
+\begin{esempio} Sia $(X_1,...,X_n)$ da $X \sim \Gamma(\alpha,\beta), \alpha, \beta >0$. Vogliamo trovare una statistica congiuntamente sufficiente e minimale per $\alpha$ e $\beta$:
+\begin{enumerate}
+\item [1)] Cerchiamo una statistica sufficiente:
+$$L(\alpha,\beta;\underline{x}) = \left( \left( \Gamma(\alpha)\beta^{\alpha}\right)^{-n} \left( e^{-\frac{1}{\beta} \sum_{i=1}^n x_i} \right) \left( \prod_{i=1}^n x_i \right) \right) \cdot \left( \prod_{i=1}^n \mathbbm{1}_{\mathbb{R_+}}(x_i) \right)$$
+Osserviamo che abbiamo scritto $L(\alpha,\beta;\underline{x})$ come $g \left( \alpha,\beta; \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right) \cdot h(\underline{x})$.\\
+Quindi per il teorema di fattorizzazione abbiamo che $S_n:=\left( \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right)$ è statistica congiuntamente sufficiente per $\alpha$ e $\beta$.
+\item [2)] Verifichiamo ora che tale statistica è anche minimale. Supponiamo che $S_n(\underline{x})=S_n(\underline{y})$, ovvero $\left( \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right) = \left( \sum_{i=1}^n y_i, \prod_{i=1}^n y_i \right)$. Allora:
+$$\frac{L(\alpha,\beta;\underline{x})}{L(\alpha,\beta;\underline{y})} = e^{\frac{1}{\beta} \left( \sum_i x_i - \sum_i y_i \right)} \left( \prod_i \frac{x_i}{y_i} \right) = e^{0} \left( \prod_i (1) \right)^{\alpha} = 1$$
+Per il teorema di Lehmann-Scheffé concludiamo che $S_n$ è statistica sufficiente minimale.\\
+Nota: in realtà noi abbiamo verificato che vale solo una delle due implicazioni richieste dalle ipotesi del teorema (quella da destra a sinistra). Questo è ciò che è stato fatto a lezione, e per il momento scriviamo solo questo.
+\end{enumerate}
+\end{esempio}
+
+\subsection{Principio di verosimiglianza}
+La verosimiglianza combina due tipi di informazione:
+\begin{itemize}
+\item informazione pre-sperimentale espressa attraverso il modello statistico scelto per descrivere il fenomeno di indagine
+$$\mathfrak{F}_\theta=\left\{f(x;\theta):\ \theta\in\Theta\subseteq\mathbb{R}^k\right\}$$
+\item informazione sperimentale contenuta in quella che è la determinazione campionaria $\underline{x}=(x_1,\ldots, x_n)$
+$$L(\theta;\underline{x})=\prod_{i=1}^n f_{X_i}(x_i;\theta)$$
+Nota: In generale $L(\theta;\underline{x})=f_{X_1,\ldots, X_n}(x_1,\ldots, x_n;\theta)$, densità congiunta, ovvero è definita anche nel caso in cui le variabili casuali non siano indipendenti ed equidistribuite. Quando invece lo sono, possiamo esprimere $L(\theta; \underline{x})$ nella solita forma, ovvero come produttoria.
+\end{itemize}
+
+\noindent\textbf{Principio di verosimiglianza} Con riferimento ad un dato modello stocastico $\mathfrak{F}_\theta=\left\{f(x;\theta):\ \theta\in\Theta\subseteq\mathbb{R}^k\right\}$, due punti $\underline{x_1}$ e $\underline{x_2}\in\varkappa$ tali che $L(\theta;\underline{x_2})=L(\theta;\underline{x_2})$ devono condurre alle medesime conclusioni inferenziali circa $\theta$.
+
+\begin{teo}
+L'informazione di Fisher fornita da uno stimatore $T_n$ basato su una statistica sufficiente $W_n$ coincide con l'informazione fornita dall'intero campione
+
+\begin{proof}
+Dal teorema di fattorizzazione l'informazione di Fisher sarà funzione del campione solo attraverso
+$$\frac{d}{d\theta}\ln\left[g(W_n);\theta\right]\qquad W_n=T_n(\underline{x})$$
+dal momento che la derivata rispetto a $\theta$ di $h$ è nulla ovvero $\frac{d}{d\theta}\ln\left[h\right]=0$, dunque
+$$I(\theta)=\mathbb{E}_\theta\left[\frac{d}{d\theta}\ln(g(W_n);\theta)\right]^2$$
+dove il membro di sinistra è l'informazione associata all'intero campione e il membro di destra è l'informazione di Fisher restituita dalla statistica sufficiente $W_n$.
+Questo implica che $I(W_n)$ è ugualmente rappresentativo per l'informazione di Fisher di quanto non lo sia l'intero campione.
+\end{proof}
+\end{teo}
+
+
+
+\begin{esempio} Sia $(X_1,\ldots,X_n)$ da $N(\mu,\sigma^2=1)$, vogliamo individuare una statistica sufficiente minimale per $\mu$ e la relativa informazione di Fisher.
+\begin{enumerate}
+\item[1)] Notiamo che 
+$$W_n:=\sum_{i=1}^n X_i \sim N(n\mu,n)$$
+è statistica sufficiente (si verifica subito usando il teorema di fattorizzazione).\\
+Vogliamo mostrare che l'informazione di Fisher che si ottiene usando solo $W_n$ è la stessa che si trova usando l'intero campione.
+\item[2)] Calcoliamo $I(\mu)$ supponendo di avere in mano, anziché l'intero campione $(x_1,...,x_n)$, il solo valore $w_n=\sum_{i=1}^n x_i$ (di cui conosciamo la distribuzione, come visto al punto 1). Iniziamo calcolando la funzione di verosimiglianza di $w_n$ (che coincide con la sua densità, essendo un unico valore e non un vettore):
+$$L(\mu; w_n)=\frac{1}{\sqrt{2 \pi n}} e^{-\frac{1}{2n} (w_n-n\mu)^2}$$
+A questo punto, calcolando la funzione di log-verosimiglianza, con un po' di conti si trova facilmente che $I_{W_n}(\mu)=n$.
+\item[3)] Calcoliamo $I(\mu)$ supponendo di avere in mano l'intero campione. Iniziamo trovando la funzione di verosimiglianza di $(x_1,...,x_n)$:
+$$L(\mu; \underline{x})= \prod_{i=1}^n \left( \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}(x_i-\mu)^2} \right)$$
+Come prima, con un po' di conti si ottiene $I_{\underline{x}}(\mu)=n$, ovvero le due informazioni di Fisher coincidono.
+\\
+\\
+\end{enumerate}
+\end{esempio}

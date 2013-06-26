@@ -1,0 +1,24 @@
+%%%%lezione 13 maggio%%%%
+
+Lezione del 13/05, ultima modifica 16/06, Andrea Gadotti
+
+\subsection{Famiglie esponenziali e sufficienza}
+
+Notiamo innanzitutto che una qualsiasi funzione di densità per una distribuzione appartenente alla famiglia esponenziale può essere scritta come
+$$f_X(x;\theta) = \exp \left\lbrace C(x) + D(\theta) \displaystyle \sum_{m=1}^k A_m(\theta) B_m(x) \right\rbrace$$
+
+\begin{teo}
+
+Sia $(X_1,...,X_n)$ un campione casuale appartenente alla famiglia esponenziale a k parametri. Allora il vettore $T_n:=(\sum_{i=1}^n B_1(x_i),...,\sum_{i=1}^n B_k(x_i))$ è statistica sufficiente per $\theta$.
+
+\begin{proof}
+Da inserire (comunque è facile, basta usare il teorema di fattorizzazione).
+\end{proof}
+
+\end{teo}
+
+\begin{esempio}
+Sia $(X_1,...X_n)$ da $N(\mu, \sigma^2)$ con $\mu$ e $\sigma^2$ non noti (dunque $\vec{X}$ proviene da una famiglia esponenziale a 2 parametri). Per il teorema appena visto si ha che $I_n:= (\sum_{i=1}^n B_1(x_i), \sum_{i=1}^n B_2(x_i)) = (\sum_{i=1}^n x_i, \sum_{i=1}^n x_i^2$ è statistica sufficiente per $(\mu, \sigma^2)$. (Nota: la seconda uguaglianza si verifica immediatamente).\\
+Affermiamo (senza dimostrazione) che lo stimatore di massima verosimiglianza per $(\mu, \sigma^2)$ è $\hat{\theta} = \left( \frac{1}{n} \sum_{i=1}^n X_i, \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X}_n)^2 \right)$ e notiamo che esso è funzione della statistica sufficiente $I_n$.\\
+\\
+\end{esempio}

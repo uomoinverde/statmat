@@ -21,14 +21,15 @@ Definiamo Statistica Pivot una funzione $Q((X_1,...,X_n),\vartheta)$ tale che
 \noindent\textbf{Esempi:}
 Campione casuale da $N(\mu,\sigma^2)$:
 \begin{enumerate}
-\item Supponiamo di conoscere la varianza: allora un esempio di statistica pivot è $$Z_n=\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} $$ la quale, grazie all'ipotesi di campionamento da vc normale, ha distribuzione N(0,1).
+\item Supponiamo di conoscere la varianza: allora un esempio di statistica pivot è $$Z_n=\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} $$ la quale, grazie all'ipotesi di campionamento da vc normale, ha distribuzione N(0,1) (che non dipende da $\mu$).
 \item Supponiamo di non conoscere la varianza: in tal caso, al posto della varianza usiamo lo stimatore varianza campionaria $S_n^2$, il quale è non distorto (già dimostrato) e consistente (infatti $\mse_{\sigma^2}(S_n^2)=Var(S_n^2) + B^2(S_n^2)=\frac{2\sigma^4}{n-1} \rightarrow 0$) e quindi la statistica pivot in questione sarà $$Q=\frac{\bar{X}_n - \mu}{\S_n / \sqrt{n}}$$ la quale (dimostreremo che) ha distribuzione t-student con n-1 gradi di libertà.
 \end{enumerate}
 
 
 \noindent \textbf{Esempio introduttivo (exit poll)}
 \\ \\
-Vogliamo stimare la proporzione $p_i$ dei voti ricevuti dall'iesimo partito sul totale. Il nostro problema sarà quello di trovare un intervallo centrato nella stima $\hat{p_i}$ , ed un margine d'errore, $ME$, tale per cui, ad una fissata soglia di probabilità $\alpha$ si abbia $$P(p_i \in (\hat{p_i} - ME,\hat{p_i} + ME))=1 - \alpha$$
+Vogliamo stimare la proporzione $p_i$ dei voti ricevuti dall'iesimo partito sul totale. Il nostro problema sarà quello di trovare un intervallo centrato nella stima $\hat{p_i}$ , ed un margine d'errore, $ME$, tale per cui, ad una fissata soglia di probabilità $\alpha$ si abbia 
+$$\mathbb{P}[p_i \in (\hat{p_i} - ME,\hat{p_i} + ME)]=1 - \alpha$$
 \\ \\
 \noindent\textbf{Costruzione generale}
 \\ \\
@@ -69,4 +70,4 @@ $$IC_p(1-\alpha)=
 \left[\hat{p}_n -
  z_{\alpha / 2} 
  \sqrt{\frac{\hat{p}_n(1-\hat{p}_n)}{n}},
-  \hat{p}_n + z_{\alpha / 2}\sqrt{\frac{\hat{p}_n(1-\hat{p}_n)}{n}} \frac{S_n}{\sqrt{n}}\right]$$
+  \hat{p}_n + z_{\alpha / 2}\sqrt{\frac{\hat{p}_n(1-\hat{p}_n)}{n}}\right]$$
