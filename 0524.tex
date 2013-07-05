@@ -1,0 +1,82 @@
+\noindent Lezione 24/05, ultima modifica 01/06, Michele Nardin
+
+\noindent \textbf{Stimatori UMVU per funzioni di $\vartheta$}\\
+\\
+Sappiamo che lo stimatore di massima verosimiglianza per $\eta(\vartheta)$ è $\eta(\hat{\vartheta})$, ove ovviamente $\hat{\vartheta}$ è stimatore di ML (maximum likelihood) di $\vartheta$. Possiamo affidarci a diverse strategie:
+\begin{enumerate}
+\item Usare \textit{direttamente} il teorema di Rao-Blackwell, e quindi calcolare il valore atteso condizionato di $V_n$ (stimatore non distorto di $\eta(\vartheta)$) a $T_n$ (statistica sufficiente per $\eta(\vartheta)$)
+$$V_{n;T_n} = E_\vartheta(V_n|T_n)$$
+
+\item  Usare \textit{indirettamente} il teorema di Rao-Blackwell. Sapendo che, se esiste, uno stimatore UMVU per $\eta(\vartheta)$ deve essere funzione di statistica sufficiente, ossia 
+$$V_{n;T_n} = \phi(T_n)$$ possiamo "aggirare" il problema, 
+ossia studiare il valore atteso di una statistica sufficiente (ricavata in qualche modo): se tale statistica (sufficiente) risulta anche non distorta, per Rao-Blackwell abbiamo lo stimatore UMVU per $\eta(\vartheta)$. 
+\end{enumerate}
+Illustriamo quanto detto al punto 2. con il seguente\\
+\textbf{Esempio importante:} Sia $(X_1,...,X_n)$ da $b(1,p)$. Sappiamo che $Var(X_i) = p(1-p) =: \eta(p)$. Cerchiamo quindi uno stimatore UMVU per $Var(X_i)$, che è funzione di $p$.
+Partiamo da 
+$$L(p,\vec{X}) = p^{\sum_i X_i} (1-p)^{n - \sum_i X_i} \prod_{i=1}^n \mathbbm{1}_{0,1}(X_i)$$
+
+usando il teorema di fattorizzazione di Neyman, ci accorgiamo che $L$ può essere scomposta in
+
+$$L(p,\vec{X}) = g(t_n,p)h(\vec{X})$$ ove 
+$$h(\vec{X}) = \prod_{i=1}^n \mathbbm{1}_{\{0,1\}}(X_i)$$
+ e 
+ $$g(t_n,p) = p^{t_n} (1-p)^{n - t_n}$$
+  dove ovviamente 
+  $$t_n = \sum_{i=1}^n X_i$$
+Segue che $\hat{p}:=\frac{1}{n} t_n$ è statistica sufficiente per $p$, ed è pure stimatore di ML. (Ma tutto questo già lo sapevamo, è solo per rinfrescare un po' le idee. Adesso?)
+
+Adesso consideriamo $\hat{\eta}(p):=\eta(\hat{p}) = \hat{p} (1 - \hat{p})$. Esso, per proprietà di invarianza, è stimatore ML per $\eta(p)$. Segue quindi che è pure funzione di statistiche sufficienti, per la prima proprietà degli stimatori ML. Ma allora, se $E(\hat{\eta}(p)) = Var(X_i)$, per il teorema di Rao-Blackwell ho concluso! 
+Purtroppo $\hat{\eta}(p)$ è solo \textit{asintoticamente} non distorto, infatti: (ricordiamo che $Var(t_n)=E(t_n^2) - E(t_n)^2$)
+\begin{align*}
+E_p(\hat{p}(1 - \hat{p}))  &= \frac{1}{n^2} E (n t_n - t_n^2) 
+							= \frac{1}{n^2} \left\{ nE(t_n) - [ Var(t_n) + E(t_n)^2 ] \right\}
+						\\ &= \frac{1}{n^2} \left\{ n^2p - np(1-p) -n^2p^2 \right\}
+							= \frac{n-1}{n}p(1-p) 
+							\\ & \neq p(1-p)
+\end{align*}
+Ma allora, se considero $$V_{n;t_n} = \frac{n}{n-1} t_n = \frac{n}{n-1} \hat{p}(1 - \hat{p})$$
+esso è uno stimatore non distorto, e dato che è funzione di statistica sufficiente per $\eta(p) = p(1-p)$ allora per Rao-Blackwell è pure uno stimatore UMVU per $\eta(p)$!\\
+\\
+\textbf{Relazione tra le distribuzioni degli stimatori ML e UMVU per $\eta(p)$}\\
+\\
+Vogliamo confrontare $\hat{\eta} = \eta(\hat{p})=\hat{p}(1 - \hat{p})$ con $V_{n:t_n} = \frac{n}{n-1}\hat{p}(1 - \hat{p})$.
+Grazie alla consistenza di $\hat{\eta}$ (che discende a sua volta dalla consistenza di $\hat{p}$) vale
+$$\hat{\eta} - V_{n;t_n} = \frac{n}{n-1} \hat{\eta} - \hat{\eta} = \frac{1}{n-1} \hat{\eta} \stackrel{P}{\longrightarrow} 0$$
+Segue quindi che pure $V_{n;t_n}$ è consistente per $\eta(p)$.
+Inoltre $\hat{\eta}$ e $V_{n;t_n}$ hanno la stessa distribuzione asintotica, in particolare da
+$$\sqrt{n}(\hat{\eta} - \eta(p)) - \sqrt{n}(V_{n;t_n} - \eta(p)) = \frac{\sqrt{n}}{n - 1} \hat{\eta} \stackrel{P}{\to} 0$$
+e da (uso metodo DELTA, osservando che $\eta(p)$ è funzione continua di $p$  e che $\eta' (p) = 1- 2p \neq 0$ se $p \neq 1/2$)
+$$\sqrt{n}(\hat{\eta} - \eta(p)) \stackrel{D}{\to} N(0, (1- 2p)p (1-p))$$
+segue che
+$$\sqrt{n}(V_{n;t_n} - \eta(p)) \stackrel{D}{\to} N(0, (1- 2p)p (1-p))$$
+
+\textbf{Nota:} in questo modo abbiamo visto una cosa che vale in generale (davvero?): le conoscenze che abbiamo riguardanti gli stimatori ML possiamo riversarle sugli stimatori UMVU, poichè hanno la stessa distribuzione asintotica!
+
+\section{Metodi Numerici per la Stima di Massima Verosimiglianza}
+(da sistemare)\\
+\\
+Le equazioni di stima di massima verosimiglianza spesso non sono risolvibili analiticamente.
+Introduciamo allora un metodo numerico quadratico di stima degli zeri di una funzione (derivabile), l'algoritmo di Newton-Raphson.\\
+\\
+\textbf{Newton-Raphson nel caso scalare}\\
+\\
+Sia $l(\vartheta,\vec{x})$ la funzione di log-verosimiglianza (funzione da massimizzare), e sia $S(\vartheta) = l'(\vartheta, \vec{x})$ la funzione score.
+Noi vogliamo trovare quel $\hat{\vartheta}$ tale per cui $S(\hat{\vartheta})=0$.
+Supponiamo inoltre che $S$ sia derivabile.
+
+Sia $\hat{\vartheta}^{(0)}$ il valore d'inizializzazione dell'algoritmo (di cui parleremo dopo); 
+l'equazione di ricorrenza dell'algoritmo è data da
+$$\hat{\vartheta}^{(i+1)} = \hat{\vartheta}^{(i)} - \frac{S(\hat{\vartheta}^{(i)})}{S'(\hat{\vartheta}^{(i)})}$$
+processo che si può iterare fino a quando la distanza tra due approssimazioni successive è minore di una certa soglia d'errore fissata.\\
+\\
+\textbf{Valore d'inizializzazione}\\
+\\
+In generale non esiste una regola che garantisca di scegliere in modo adeguato il valore d'inizializzazione: esso dovrebbe essere scelto il più vicino possibile al valore cercato, ma pure con ciò la convergenza non è garantita, a meno di non porre ulteriori condizioni sulla funzione.
+(ad esempio, se incontriamo un punto stazionario allora il metodo fallisce in quanto ci troveremmo a dover dividere per zero (e.g. $f(x)=1-x^2$, se partiamo da $x^{(0)}=0$ allora $f'(0)=0$)).
+Per approfondire vedasi 
+
+\href{http://en.wikipedia.org/wiki/Newton%27s_method#Bad_starting_points}{$http://en.wikipedia.org/wiki/Newton's\_method\#Bad\_starting\_points$}.\\
+\\
+Vediamo un paio d'esempi:\\
+

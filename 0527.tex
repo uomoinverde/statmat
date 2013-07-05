@@ -1,0 +1,319 @@
+
+Lezione del 27/05, ultima modifica 03/06, Michele Nardin
+
+
+\section{Teoria dei Test più Potenti ed Uniformemente più Potenti}
+Useremo la notazione: MP = most powerful e UMP = uniformly most powerful.\\
+\\
+\noindent \textbf{Test più potenti per verifica d'ipotesi semplici}\\
+\\
+Per ora ci concentriamo sui test semplici, ossia i test in cui le ipotesi determinano completamente la distribuzione della statistica sotto la data ipotesi.
+
+Ricordiamo che per la verifica d'ipotesi riguardo ad un parametro $\vartheta$ della forma
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta = \vartheta_0 \\
+H_1: & \vartheta = \vartheta_1 \\
+\end{array}
+$$
+
+un dato test fornisce una regione di rifiuto $C$, (nota: quando ci riferiamo ad un test implicitamente ci riferiamo alla sua regione di rifiuto!) le cui probabilità d'errore sono
+
+$$\bigg \{
+\begin{array}{rl}
+\alpha =&  P(\text{rifiuto } H_0 | H_0) \\
+\beta =& P(\text{non rifiuto } H_0 | H_1) \\
+\end{array}
+$$
+
+Fissato $\alpha$, ricordiamo che $1 - \beta$ è detto potenza del test. Possiamo sempre pensare $\beta$ come funzione di $\vartheta_1$:
+$$\beta(\vartheta_1) = P(\text{non rifiuto } H_0 | \vartheta = \vartheta_1)$$
+
+\begin{definizione}[test $MP_\alpha$]
+ Fissato $\alpha \in (0,1)$, un test che minimizza $\beta(\vartheta_1)$ è detto test più potente di livello $\alpha$ ($MP_\alpha$) \small{(per la verifica d'ipotesi semplice contro alternativa semplice)}. 
+
+\end{definizione}
+
+Il nostro obiettivo sarà ovviamente quello di trovare tale test. Vediamo come i concetti visti fin'ora (soprattutto verosimiglianza e sufficienza) siano legati a quanto cerchiamo tramite il seguente
+
+\begin{lemma}[Neyman - Pearson]
+Sia $(X_1,...,X_n)$ un campione casuale, con variabili aventi distribuzione data dalla funzione $f_{X_i}(x, \vartheta)$.
+Sia inoltre
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta = \vartheta_0 \\
+H_1: & \vartheta = \vartheta_1 \\
+\end{array}
+$$
+
+il sistema di ipotesi (entrambe semplici) da verificare. Indicata con $L(\vartheta;\vec{x})$ la funzione di ML, 
+il test $MP_\alpha$ per la verifica di $H_0$ ha regione critica (o di rifiuto) data da
+$$C = \{\vec{x} \in X : \frac{L(\vartheta_1;\vec{x})}{L(\vartheta_0;\vec{x})}>A\}$$
+con A costante non negativa (che nella pratica dipenderà da $\alpha$)
+\end{lemma}
+\textbf{Nota:} tale risultato è abbastanza intuitivo: se $A$ è sufficientemente grande, 
+quando si vede che $L(\vartheta_1;\vec{x}) \geq A \cdot L(\vartheta_0;\vec{x})$ 
+è assurdo pensare che $\vartheta_0$ sia una scelta plausibile, in quanto lo è molto di più $\vartheta_1$!
+
+\begin{proof}
+
+Sia $C$ la regione critica del test (di livello $\alpha$) dato dal lemma, e sia $C^*$ la regione critica di un qualsiasi altro test (sempre di livello $\alpha$).
+
+Per provare il lemma dobbiamo mostrare quindi che $\beta^* \geq \beta$ 
+(che sono ovviamente le probabilità di errore del 2o tipo delle due regioni in considerazione)
+(indicheremo nel seguito con $\overline{C}, \overline{C^*}$ i complementari delle regioni $C$ e $C^*$).
+Notiamo subito che
+$$\overline{C} = \overline{C} \cap ({C^*} \cup \overline{C^*}) = (\overline{C} \cap {C^*}) \cup (\overline{C} \cap \overline{C^*})$$
+e che 
+$$\overline{C}^* = \overline{C}^* \cap ({C} \cup \overline{C}) = (\overline{C}^* \cap {C}) \cup (\overline{C}^* \cap \overline{C})$$
+
+\begin{align*}
+\beta^* - \beta 
+&= P(\vec{x} \in \overline{C}^* | \vartheta = \vartheta_1) 
+	- P(\vec{x} \in \overline{C} | \vartheta = \vartheta_1)
+\\ &= \int_{\vec{x} \in \overline{C}^* } L(\vartheta_1;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in \overline{C} } L(\vartheta_1;\vec{x}) d \vec{x}
+\\ &= \int_{\vec{x} \in (\overline{C}^* \cap {C}) \cup (\overline{C}^* \cap \overline{C}) } L(\vartheta_1;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in (\overline{C} \cap {C^*}) \cup (\overline{C} \cap \overline{C^*}) } L(\vartheta_1;\vec{x}) d \vec{x}
+\\ &= \int_{\vec{x} \in \overline{C}^* \cap C } L(\vartheta_1;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in \overline{C} \cap C^* } L(\vartheta_1;\vec{x}) d \vec{x}
+\\ & \geq A \left[  \int_{\vec{x} \in \overline{C}^* \cap C } L(\vartheta_0;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in \overline{C} \cap C^* } L(\vartheta_0;\vec{x}) d \vec{x} \right]
+\\ & = A \left[ \int_{\vec{x} \in (\overline{C}^* \cap {C}) \cup ({C}^* \cap {C}) } L(\vartheta_0;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in (\overline{C} \cap {C^*}) \cup ({C} \cap {C^*}) } L(\vartheta_0;\vec{x}) d \vec{x} \right]
+\\ & = A \left[  \int_{\vec{x} \in C} L(\vartheta_0;\vec{x}) d \vec{x} 
+	- \int_{\vec{x} \in C^* } L(\vartheta_0;\vec{x}) d \vec{x} \right]
+\\ & = A ( \alpha - \alpha) = 0
+\end{align*}
+
+Da cui $\beta^* \geq \beta $
+\end{proof}
+
+\noindent \textbf{Importante:} Da nessuna parte abbiamo supposto che $\vartheta$ sia uno scalare, e guardando la dimostrazione notiamo che tale ipotesi sarebbe inutile: quindi (come al solito d'altronde) $\vartheta$ può benissimo essere un vettore di parametri incogniti!\\
+\\
+\noindent \textbf{Test uniformemente più potenti per verifica d'ipotesi semplici contro alternative composte}\\
+\\
+Vediamo come estendere i risultati della sezione precedente quando le ipotesi alternative sono un pochino più complesse:
+
+A noi interessano soprattutto le ipotesi unilaterali o bilaterali, ossia del tipo
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta = \vartheta_0 \\
+H_1: & \vartheta > (<) \vartheta_0 \text{ (oppure } \vartheta = \vartheta_1,\ \vartheta_1 > \vartheta_0 (\vartheta_1 < \vartheta_0) )\\
+\end{array}
+$$
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta = \vartheta_0 \\
+H_1: & \vartheta \neq \vartheta_0 \text{ (oppure } \vartheta = \vartheta_1,\ \vartheta_1 > \vartheta_0 \vee \vartheta_1 < \vartheta_0 )\\
+\end{array}
+$$
+
+\begin{definizione}[$UMP_\alpha$]
+Un test per la verifica d'ipotesi semplice ($H_0$) contro alternativa composta ($H_1$) viene detto uniformemente più potente di livello $\alpha$ ($UMP_\alpha$) se esso è $MP_\alpha$ per ogni possibile ipotesi semplice contenuta in $H_1$ (cioè minimizza $\beta(\vartheta_1)$ per ogni possibile fissato $\vartheta_1$ contemplato in $H_1$).
+\end{definizione}
+
+Ovviamente nessuno ci assicura che tale test esista: vediamo due esempi, entrambi basati su campione casuale da normale, uno di esistenza (in cui vediamo anche come applicare il lemma) e uno di non esistenza.\\
+\\
+\textbf{Esempio:}[\textit{esistenza}] Sia $(X_1,...,X_n)$ da $N(\mu,\sigma^2)$ (varianza nota).
+Vogliamo trovare un test $UMP_\alpha$ per le seguenti ipotesi:
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \mu = \mu_0 \\
+H_1: & \mu > \mu_0 \\
+\end{array}
+$$
+
+Per farlo, considero le ipotesi
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \mu = \mu_0 \\
+H_1: & \mu = \mu_1 \\
+\end{array}
+$$
+
+per $\mu_1 > \mu_0$ fissato e vado a costruire il test $MP_\alpha$ di Neyman-Pearson associato.
+Innanzitutto troviamo che
+\begin{align*}
+\frac{L(\mu_1;\vec{x})}{L(\mu_0;\vec{x})} 
+&= exp\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu_1)^2 - (x_i - \mu_0)^2 \}
+\\&= exp\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n 2x_i(\mu_0 - \mu_1) +\mu_1^2 - \mu_0^2 \}
+\end{align*}
+
+Ci prepariamo ad applicare il lemma (prendiamo il logaritmo per semplificare i conti): notiamo che
+
+$$ -\frac{1}{2\sigma^2} \sum_{i=1}^n 2x_i(\mu_0 - \mu_1) +\mu_1^2 - \mu_0^2 \geq ln(A)$$
+se e solo se
+$$\frac{\sum_{i=1}^n x_i}{n} \geq \frac{\sigma^2 ln(A)}{n(\mu_1 - \mu_0)} + \frac{\mu_1 + \mu_0}{2} (=:B)$$
+
+Per rendere operativa la regola di decisione (ossia rifiuto $H_0$ se $\overline{X_n} \geq B$)
+occorre specificare il valore di B. 
+Sotto $H_0$, $$\overline{X_n} \sim N(\mu_0, \frac{\sigma^2}{n})$$
+da cui, fissato un livello di confidenza $\alpha$, devo risolvere la seguente equazione in B:
+
+$$P(\overline{X_n} \geq B | \mu=\mu_0) = \alpha$$
+
+equivalente a
+
+$$P(\frac{\overline{X_n} - \mu_0} {\sigma/\sqrt{n}} \geq \frac{B - \mu_0} {\sigma/\sqrt{n}} | \mu=\mu_0) = \alpha$$
+
+Ma sotto $H_0$, $\frac{\overline{X}_n - \mu_0} {\sigma/\sqrt{n}} \sim N(0,1)$, quindi  $\frac{B - \mu_0} {\sigma/\sqrt{n}} = z_\alpha$ (restituito dalle tavole).
+
+Definitivamente, la regione critica sarà
+
+$$C=\{ \vec{x} \in X : \overline{x_n} \geq \mu_0 + z_\alpha \frac{\sigma}{\sqrt{n}} \}$$ 
+
+Abbiamo quindi ritrovato il test che abbiamo usato nel capitolo precedente, senza passare per il concetto di statistica pivot.
+
+Rimane da mostrare che questo test è $UMP_\alpha$. Ma ciò è già stato fatto, infatti il ragionamento precedente vale quale che sia $\mu_1 (> \mu_0)$ fissato!\\
+\\
+\textbf{Esempio:}[\textit{non esistenza}] Sia $(X_1,...,X_n)$ da $N(\mu,\sigma^2)$ (varianza nota).
+Vogliamo trovare un test $UMP_\alpha$ per le seguenti ipotesi:
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \mu = \mu_0 \\
+H_1: & \mu \neq \mu_0 \\
+\end{array}
+$$
+
+Seguendo la falsariga di quanto visto nell'esempio precedente, possiamo ovviamente dividere l'ipotesi $H_1$ nei due seguenti sottocasi:
+
+$$H_1: \mu = \mu_1,\ \mu_1 > \mu_0 \vee \mu_1 < \mu_0 $$
+
+Per il primo caso ($ \forall \mu_1 > \mu_0$), come visto sopra, abbiamo la regione critica
+$$C=\{ \vec{x} \in X : \overline{x_n} \geq \mu_0 + z_\alpha \frac{\sigma}{\sqrt{n}} \}$$ 
+mentre per il secondo caso ($\forall \mu_1 < \mu_0$), in maniera del tutto analoga, avremo
+$$C=\{ \vec{x} \in X : \overline{x_n} \leq \mu_0 - z_\alpha \frac{\sigma}{\sqrt{n}} \}$$  
+Notiamo quindi che le due regioni critiche non coincidono su ogni ipotesi semplice contenuta in $H_1$, e quindi (per definizione) non esiste il test $UMP_\alpha$ per verifica d'ipotesi bilaterali.\\
+\\
+Ci poniamo ora il problema di vedere quando esistono i test $UMP_\alpha$.\\
+\\
+\noindent \textbf{Osservazione:}[\textit{Legame tra statistiche sufficienti e test di Neyman-Pearson}]
+Supponiamo di avere un campione casuale da una distribuzione con funzione di densità $f(x;\vartheta)$.
+Supponiamo inoltre che $T_n$ sia una statistica sufficiente per $\vartheta$.
+In accordo con il teorema di fattorizzazione, risulta che possiamo scrivere la funzione di verosimiglianza come
+
+$$L(\vartheta;\vec{x}) = h(\vec{x}) g(t_n(\vec{x}),\vartheta)$$
+
+ove $h$ non dipende da $\vartheta$.
+Quindi, il \textit{rapporto di verosimiglianze (RV)} può essere scritto come
+
+$$RV(\vartheta_1,\vartheta_0; \vec{x}) = \frac{L(\vartheta_1;\vec{x})}{L(\vartheta_0;\vec{x})} = \frac{g(t_n(\vec{x}), \vartheta_1)}{g(t_n(\vec{x}), \vartheta_0)}$$
+
+Segue che, avendo a disposizione una statistica sufficiente per $\vartheta$, tale rapporto dipende da $\vec{x}$ solo attraverso $t_n$.
+
+Introduciamo il concetto di \textit{monotonia del rapporto di verosimiglianza}.
+
+\begin{definizione}
+Nelle ipotesi dell'osservazione qua sopra, nel caso in cui $\vartheta_1 < \vartheta_0$ ($\vartheta_1 > \vartheta_0$) diciamo che $RV(\vartheta_1,\vartheta_0; \vec{x})$ è monotono se esso è una funzione crescente (decrescente) di $t_n$. 
+\end{definizione}
+
+Intuitivamente, se il rapporto tra le verosimiglianze è monotono, è facile immaginare che il test $UMP_\alpha$ per ipotesi unilaterali esiste sempre!
+\\
+Ciò è sicuramente vero se ci restringiamo a famiglie esponenziali:
+consideriamo la famiglia esponenziale nella sua forma più semplice, ossia con funzione di densità della forma
+$$f_X(x;\theta) = \exp \{ A(\theta) B (x) +  C(x) +  D(\theta) \}$$
+
+\begin{lemma}
+Un campione casuale da una famiglia esponenziale con $A(\vartheta)$ monotona ammette $RV$ monotono.
+\end{lemma}
+
+\begin{proof}
+Infatti, 
+\begin{align*}
+RV(\vartheta_1,\vartheta_0; \vec{x}) 
+&= \frac{\exp \{ A(\vartheta_1) \sum_i B (x_i) + \sum_i C(x_i) +  n D(\vartheta_1) \}}{\exp \{  A(\vartheta_0) \sum_i B (x_i) +  \sum_i C(x_i) +  n D(\vartheta_0) \}}
+\\&= \exp \{ [A(\vartheta_1) - A(\vartheta_0)] \cdot \sum_i B(x_i) + n[ D(\theta_1) -  D(\theta_0)] \}
+\end{align*}
+
+Essendo $A$ monotona, si nota subito che se $\vartheta_1 > \vartheta_0$ allora $A(\vartheta_1) - A(\vartheta_0)\geq 0$ e quindi $RV$ è una funzione crescente rispetto a $\sum_i B (x_i)$
+\end{proof}
+
+Da quanto visto sopra, segue immediatamente che, testando le ipotesi 
+
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta = \vartheta_0 \\
+H_1: & \vartheta < \vartheta_0 \\
+\end{array}
+$$
+
+preso un qualunque $\vartheta_1 < \vartheta_0$, la condizione 
+$$RV(\vartheta_1,\vartheta_0;\vec{x}) \leq k$$
+
+è equivalente a 
+
+$$\sum_{i=1}^n B(x_i) \leq c$$ per una costante $c$ ricavabile facilmente dall'equazione sopra, e valido per ogni $\vartheta_1 < \vartheta_0$. Questo fornisce il tesi $UMP_\alpha$
+per la famiglia esponenziale (in questo caso vista nella forma semplice) per test unilaterali. Ovviamente, nel caso in cui $H_1: \vartheta > \vartheta_0$, la regione critica sarà fornita da $\sum_{i=1}^n B(x_i) \geq c$.\\
+
+\subsection{Rapporto di massime verosimiglianze}
+
+Introduciamo un test valido in generale, con il defetto di esser senza garanzie (se non asintotiche) di ottimalità ma con il pregio di non aver bisogno di particolari forme d'ipotesi. 
+
+\begin{definizione}
+Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione avente funzione di ripartizione $F(x,\vartheta)$, con $\vartheta \in \Theta$.
+Supponiamo di avere un sistema di ipotesi
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \vartheta \in \Theta_0 \\
+H_1: & \vartheta \in \Theta \setminus \Theta_0 \\
+\end{array}
+$$
+
+Definiamo la funzione Rapporto di Verosimiglianza generalizzato (RV generalizzato) come la funzione $\lambda: \mathcal{X} \in \mathbb{R}^n \to [0,1]$
+definita da
+$$\lambda(\vec{x}) = \frac{\max_{\vartheta \in \Theta_0} L(\vartheta,\vec{x})}{\max_{\vartheta \in \Theta} L(\vartheta,\vec{x})}$$
+\end{definizione}
+
+$\lambda$ sta in $[0,1]$ poiché, essendo $L$ una funzione di densità, $\lambda \geq 0$, ed invece $\lambda \leq 1$ essendo $\Theta_0 \subset \Theta$.\\
+\\
+Fissato un $A \in (0,1)$, una regione di rifiuto del test è data da 
+$$C := \{ \vec{x} \in \mathcal{X}: \lambda(\vec{x})<A \}$$
+Ovviamente $A$ sarà scelto in modo che 
+$$P(\lambda(\vec{x})<A | H_0) = \alpha$$
+con $\alpha$ probabilità (fissata a priori) di commettere un errore del primo tipo.\\
+\\
+La potenza di questo metodo è data dal seguente
+
+\begin{teo}
+Sotto $H_0$ la statistica (test di Wald) $W=-2ln[\lambda(\vec{x})]$, converge in distribuzione (all'aumentare di n) a $\chi^2_\nu$, ove $\nu$ è la differenza tra i parametri da stimare sotto $H_1$ rispetto ad $H_0$.
+\end{teo}
+
+Quindi, per campioni numerosi, è possibile ricavare agevolmente il parametro $A$ dalle tavole della $\chi^2$.\\
+\\
+\noindent \textbf{Esempio:} Sia $(X_1,...,X_n)$ un campione casuale da Poisson con parametro $\theta$, e quindi $$f(x,\theta) = P(X_i = x) = \frac{e^{-\theta} \theta^x}{x!} \mathbb{I}_{(0,1,2,...)}(x)$$ e $\theta>0$.
+$$\bigg \{
+\begin{array}{rl}
+H_0: & \theta = \theta_0  \\
+H_1: & \theta \neq \theta_0 \ \ [\theta \in \mathbb{R}^+ \setminus \{\theta_0\}]\\
+\end{array}
+$$
+Calcoliamo inoltre la funzione di verosimiglianza:
+$$L(\theta,\vec{x})=\frac{e^{-n\theta} \theta^{\sum x_i}}{\prod_{i=1}^n x_i!}$$
+troviamo che, posto $\hat{\theta} = \overline{X}_n$ lo stimatore di massima verosimiglianza
+$$\lambda(\vec{x}) = \frac{\max_{\theta \in \Theta_0} L(\theta,\vec{x})}{\max_{\theta \in \Theta} L(\theta,\vec{x})} = \frac{L(\theta_0,\vec{x})}{L(\hat{\theta},\vec{x})}$$
+
+(notare che $\max_{\theta \in \Theta} L(\theta,\vec{x})=L(\hat{\theta},\vec{x}) $ proprio per definizione di stimatore di massima verosimiglianza!)
+
+$$\lambda(\vec{x}) = \dfrac{ e^{-n\theta_0} \theta_0^{\sum x_i}}{e^{-n\hat{\theta}} \hat{\theta}^{\sum x_i}} = 
+\left( \frac{\theta_0}{\hat{\theta}} \right)^{\sum x_i} e^{n(\hat{\theta} - \theta_0)}$$
+
+Usiamo la statistica test di Wald:
+$W = -2 ln (\lambda (\vec{x})) =  -2\left[\sum x_i ln \left( \frac{\theta_0}{\hat{\theta}} \right) + n(\hat{\theta} - \theta_0) \right]$
+la quale, sotto $H_0$, $W \stackrel{D}{\longrightarrow} \chi^2$.
+La regione critica che cerchiamo è data da
+$$C := \{ \vec{x} \in \mathcal{X}: \lambda(\vec{x})<A \}$$
+Vale $\lambda(\vec{x})<A \Leftrightarrow -2ln[ \lambda(\vec{x})]> -2ln(A)$.
+Fissato $\alpha$, se $n$ è abbastanza grande possiamo approssimare
+ $$P(\lambda(\vec{x})<A \Bigm\vert H_0) = P(-2ln[ \lambda(\vec{x})]> -ln(A^2) \Bigm\vert H_0) \cong P(\chi^2_1> -ln(A^2)\Bigm\vert H_0) = \alpha$$ sse $$-ln(A^2) = \chi_{1;\alpha/2}^2$$ da cui 
+
+\begin{align*}
+C  &= \{ \vec{x} \in \mathcal{X}: -2\left[\sum x_i ln \left( \frac{\theta_0}{\hat{\theta}} \right) + n(\hat{\theta} - \theta_0) \right] >  \chi_{1;\alpha/2}^2 \}
+\end{align*}
