@@ -30,12 +30,12 @@ Possiamo riassumere le varie possibilità nella tabella e nel disegno sottostant
 \\
 \\
 \begin{center}
-\begin{tabular}{c|c|c}
- & $H_0$ è vera & $H_0$ è falsa \\ 
-\hline 
-Rifiuto $H_0$ & errore di I specie & nessun errore \\ 
-\hline 
-Non rifiuto $H_0$ & nessun errore & errore di II specie \\ 
+\begin{tabular}{c||c|c}
+  & \(H_0\) è \textbf{vera} & \(H_0\) è \textbf{falsa} \\ 
+  \hline 
+  \textbf{Rifiuto} \(H_0\) & errore di specie \textsc{i} & nessun errore \\ 
+  \hline 
+  \textbf{Non rifiuto} \(H_0\) & nessun errore & errore di specie \textsc{ii}
 \end{tabular} 
 \end{center}
 
@@ -43,7 +43,15 @@ Non rifiuto $H_0$ & nessun errore & errore di II specie \\
 \includegraphics [width=12cm] {immagini/grafico_1.jpg}
 \end{center}
 
-\noindent \textbf{Esempio} Lancio di una moneta onesta. Consideriamo il campione casuale $(X_1,...,X_n)$ e il numero di teste $S_n = \sum_{i=1}^n X_i$. Vorremmo stimare la probabilità che esca testa con la media campionaria $\overline{X}_n$. In questo caso potremmo avere:
+\begin{ese}[Lancio di una moneta]
+Consideriamo il campione casuale \((X_1,...,X_n) \sim b(1,p)\) rappresentante
+\(n\) lanci di una moneta. Vogliamo testare l'onestà della moneta, in particolare capire se essa è truccata per far uscire più frequentemente croce. In questo caso, ipotizzeremo:
+\begin{equation*}
+  \begin{cases}
+    H_0 \colon p \ge \frac12  \\ H_1 \colon p < \frac12.
+  \end{cases}
+\end{equation*}
+ e il numero di teste $S_n = \sum_{i=1}^n X_i$. Vorremmo stimare la probabilità che esca testa con la media campionaria $\overline{X}_n$. In questo caso potremmo avere:
 \\
 $$\bigg \{
 \begin{array}{rl}
