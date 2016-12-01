@@ -1,7 +1,6 @@
 %%%%lezione 25 marzo%%%%
 
-
-\subsection{Test per la verifica di ipotesi}
+\section{Test di ipotesi}
 Lezione del 25/03, ultima modifica 20/05, Andrea Gadotti
 \\ \\
 
@@ -12,18 +11,20 @@ La procedura di test per la verifica di ipotesi che descriveremo a breve cerca d
 \item Misurare in qualche modo questa ''vicinanza'' tra ipotesi e realtà.
 \end{enumerate}
 Useremo statistiche pivot in ambito parametrico: la distribuzione da cui proviene il campione casuale $(X_1,...,X_n)$ è nota a meno di uno o più parametri.\\
-Di seguito si può vedere una descrizione generale della situazione che si riproporrà per tutta questa sezione:\\
-\\
-$X \sim F_X(\underline{x},\theta)$, $\theta \in \Theta$, $(X_1,...,X_n)$ iid. Le nostre due ipotesi saranno della forma:
-$$\bigg \{
-\begin{array}{rl}
-H_0: & \theta \in \Theta_0 \\
-H_1: & \theta \in \Theta_1 \\
-\end{array}
-$$
-con $\Theta_0 \cup \Theta_1 = \Theta$.\\
-\\
-Chiameremo $H_0$ \textit{ipotesi nulla} e $H_1$ \textit{ipotesi alternativa}. Di solito $H_0$ rappresenta la conoscenza pregressa, la supposizione vera fino a prova contraria. Al contrario, $H_1$ è l'ipotesi di lavoro, quella su cui ripieghiamo nel momento in cui il nostro test risulta in contraddizione con $H_0$.\\
+
+\subsection{Tipi di ipotesi} 
+Supponiamo di avere un campione casuale i.i.d.
+\((X_1,\dots,X_n) \sim F_X(\mathbf{x}; \theta)\). Supponiamo che lo spazio \(\Theta{}\) in cui vive il parametro \(\theta{}\) sia partizionato in due sottoinsiemi \(\Theta_0, \Theta_1\). Le \emph{ipotesi} vengono poste nella forma:
+\begin{equation}
+  \begin{cases}
+    H_0 \colon \theta \in \Theta_0 \\
+    H_1 \colon \theta \in \Theta_1,
+  \end{cases}
+  \Theta = \Theta_0 \cup \Theta_1.
+\end{equation}
+
+Chiameremo \(H_0\) \emph{ipotesi nulla} e \(H_1\) \emph{ipotesi alternativa}. Idealmente, \(H_0\) rappresenta la conoscenza pregressa, la supposizione vera fino a prova contraria; invece, \(H_1\) costituisce l'ipotesi di lavoro, quella su cui ripieghiamo nel momento in cui il nostro test risulta in contraddizione con \(H_0\).
+
 Il test si riduce a una \textit{regola di decisione} in merito a $H_0$ e $H_1$ sulla base del campione casuale $(X_1,...,X_n)$ da $X \sim F_X (x;\theta)$. Dividiamo lo spazio dei campioni in due regioni disgiunte: $C$ (regione critica del test) e $C^c$. La decisione può chiaramente essere corretta, ma anche errata, poiché il campione costituisce un'informazione non completa. Risulta quindi necessario formulare delle \textit{conclusioni in probabilità}, ovvero associare alla nostra conclusione la probabilità che questa sia corretta, cercando ovviamente di massimizzarla.\\
 Possiamo riassumere le varie possibilità nella tabella e nel disegno sottostanti:
 \\
@@ -67,7 +68,18 @@ con $\mu_1 > \mu_0$.\\
 \includegraphics [width=12cm] {immagini/grafico_2.jpg}
 \end{center}
 
-Consideriamo $\alpha:= P(\text{rifiutare } H_0 \mid H_0 \text{ vera}) = P(\text{il nostro campione appartiene a C} \mid H_0 \text{ vera}) = P(\text{il nostro campione è } \geq c \mid \text{la distribuzione corretta è quella di sinistra}) = P(\text{commettere un errore di I tipo})$ e $\beta:= P(\text{non rifiutare } H_0 \mid H_0 \text{ falsa}) = P(\text{il nostro campione appartiene a } C^c \mid H_0 \text{ falsa}) = P(\text{il nostro campione è } \leq c \mid \text{la distribuzione corretta è quella di destra}) = P(\text{commettere un errore di II tipo})$. 
+Consideriamo 
+\begin{align*}
+  \alpha :&= \mathbb{P}(\text{rifiutare}\,\,H_0\mid H_0\,\,\text{vera}) \\
+  &= \mathbb{P}(\text{campione}\,\,\in C\mid H_0\,\,\text{vera}) \\
+  &= \mathbb{P}(\text{il nostro campione è } \geq c \mid \text{la distribuzione corretta è quella di sinistra}) \\
+  &= P(\text{commettere un errore di I tipo}).
+  \intertext{e}
+  \beta :&= P(\text{non rifiutare } H_0 \mid H_0 \text{ falsa}) \\
+  &= P(\text{il nostro campione appartiene a } C^c \mid H_0 \text{ falsa}) \\
+  &= P(\text{il nostro campione è } \leq c \mid \text{la distribuzione corretta è quella di destra}) \\
+  &= P(\text{commettere un errore di II tipo})
+ \end{align*}. 
 (Nota: $\alpha$ è detto \emph{livello di significatività del test})\\
 È evidente che non è possibile annullare contemporaneamente sia $\alpha$ che $\beta$.\\
 La procedura si divide quindi in due passi: il primo consiste nel \textbf{fissare} $\alpha$, il secondo nell'individuare la regola di decisione che minimizza $\beta$, in modo da trovare un test \textit{ottimo}.\\
