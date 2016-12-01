@@ -59,19 +59,30 @@ La generatrice dei momenti di \(X\) risulta essere:
 \end{align*}
 \end{description}
 
-\paragraph{Momenti di una variabile casuale}
+\section{Momenti di una variabile casuale}
 
-\begin{definizione}
-Se una variabile casuale ammette FGM derivabile infinite volte in un intorno di $t=0$ e se tutti i suoi momenti sono finiti, allora definiamo il momento di ordine $s$ non centrato: 
-$$\mu'_s := \mathbbm{E} (X^s) = \frac{d^s}{dt^s} M_X (t) \! \mid_{t=0}$$ 
-Il momento di ordine $s$ centrato in $a \in \mathbbm{R}$ è: 
+\begin{dfn}
+Se una variabile casuale ammette fgm derivabile infinite volte in un intorno di \(t=0\) e se tutti i suoi momenti sono finiti, allora definiamo il \emph{momento di ordine \(s\) non centrato}: 
+\begin{equation}
+  \mu'_s := \mathbb{E}(X^s) = \restr{\frac{d^s}{dt^s} M_X(t)}{t=0}.
+\end{equation} 
+Il \emph{momento di ordine \(s\) centrato} in \(a \in \mathbb{R}\) è definito come: 
+\begin{equation}
+  \mu_s (a) := \mathbbm{E} ((X-a)^s),
+\end{equation}
+ovvero $\mu'_s = \mu_s (0)$.
+%E' chiaro che $\mu'_1 = \mathbbm{E} (X)$.
+%Chiameremo infine momento di ordine $s$ centrato (senza specificare altro, intenderemo centrato in $\mu'_1$):
 
-$$\mu_s (a) := \mathbbm{E} ((X-a)^s)$$
-Ovvero $\mu'_s = \mu_s (0)$. E' chiaro che $\mu'_1 = \mathbbm{E} (X)$.
-Chiameremo infine momento di ordine $s$ centrato (senza specificare altro, intenderemo centrato in $\mu'_1$):
+%$$\mu_s := \mathbbm{E} ((X-\mu'_1)^s)$$
+\end{dfn}
 
-$$\mu_s := \mathbbm{E} ((X-\mu'_1)^s)$$
-\end{definizione}
+\begin{oss}
+  E\' chiaro che \(\mu'_1 = \mathbb{E}(X)\). Se non viene specificato altro, chiameremo \emph{momento di ordine \(s\) centrato} la quantità
+  \begin{equation}
+    \mu_s = \mathbb{E}((X-\mu'_1)^s).
+  \end{equation}
+\end{oss}
 
 \begin{teo}
 Dall'ultima definizione si vede facilmente (sviluppando l'elevamento a potenza) che vale la seguente relazione tra momenti centrati e non:

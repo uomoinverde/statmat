@@ -63,6 +63,12 @@
 \DeclareMathOperator{\eff}{eff}
 \DeclareMathOperator{\cova}{Cov}
 
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
 
 \providecommand{\abs}[1]{\lvert#1\rvert}
 \providecommand{\Abs}[1]{\bigg\lvert#1\bigg\rvert}
