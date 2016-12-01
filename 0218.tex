@@ -61,7 +61,7 @@ La generatrice dei momenti di \(X\) risulta essere:
 
 \section{Momenti di una variabile casuale}
 
-\begin{dfn}
+\begin{dfn}\label{dfn:mom}
 Se una variabile casuale ammette fgm derivabile infinite volte in un intorno di \(t=0\) e se tutti i suoi momenti sono finiti, allora definiamo il \emph{momento di ordine \(s\) non centrato}: 
 \begin{equation}
   \mu'_s := \mathbb{E}(X^s) = \restr{\frac{d^s}{dt^s} M_X(t)}{t=0}.
@@ -82,14 +82,21 @@ ovvero $\mu'_s = \mu_s (0)$.
   \begin{equation}
     \mu_s = \mathbb{E}((X-\mu'_1)^s).
   \end{equation}
+  Inoltre, possiamo osservare che:
+  \begin{equation*}
+    \mu_2 = \mathbb{E} \left({\left(X-\mu'_1\right)}^2\right) 
+          = \var(X) 
+          = \mathbb{E} (X^2) - \left(\mathbb{E} \left(X\right)\right)^2
+          = \mu'_2 - (\mu'_1)^2.
+  \end{equation*}
 \end{oss}
-
-\begin{teo}
-Dall'ultima definizione si vede facilmente (sviluppando l'elevamento a potenza) che vale la seguente relazione tra momenti centrati e non:
-$$\mu_s = \mathbbm{E} ((X-\mu'_1)^s) = \displaystyle\sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m$$
-\end{teo}
-Osserviamo che $\mu_2 = \mathbbm{E} ((X-\mu'_1)^2) = Var(X) = \mathbbm{E} (X^2) - (\mathbbm{E} (X))^2 = \mu'_2 - (\mu'_1)^2$
-
+\begin{oss}
+  Grazie a quanto detto in~\ref{dfn:mom} è possibile stabilire la seguente relazione tra momenti centrati e non:
+  \begin{equation}
+    \mu_s = \mathbb{E} \left({\left(X-\mu'_1\right)}^s\right) =
+            \sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m.
+  \end{equation}
+\end{oss}
 
 \begin{teo}
 Date due (o più) v.c. $X$ e $Y$ indipendenti aventi $f$ densità / $f$ massa $f_X$ e $f_Y$ e fgm $M_X(t)$ e $M_Y(t)$ rispettivamente, allora si ha
