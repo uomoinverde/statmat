@@ -14,8 +14,8 @@ Se esiste $t_0 \in \mathbb{R}_{+}$ tale per cui \(\mathbb{E}(e^{tX}) < +\infty\)
 \end{definizione}
 
 \subsection{Esempi}
-\begin{enumerate}
-\item $X \sim b(1,p)$ con $p \in (0,1)$. Si ha:
+\begin{description}
+\item[Bernoulli] $X \sim b(1,p)$ con $p \in (0,1)$. Si ha:
 
 $$M_X (t) 	= \mathbbm{E}(e^{tX}) 
 			= \displaystyle\sum_{x=0}^1 e^{tx} \mathbbm{P}(X=x)$$
@@ -24,14 +24,14 @@ $$
 			= p e^t + (1-p)$$	
 
 
-\item $X \sim \mathcal{P} (\lambda)$ con $\lambda > 0$. Si ha:
+\item[Poisson] $X \sim \mathcal{P} (\lambda)$ con $\lambda > 0$. Si ha:
 
 $$M_X (t) 	= \mathbbm{E}(e^{tX}) 
 			= \displaystyle\sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!}
 			= e^{\lambda (e^t -1)}$$
 			
 			
-\item $X \sim \mathcal{G} (\alpha, \beta)$, ovvero 
+\item[Gamma] $X \sim \mathcal{G} (\alpha, \beta)$, ovvero 
 
 $$f_X (x; \alpha, \beta) := \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x}$$ con $\alpha>0$, $\beta>0$, $x>0$ e 
 
@@ -46,7 +46,7 @@ $$M_X (t)	= \mathbbm{E}(e^{tX})
 \begin{center} $=$ ...[sostituzione $\sigma := x(\frac{1}{\beta} - t)$]...  \end{center}
 			$$= \frac{1}{(1-\beta t)^{\alpha}}$$ con $t < \frac{1}{\beta}$
 			
-\end{enumerate}
+\end{description}
 
 \paragraph{Momenti di una variabile casuale}
 
