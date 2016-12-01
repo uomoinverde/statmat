@@ -22,15 +22,23 @@
 %\usepackage{graphicx}
 
 
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[chapter]
+\newtheorem{cor}{Corollario}[thm]
 \newtheorem{corollario}{Corollario}
-\newtheorem{oss}{Osservazione}
-\newtheorem{definizione}{Definizione}
-\newtheorem{esempio}{Esempio}
+\newtheorem{prp}{Proposizione}
+\newtheorem{lem}{Lemma}
 \newtheorem{proposizione}{Proposizione}
 \newtheorem{teo}{Teorema}
 \newtheorem*{theorem}{Teorema}
 \newtheorem*{lemma}{Lemma}
-
+\theoremstyle{definition}
+\newtheorem{dfn}{Definizione}[chapter]
+\newtheorem{definizione}{Definizione}
+\theoremstyle{remark}
+\newtheorem{oss}{Osservazione}
+\newtheorem{ese}{Esempio}
+\newtheorem{esempio}{Esempio}
 \newcommand{\ud}{\,\mathrm{d}}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\ri}{Risk}
