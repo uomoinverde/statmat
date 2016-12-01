@@ -15,13 +15,13 @@ Se esiste $t_0 \in \mathbb{R}_{+}$ tale per cui \(\mathbb{E}(e^{tX}) < +\infty\)
 
 \subsection{Esempi}
 \begin{description}
-\item[Bernoulli] $X \sim b(1,p)$ con $p \in (0,1)$. Si ha:
-
-$$M_X (t) 	= \mathbbm{E}(e^{tX}) 
-			= \displaystyle\sum_{x=0}^1 e^{tx} \mathbbm{P}(X=x)$$
-$$
-			= \displaystyle\sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x}
-			= p e^t + (1-p)$$	
+\item[Bernoulli] Sia \(X \sim b(1,p)\) con \(p \in (0,1)\). Si ha:
+\begin{align*}
+M_X (t) &= \mathbbm{E}(e^{tX}) \\ 
+			&= \displaystyle\sum_{x=0}^1 e^{tx} \mathbbm{P}(X=x) \\
+			&= \displaystyle\sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x} \\
+			&= p e^t + (1-p)
+\end{align*}	
 
 
 \item[Poisson] $X \sim \mathcal{P} (\lambda)$ con $\lambda > 0$. Si ha:
