@@ -71,10 +71,6 @@ Il \emph{momento di ordine \(s\) centrato} in \(a \in \mathbb{R}\) è definito c
   \mu_s (a) := \mathbbm{E} ((X-a)^s),
 \end{equation}
 ovvero $\mu'_s = \mu_s (0)$.
-%E' chiaro che $\mu'_1 = \mathbbm{E} (X)$.
-%Chiameremo infine momento di ordine $s$ centrato (senza specificare altro, intenderemo centrato in $\mu'_1$):
-
-%$$\mu_s := \mathbbm{E} ((X-\mu'_1)^s)$$
 \end{dfn}
 
 \begin{oss}
@@ -91,7 +87,7 @@ ovvero $\mu'_s = \mu_s (0)$.
   \end{equation*}
 \end{oss}
 \begin{oss}
-  Grazie a quanto detto in~\ref{dfn:mom} è possibile stabilire la seguente relazione tra momenti centrati e non:
+  Grazie a quanto detto in Definizione~\ref{dfn:mom} è possibile stabilire la seguente relazione tra momenti centrati e non:
   \begin{equation}
     \mu_s = \mathbb{E} \left({\left(X-\mu'_1\right)}^s\right) =
             \sum_{m=0}^s (-1)^m \binom{s}{m} \mu'_{s-m} (\mu'_1)^m.
@@ -110,25 +106,29 @@ vale:
 Siano \(X\), \(Y\) variabili casuali con funzioni di ripartizione \(F_X(x)\), \(F_Y(y)\) rispettivamente.
 Siano \(M_X(t)\), \(M_Y(t)\) fgm di \(X\) e \(Y\), esistenti in un intorno aperto \(\mathcal{U}\) dell'origine. Sussiste l'equivalenza
 \begin{equation}
-  M_X(t) = M_Y(t) \forall_{t \in \mathcal{U}} \iff
-  F_X(z) = F_Y(z) \forall_{z \in \mathbb{R}}.
+  M_X(t) = M_Y(t) \,\,\forall_{t \in \mathcal{U}} \iff
+  F_X(z) = F_Y(z) \,\,\forall_{z \in \mathbb{R}}.
 \end{equation}
 \end{thm}
 
 \begin{oss}
-Il teorema appena visto ci dice sostanzialmente che, se esiste, la fgm caratterizza la distribuzione della corrispondente v.c.
+Il teorema appena visto afferma che, se esiste, la funzione generatrice dei momenti caratterizza la distribuzione della corrispondente variabile casuale.
 \end{oss}
-\noindent \textbf{Esempio}
+
+\subsection{Esempi}
+
+\begin{ese}
 Siano $(X_1,...,X_n)$ risultati della replicazione di un esperimento casuale dicotomico $(X_i \sim b(1,p))$. Vogliamo trovare la distribuzione di $S_n := \displaystyle\sum_{i=1}^n X_i$. Calcoliamo quindi la sua fgm:
 
 $$M_{S_n}(t) = \mathbbm{E} \left( {e^{t S_n}} \right)  = \mathbbm{E} \left( {e^{t \sum_{i=1}^n X_i}} \right) $$
 $$\stackrel{TEO 2}
 {=} \displaystyle\prod_{i=1}^n \mathbbm{E}({e^{tX_i}}) = \displaystyle\prod_{i=1}^n M_{X_i}(t) = \displaystyle\prod_{i=1}^n (p e^t + (1-p)) = (p e^t + (1-p))^n$$ ovvero $S_n$ è distribuita come $b(n,p)$ per il Teorema 2.
+\end{ese}
 
 \noindent \textbf{Esercizio}
 Ripetere il calcolo precedente supponendo $X_i \sim P(\lambda), \forall i$.
 
-\subsection{Famiglia Esponenziale a $k$ parametri}
+\section{Famiglia Esponenziale a $k$ parametri}
 Una famiglia di $f$ densità / $f$ massa è detta essere una Famiglia Esponenziale a $k$ parametri $\theta_1,...,\theta_k$ se la corrispondente $f$ densità / $f$ massa (che è indicizzata da $\theta_1,...,\theta_k$) può essere scritta come
 
 $$f_X(x;\theta) = C^*(x) D^*(\theta) \exp \lbrace \displaystyle\sum_{m=1}^k A_m(\theta) B_m (x) \rbrace$$
