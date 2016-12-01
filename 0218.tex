@@ -1,36 +1,36 @@
 %%%%lezione 18 febbraio%%%%
 \chapter{Introduzione}
 In questa prima sezione vengono presentati i richiami di teoria della probabilità, affrontati nelle primissime lezioni del corso.
+
 \section{Funzione generatrice dei momenti}
 Lezione del 18/02, ultima modifica 09/04, Andrea Gadotti
 
-\begin{definizione}[fgm]
+\begin{dfn}[fgm]
 Sia \(X\) una variabile casuale, discreta o assolutamente continua.
 Se esiste $t_0 \in \mathbb{R}_{+}$ tale per cui \(\mathbb{E}(e^{tX}) < +\infty\) per ogni \(t \in (-t_0 , t_0)\), chiameremo la funzione 
 \begin{equation}
   M_X := \mathbb{E}(e^{tX})
 \end{equation}
 \emph{funzione generatrice dei momenti} di \(X\).
-\end{definizione}
+\end{dfn}
 
 \subsection{Esempi}
 \begin{description}
-\item[Bernoulli] Sia \(X \sim b(1,p)\) con \(p \in (0,1)\). Si ha:
+\item[Bernoulli] Sia \(X \sim b(1,p)\), con \(p \in (0,1)\). Si ha:
 \begin{align*}
-M_X (t) &= \mathbbm{E}(e^{tX}) \\ 
-			&= \displaystyle\sum_{x=0}^1 e^{tx} \mathbbm{P}(X=x) \\
-			&= \displaystyle\sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x} \\
-			&= p e^t + (1-p)
-\end{align*}	
+  M_X (t) &= \mathbb{E}(e^{tX})
+           = \sum_{x=0}^1 e^{tx} \mathbb{P}(X=x) \\
+          &= \sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x}
+           = p e^t + (1-p).
+\end{align*}
 
+\item[Poisson] Sia \(X \sim \mathcal{P}(\lambda)\), con \(\lambda \in \mathbb{R}_+\). Si ha:
+\begin{align*}
+  M_X (t) &= \mathbb{E}(e^{tX}) 
+           = \sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!} \\
+          &= e^{\lambda (e^t -1)}
+\end{align*}
 
-\item[Poisson] $X \sim \mathcal{P} (\lambda)$ con $\lambda > 0$. Si ha:
-
-$$M_X (t) 	= \mathbbm{E}(e^{tX}) 
-			= \displaystyle\sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!}
-			= e^{\lambda (e^t -1)}$$
-			
-			
 \item[Gamma] $X \sim \mathcal{G} (\alpha, \beta)$, ovvero 
 
 $$f_X (x; \alpha, \beta) := \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x}$$ con $\alpha>0$, $\beta>0$, $x>0$ e 
