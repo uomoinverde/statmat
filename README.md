@@ -8,6 +8,7 @@ Autori
 ------
 
 Le dispense sono scritte dagli studenti Andrea Gadotti, Michele Nardin, Marco Perruzzetto.
+Sporadicamente, vi è qualche correzione apportata da Filippo De Bortoli.
 
 
 Note
