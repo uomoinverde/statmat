@@ -17,35 +17,46 @@ Se esiste $t_0 \in \mathbb{R}_{+}$ tale per cui \(\mathbb{E}(e^{tX}) < +\infty\)
 \subsection{Esempi}
 \begin{description}
 \item[Bernoulli] Sia \(X \sim b(1,p)\), con \(p \in (0,1)\). Si ha:
-\begin{align*}
-  M_X (t) &= \mathbb{E}(e^{tX})
-           = \sum_{x=0}^1 e^{tx} \mathbb{P}(X=x) \\
-          &= \sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x}
-           = p e^t + (1-p).
-\end{align*}
+\begin{equation*}
+  M_X (t) = \mathbb{E}(e^{tX})
+          = \sum_{x=0}^1 e^{tx} \mathbb{P}(X=x)
+          = \sum_{x=0}^1 e^{tx} p^x (1-p)^{1-x}
+          = p e^t + (1-p).
+\end{equation*}
 
 \item[Poisson] Sia \(X \sim \mathcal{P}(\lambda)\), con \(\lambda \in \mathbb{R}_+\). Si ha:
+\begin{equation*}
+  M_X (t) = \mathbb{E}(e^{tX}) 
+          = \sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!}
+          = e^{\lambda (e^t -1)}.
+\end{equation*}
+
+\item[Gamma] Sia \(X \sim \mathcal{G}(\alpha, \beta)\): allora, la densità di \(X\) è data da 
+\begin{equation*}
+  f_X (x; \alpha, \beta) := \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x} \mathbb{I}_{\mathbb{R}_+}(x), \quad
+  \alpha, \beta \in \mathbb{R}_+
+\end{equation*}
+dove \(\Gamma{}\) indica la funzione di Eulero
+\begin{equation*}
+  \Gamma(\alpha) := \int_0^{+\infty} \! x^{\alpha -1} e^{-x} \mathrm{d}x,
+\end{equation*}
+la quale è tale che \(\Gamma(\alpha) = (\alpha - 1)!\) se \(\alpha \in \mathbb{N}\).
+
+La generatrice dei momenti di \(X\) risulta essere: 
 \begin{align*}
-  M_X (t) &= \mathbb{E}(e^{tX}) 
-           = \sum_{x=0}^{+\infty} e^{tx} \frac{e^{-\lambda} \lambda^x}{x!} \\
-          &= e^{\lambda (e^t -1)}
+  M_X (t)	&= \mathbb{E}(e^{tX})
+           = \int_0^{+\infty} \! e^{tx} \frac{1}{\Gamma (\alpha) 
+            \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x} \mathrm{d}x \\
+          &= \frac{1}{\Gamma(\alpha)\beta^{\alpha}}
+             \int_0^{+\infty} e^{-\tau}
+             \frac{\beta^{\alpha-1}}{(1-\beta t)^{\alpha-1}}
+             \tau^{\alpha-1}
+             \frac{\beta}{1-\beta t}\mathrm{d}\tau,\qquad \tau := x\left(\frac{1}{\beta} - t\right) \\
+          &= \frac{1}{(1-\beta t)^{\alpha}}
+             \frac{\int_0^{+\infty} \! \tau^{\alpha-1} e^{-\tau} \mathrm{d}\tau}%
+             {\Gamma(\alpha)}
+           = \frac{1}{(1-\beta t)^{\alpha}}, \qquad t < \frac{1}{\beta}.
 \end{align*}
-
-\item[Gamma] $X \sim \mathcal{G} (\alpha, \beta)$, ovvero 
-
-$$f_X (x; \alpha, \beta) := \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x}$$ con $\alpha>0$, $\beta>0$, $x>0$ e 
-
-$$\Gamma(\alpha) := \int_0^{+\infty} \! x^{\alpha -1} e^{-x} \mathrm{d}x$$ 
-
-(nota: $\alpha \in \mathbbm{N} \Longrightarrow \Gamma(\alpha)=(\alpha - 1)!$)
-
-Abbiamo che: 
-
-$$M_X (t)	= \mathbbm{E}(e^{tX})
-			= \int_0^{+\infty} \! e^{tx} \frac{1}{\Gamma (\alpha) \beta^{\alpha}} x^{\alpha -1} e^{-\frac{1}{\beta} x} \mathrm{d}x$$
-\begin{center} $=$ ...[sostituzione $\sigma := x(\frac{1}{\beta} - t)$]...  \end{center}
-			$$= \frac{1}{(1-\beta t)^{\alpha}}$$ con $t < \frac{1}{\beta}$
-			
 \end{description}
 
 \paragraph{Momenti di una variabile casuale}
