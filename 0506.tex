@@ -14,28 +14,40 @@
   \end{enumerate}
 \end{dfn}
 
-\textbf{Introduzione alla sufficienza} (scritta da Michele Nardin)\\
-\\
 Rinfreschiamo il concetto di distribuzione condizionata:
-\begin{definizione} (Caso discreto)
-Siano X, Y variabili casuali discrete e supponiamo P(X=x) $\neq$ 0.
-La distribuzione condizionata di Y dato X=x è 
-$$P_{Y|X} := P(Y = y | X=x) = \frac{P(Y=y \cap X=x)}{P(X=x)}$$
-(Caso continuo) Siano X, Y variabili casuali definite su $(\Omega, \mathcal{E}, P)$, con funzioni di densità $f_X, f_Y$ rispettivamente, e densità congiunta $f_{X,Y}$. Ovviamente è assurdo richiedere che P(X=x)$\neq$ 0. Allora si ragiona tramite densità condizionate: supponendo che $f_X(x)\neq 0$
-$$f_{Y|X}(y | X=x):= \frac{f_{X,Y}(x,y)}{f_X(x)}$$ si dice densità condizionata di Y dato X=x 
-\end{definizione}
-\noindent \textbf{NB:} $f_{Y|X}(y | X=x) = f_Y(y)$ per ogni y se e solo se X e Y sono indipendenti.\\
-\\
-La sufficienza di una statistica definisce formalmente la capacità di tale funzione di rappresentare in maniera $sintetica$ l'informazione contenuta nel campione, senza perdita di $informazione$ $rilevante$.
+\begin{dfn}[Distribuzione condizionata]
+Siano \(X\), \(Y\) variabili casuali. Sia \(x \in \mathcal{S}_X\).
+Per ogni punto \(y \in \mathcal{S}_Y\), definiamo:
+\begin{description}
+  \item[\textsc{caso discreto}] la \emph{pmf condizionata}
+  \begin{equation}
+    p_{Y\mid X}(y \mid x) = \frac{p_{X,Y}(x,y)}{p_X(x)}
+  \end{equation}
+  dove \(p_{X,Y}\) è la funzione di massa congiunta di \(X\),\(Y\) e \(p_X\) rappresenta la funzione di massa probabilistica marginale di \(X\).
+  \item[\textsc{caso continuo}] la \emph{pdf condizionata}
+  \begin{equation}
+    f_{Y\mid X}(y \mid x) = \frac{f_{X,Y}(x,y)}{f_X(x)}
+  \end{equation}
+  dove \(f_{X,Y}\) è la densità congiunta delle due variabili e \(f_X\) è la densità marginale di \(X\).
+\end{description}
+\end{dfn}
 
-Intuitivamente si può pensare alla proprietà di conservazione dell'informazione rilevante in questo modo: qualsiasi altra statistica, calcolata a partire dallo stesso campione, non porta più informazioni rispetto a $\vartheta$ di quante ne abbia già portato la statistica sufficiente.
+\noindent \textbf{NB:} $f_{Y|X}(y | X=x) = f_Y(y)$ per ogni y se e solo se X e Y sono indipendenti.
+
+\paragraph{Cosa rappresenta la sufficienza?}
+La sufficienza di una statistica definisce formalmente la capacità di tale funzione di rappresentare in maniera \emph{sintetica} l'informazione contenuta nel campione, senza perdita di \emph{informazione rilevante}.
+Intuitivamente si può pensare alla proprietà di conservazione dell'informazione rilevante in questo modo: qualsiasi altra statistica, calcolata a partire dallo stesso campione, non porta più informazioni rispetto a \(\theta\) di quante ne abbia già portato la statistica sufficiente.
 Per questo, banalmente, l'intero campione è sicuramente una statistica sufficiente (molto poco sintetica, ma a volte non c'è di meglio).
 
-Sia $(X_1,X_2,...,X_n)$ un campione casuale da una distribuzione avente funzione di ripartizione $F_X(x,\vartheta)$. Sia inoltre $T_n(X_1,...,X_n)$ uno stimatore di $\vartheta$ avente funzione di ripartizione $F_{T_n}(t, \vartheta)$.\\
+\begin{dfn}[Sufficienza]
+  Sia \((X_1,\dotsc,X_n)\) un campione casuale da una distribuzione avente funzione densità/massa probabilistica \(f_X(x;\theta)\). Sia inoltre \(T_n(X_1,\dotsc,X_n)\) uno stimatore di \(\theta\) avente funzione di densità o massa probabilistica \(f_{T_n}(t; \theta)\).
+  La statistica \(T_n\) viene detta \emph{sufficiente} per \(\theta\) se la distribuzione di \(X_1,\dotsc,X_n\) condizionata a \(T_n(x_1,\dotsc,x_n) = t_n\)
+  \begin{equation*}
+    H(x_1,\dotsc,x_n) = \frac{\prod_{i=1}^n f_{X}(x_i;\theta)}{f_{T_n}(t_n;\theta)}
+  \end{equation*}
+  è una funzione non dipendente da \(\theta\).
+\end{dfn}
 
-\begin{definizione}
-La statistica $T_n$ viene detta sufficiente per $\vartheta$ se la distribuzione di $X_1,...,X_n$ condizionata a $T_n = t_n$ non dipende da $\vartheta$.
-\end{definizione}
 
 Abbiamo quindi formalizzato le richieste fatte sopra: il fatto che la distribuzione condizionata (del vettore allo stimatore) non dipenda da $\vartheta$ implica di fatto l'impossibilità di perdere informazioni rilevanti su $\vartheta$ stesso, e cioè, lo stimatore $T_n$ contiene tutte le informazioni necessarie riguardanti $\vartheta$ per fare inferenza sul parametro incognito.\\
 In altre parole, \textit{le informazioni contenute in $T_n$} riguardo a $\vartheta$ \textit{sono le stesse contenute nell'intero campione}.\\
