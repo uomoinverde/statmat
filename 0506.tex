@@ -1,5 +1,18 @@
 
-\section{Sufficienza}
+\chapter{Sufficienza}
+
+\begin{dfn}[\textsc{mvue}]
+  Sia \((X_1,\dotsc,X_n)\) un campione casuale da una distribuzione di 
+  densità \(f_X(\mathbf{x};\theta)\), \(\theta \in \Theta\). Sia
+  \(Y = u(X_1,\dotsc,X_n)\) uno stimatore del parametro \(\theta\). Si dice
+  \(Y\) essere \emph{stimatore a minima varianza nella classe dei non distorti} per \(\theta\) se
+  \begin{enumerate}
+    \item \(Y\) è uno stimatore non distorto di \(\theta\), ovvero
+          \(\mathbb{E}(Y) = \theta\) e
+    \item per ogni stimatore non distorto \(W\) di \(\theta\),
+          \(\var(Y) \le \var(W)\).
+  \end{enumerate}
+\end{dfn}
 
 \textbf{Introduzione alla sufficienza} (scritta da Michele Nardin)\\
 \\
