@@ -1,0 +1,66 @@
+\section{Principio di verosimiglianza}
+
+La verosimiglianza combina due tipi di informazione:
+\begin{itemize}
+\item informazione pre-sperimentale espressa attraverso il modello statistico scelto per descrivere il fenomeno di indagine
+$$\mathfrak{F}_\theta=\left\{f(x;\theta):\ \theta\in\Theta\subseteq\mathbb{R}^k\right\}$$
+\item informazione sperimentale contenuta in quella che è la determinazione campionaria $\underline{x}=(x_1,\ldots, x_n)$
+$$L(\theta;\underline{x})=\prod_{i=1}^n f_{X_i}(x_i;\theta)$$
+Nota: In generale $L(\theta;\underline{x})=f_{X_1,\ldots, X_n}(x_1,\ldots, x_n;\theta)$, densità congiunta, ovvero è definita anche nel caso in cui le variabili casuali non siano indipendenti ed equidistribuite. Quando invece lo sono, possiamo esprimere $L(\theta; \underline{x})$ nella solita forma, ovvero come produttoria.
+\end{itemize}
+
+\paragraph{Principio di verosimiglianza.}
+  Con riferimento ad un dato modello statistico avente spazio campionario
+  \(\mathcal{X}\) e famiglia di distribuzioni
+  \begin{equation*}
+    \mathfrak{F}_\theta=
+    \left\lbrace f(x;\theta) \colon
+    \theta\in\Theta\subseteq\mathbb{R}^k\right\rbrace,
+  \end{equation*}
+  l'evidenza circa i parametri del modello è contenuta totalmente nella
+  funzione di verosimiglianza: due determinazioni \(\mathbf{x}\),
+  \(\mathbf{y}\) per cui \(L(\theta;\mathbf{x})=L(\theta;\mathbf{y})\)
+  devono condurre alle medesime conclusioni inferenziali circa \(\theta\).
+
+\begin{thm}
+L'informazione di Fisher fornita da uno stimatore basato su una statistica sufficiente \(W_n\) coincide con l'informazione fornita dall'intero campione
+\end{thm}
+\begin{proof}
+  Grazie alla sufficienza di \(W_n\), dal teorema di fattorizzazione di Neyman, si ottiene l'identità
+  \begin{equation*}
+    \frac{d}{d\theta}l(\theta;\mathbf{x}) =
+    \frac{d}{d\theta}\ln h(\mathbf{x}) + \frac{d}{d\theta} \ln g(\theta,w_n)
+    = \frac{d}{d\theta} \ln g(\theta,w_n).
+  \end{equation*}
+  Ciò significa che
+  \begin{equation*}
+    L(\theta;\mathbf{x}) = L(\theta;\mathbf{y}) \implies
+    \frac{d}{d\theta} \ln g(\theta,w_n(\mathbf{x})) =
+    \frac{d}{d\theta} \ln g(\theta,w_n(\mathbf{y}));
+  \end{equation*}
+  essendo in questo caso l'informazione di Fisher pari a
+  \begin{equation*}
+    \mathbb{E}\left(\left(\frac{d}{d\theta}\ln g(\theta;t_n)\right)^2%
+    \right)
+  \end{equation*}
+  deduciamo che essa coincide con l'informazione totale fornita dal campione.%
+  ~\footnote{In parole semplici, l'informazione di Fisher data dalle due
+  determinazioni sarà la stessa, e ciò rispetta il principio di verosimiglianza.}
+\end{proof}
+
+\begin{esempio} Sia $(X_1,\ldots,X_n)$ da $N(\mu,\sigma^2=1)$, vogliamo individuare una statistica sufficiente minimale per $\mu$ e la relativa informazione di Fisher.
+\begin{enumerate}
+\item[1)] Notiamo che 
+$$W_n:=\sum_{i=1}^n X_i \sim N(n\mu,n)$$
+è statistica sufficiente (si verifica subito usando il teorema di fattorizzazione).\\
+Vogliamo mostrare che l'informazione di Fisher che si ottiene usando solo $W_n$ è la stessa che si trova usando l'intero campione.
+\item[2)] Calcoliamo $I(\mu)$ supponendo di avere in mano, anziché l'intero campione $(x_1,...,x_n)$, il solo valore $w_n=\sum_{i=1}^n x_i$ (di cui conosciamo la distribuzione, come visto al punto 1). Iniziamo calcolando la funzione di verosimiglianza di $w_n$ (che coincide con la sua densità, essendo un unico valore e non un vettore):
+$$L(\mu; w_n)=\frac{1}{\sqrt{2 \pi n}} e^{-\frac{1}{2n} (w_n-n\mu)^2}$$
+A questo punto, calcolando la funzione di log-verosimiglianza, con un po' di conti si trova facilmente che $I_{W_n}(\mu)=n$.
+\item[3)] Calcoliamo $I(\mu)$ supponendo di avere in mano l'intero campione. Iniziamo trovando la funzione di verosimiglianza di $(x_1,...,x_n)$:
+$$L(\mu; \underline{x})= \prod_{i=1}^n \left( \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2}(x_i-\mu)^2} \right)$$
+Come prima, con un po' di conti si ottiene $I_{\underline{x}}(\mu)=n$, ovvero le due informazioni di Fisher coincidono.
+\\
+\\
+\end{enumerate}
+\end{esempio}

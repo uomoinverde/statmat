@@ -1,0 +1,49 @@
+
+\section{Sufficienza minimale}
+
+\textbf{Esempio introduttivo} Pensiamo di replicare $n=4$ volte una prova bernoulliana con probabilità di successo $p$. Consideriamo lo spazio campionario $\varkappa$, composto da $2^4=16$ elementi. Vogliamo fare inferenza su $p$. Definiamo di seguito tre statistiche differenti:
+
+\begin{enumerate}
+\item [1)] $Y_1 := $ risultato della prima prova
+\item [2)] $Y_2 := $ numero di successi nelle quattro prove
+\item [3)] $Y_3 := (Y_1,Y_2)$
+\end{enumerate}
+
+A questo punto notiamo che:
+
+\begin{enumerate}
+\item [1)] $Y_1$ non è una statistica sufficiente per $p$ (il fatto che ci sia stato un successo o meno nella prima prova non ci dà alcuna informazione rispetto a $p$)
+\item [2)] $Y_2$ è statistica sufficiente per $p$ (cfr. Teorema di fattorizzazione) e consiste in un unico valore, ovvero la somma degli elementi del campione
+\item [3)] $Y_3$ consiste in due valori, ovvero è un vettore di dimensione 2. È statistica sufficiente per $p$, ma è eccessivamente raffinata per il problema che vogliamo affrontare, poiché l'apporto di $Y_1$ è inutile. Infatti $Y_3$ non è statistica sufficiente minimale per $p$.
+\end{enumerate}
+
+\begin{dfn}[stat. suff. minimale]
+  Una statistica \(T_n(\mathbf{X})\) è detta \emph{sufficiente minimale} se è
+  sufficiente ed è funzione di ogni altra statistica sufficiente, ossia
+  \(T(\mathbf{X} = g(Q(\mathbf{X}))\) dove \(Q(\mathbf{X})\) è statistica
+  sufficiente.
+\end{dfn}
+
+\begin{thm}
+  Sia \((X_1,\dotsc,X_n)\) un campione casuale di cui \(\mathbf{x}\),
+  \(\mathbf{y}\) sono due distinte determinazioni. Se la statistica
+  \(T(\mathbf{X})\) gode della proprietà che il rapporto di verosimiglianze
+  \begin{equation*}
+    \frac{L(\theta;\mathbf{x})}{L(\theta;\mathbf{y})}
+  \end{equation*}
+  non dipenda da \(\theta\) se e solo se \(T(\mathbf{x})=T(\mathbf{y})\),
+  allora \(T(\mathbf{X})\) è statistica sufficiente minimale per \(\theta\).
+\end{thm}
+
+\begin{esempio} Sia $(X_1,...,X_n)$ da $X \sim \Gamma(\alpha,\beta), \alpha, \beta >0$. Vogliamo trovare una statistica congiuntamente sufficiente e minimale per $\alpha$ e $\beta$:
+\begin{enumerate}
+\item [1)] Cerchiamo una statistica sufficiente:
+$$L(\alpha,\beta;\underline{x}) = \left( \left( \Gamma(\alpha)\beta^{\alpha}\right)^{-n} \left( e^{-\frac{1}{\beta} \sum_{i=1}^n x_i} \right) \left( \prod_{i=1}^n x_i \right) \right) \cdot \left( \prod_{i=1}^n \mathbbm{1}_{\mathbb{R_+}}(x_i) \right)$$
+Osserviamo che abbiamo scritto $L(\alpha,\beta;\underline{x})$ come $g \left( \alpha,\beta; \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right) \cdot h(\underline{x})$.\\
+Quindi per il teorema di fattorizzazione abbiamo che $S_n:=\left( \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right)$ è statistica congiuntamente sufficiente per $\alpha$ e $\beta$.
+\item [2)] Verifichiamo ora che tale statistica è anche minimale. Supponiamo che $S_n(\underline{x})=S_n(\underline{y})$, ovvero $\left( \sum_{i=1}^n x_i, \prod_{i=1}^n x_i \right) = \left( \sum_{i=1}^n y_i, \prod_{i=1}^n y_i \right)$. Allora:
+$$\frac{L(\alpha,\beta;\underline{x})}{L(\alpha,\beta;\underline{y})} = e^{\frac{1}{\beta} \left( \sum_i x_i - \sum_i y_i \right)} \left( \prod_i \frac{x_i}{y_i} \right) = e^{0} \left( \prod_i (1) \right)^{\alpha} = 1$$
+Per il teorema di Lehmann-Scheffé concludiamo che $S_n$ è statistica sufficiente minimale.\\
+Nota: in realtà noi abbiamo verificato che vale solo una delle due implicazioni richieste dalle ipotesi del teorema (quella da destra a sinistra). Questo è ciò che è stato fatto a lezione, e per il momento scriviamo solo questo.
+\end{enumerate}
+\end{esempio}
