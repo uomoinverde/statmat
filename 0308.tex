@@ -70,25 +70,29 @@ f_{(m)}(\theta,x)&=\frac{\partial}{\partial x}F_{X_{(m)}}(\theta,x)= \\
 \end{split}\end{equation*}
 }
 \end{proof}
+\begin{dfn}
+  Dato un campione casuale \((X_1,\dotsc,X_n)\), definiamo le seguenti 
+  variabili:
+  \begin{itemize}
+    \item il \emph{range} campionario o \emph{misura di dispersione}, \(X_{(n)}-X_{(1)}\);
+    \item la \emph{misura di centralità}, \(\frac12(X_{(1)}+X_{(n)})\);  
 
-\textbf{Definizione.} Sia $\left(X_{(1)},\ldots,X_{(n)}\right)$ una statistica d'ordine di un campione casuale. Allora possiamo definire le nuove seguenti variabili:
-\begin{itemize}[noitemsep]
-\item $X_{(n)}-X_{(1)}$, detta \textit{Range} oppure \textit{Misura di Dispersione};
-\item $\frac{X_{(1)}+X_{(n)}}{2}$ detta \textit{Mid Range} oppure \textit{Misura di Centralità};
-\item 
-$$
-\left.
-\begin{array}{rl}
-\forall n \mbox{ pari} & \frac{X_{(\frac{n}{2})}+X_{(\frac{n}{2}+1)}}{2} \\
-\forall n \mbox{ dispari} & X_{(\frac{n+1}{2})}
-\end{array}
-\right\} \mbox{dette ciascuna }\textit{Mediana campionaria};
-$$
-\item Sia $\frac{1}{2(n+1)}<p<1-\frac{1}{2(n+1)}$, che possiamo in ogni caso pensare come $0<p<1$ per $n$ molto grande. A questo punto possiamo definire l'intero $k_p\coloneqq \big\lfloor p(n+1) \big\rfloor + \big\lfloor 2\big(p(n+1)- 2 \lfloor p(n+1) \rfloor \big) \big\rfloor$, che risulta essere così ben definito in quanto compreso tra 1 e $n$ e restituisce l'approssimazione all'intero più vicino al variare di $p$ del reale $p(n+1)$. 
-\item A questo punto, se scegliamo $\xi_p\in F_X^{-1}(p)$, chiameremo $\xi_p$ \textit{Quantile di popolazione} di ordine $p$. In seguito troveremo utile stimare tale valore. Perciò introduciamo la variabile casuale ad esso collegata $X_{(k_p)}$, detta \textit{Quantile campionario} di ordine $p$. Se $p=\frac{i}{m}$, allora $X_{(k_p)}$ è detta anche $i$-esimo $m$-ile campionario. In particolare con $Q_1$ e $Q_3$ si indicano rispettivamente il primo e il terzo quartile.\\
-Intuitivamente, $X_{(k_p)}$ mi dà la v.c. che sta al $k_p$-esimo posto, ovvero al $p(n+1)$-esimo posto (se $p(n+1)$ è intero). Ad esempio, se $p=\frac{1}{3}$, $X_{(k_{\frac{1}{3}})}$ è la v.c. che nel vettore ordinato sta alla posizione $\frac{n+1}{3}$.
-\item Le variabili $LF\coloneqq Q_1-h$ e $UF\coloneqq h+Q_3$, ove $h\coloneqq \frac{3}{2}(Q_3-Q_1)$ sono dette rispettivamente \textit{Lower} e \textit{Upper Fence}. 
-\end{itemize}
+  \item 
+  $$
+  \left.
+  \begin{array}{rl}
+  \forall n \mbox{ pari} & \frac{X_{(\frac{n}{2})}+X_{(\frac{n}{2}+1)}}{2} \\
+  \forall n \mbox{ dispari} & X_{(\frac{n+1}{2})}
+  \end{array}
+  \right\} \mbox{dette ciascuna }\textit{Mediana campionaria};
+  $$
+  \item Sia $\frac{1}{2(n+1)}<p<1-\frac{1}{2(n+1)}$, che possiamo in ogni caso pensare come $0<p<1$ per $n$ molto grande. A questo punto possiamo definire l'intero $k_p\coloneqq \big\lfloor p(n+1) \big\rfloor + \big\lfloor 2\big(p(n+1)- 2 \lfloor p(n+1) \rfloor \big) \big\rfloor$, che risulta essere così ben definito in quanto compreso tra 1 e $n$ e restituisce l'approssimazione all'intero più vicino al variare di $p$ del reale $p(n+1)$. 
+  \item A questo punto, se scegliamo $\xi_p\in F_X^{-1}(p)$, chiameremo $\xi_p$ \textit{Quantile di popolazione} di ordine $p$. In seguito troveremo utile stimare tale valore. Perciò introduciamo la variabile casuale ad esso collegata $X_{(k_p)}$, detta \textit{Quantile campionario} di ordine $p$. Se $p=\frac{i}{m}$, allora $X_{(k_p)}$ è detta anche $i$-esimo $m$-ile campionario. In particolare con $Q_1$ e $Q_3$ si indicano rispettivamente il primo e il terzo quartile.\\
+  Intuitivamente, $X_{(k_p)}$ mi dà la v.c. che sta al $k_p$-esimo posto, ovvero al $p(n+1)$-esimo posto (se $p(n+1)$ è intero). Ad esempio, se $p=\frac{1}{3}$, $X_{(k_{\frac{1}{3}})}$ è la v.c. che nel vettore ordinato sta alla posizione $\frac{n+1}{3}$.
+  \item Le variabili $LF\coloneqq Q_1-h$ e $UF\coloneqq h+Q_3$, ove $h\coloneqq \frac{3}{2}(Q_3-Q_1)$ sono dette rispettivamente \textit{Lower} e \textit{Upper Fence}. 
+  \end{itemize}
+\end{dfn}
+\textbf{Definizione.} 
 \textit{Osservazione:} Osserviamo che più la misura di centralità si discosta dalla mediana, più vi è asimmetria nella funzione di densità $f$ (\textit{i.e.:} una funzione di distribuzione è simmetrica $:\Longleftrightarrow$ $\exists x_0\in \mathbb{R}:f(x_0+x)=f(x_0-x), \forall x\in \dom(f).$) Inoltre, ponendo che la funzione di ripartizione sia iniettiva e la funzione di densità sia simmetrica, si vede immediatamente che la media di popolazione, ovvero il quantile di popolazione di ordine $p=\frac{1}{2}$ coincide con il valore di aspettazione della variabile casuale, il quale a sua volta deve coincidere con $x_0$. \\ \\
 Dato un campione casuale di parametro $\theta\in \mathbb{R}$ fissato, sappiamo che una qualsiasi funzione di statistiche su tali variabili è, proprio per definizione, uno stimatore del parametro $\theta$. L'esistenza di un'infinità non numerabile di stimatori è sicuramente un problema da ovviare in merito alla scelta tra essi di uno stimatore che effettivamente permetta di stimare il più correttamente possibile il parametro $\theta$. Cercheremo dunque di individuare alcune proprietà che possano effettivamente giustificare la scelta di un determinato stimatore, affinché esso risulti il più possibile affidabile.\\ \\
 \textbf{Definizione.} Sia $(X_1\ldots,X_n)$ un campione di parametro $\theta$ e $T_n(X_1,\ldots,X_n)$ uno stimatore. La funzione $B_{\theta}[T_n(X_1,\ldots,X_n)]\coloneqq \mathbb{E}_{\theta}[T_n(X_1,\ldots,X_n)]-\theta$ si dice \textit{distorsione} di $T_n$ (nota: con $\mathbb{E}_{\theta}$ formalmente intendiamo semplicemente $\mathbb{E}$). In particolare $T_n$ si dirà \textit{non distorto} se e solo se la sua distorsione è nulla $\forall \theta\in \mathbb{R}$ (nel senso che uno stimatore -e.g. la media campionaria- non può stimare bene solo "alcune" medie, ma qualsiasi media reale, ad esempio la media di qualsiasi normale centrata in qualsiasi punto). Altrimenti si dice \textit{distorto.} Se infine si ottiene che $\lim_{n\rightarrow +\infty} B_{\theta}[T_n(X_1,\ldots,X_n)]=0$, $T_n$ si dice \textit{asintoticamente non distorto}.
@@ -135,13 +139,23 @@ $$f_{(T_1,\ldots,T_k)}(\theta,t_1,\ldots,t_k)=C(t_1,\ldots,t_k)D(\theta)^n exp\b
 per \(\theta\) potrebbe essere il massimo campionario, cioè \(X_{(n)} = \max\lbrace X_1,\dotsc,X_n\rbrace\). Per il Teorema~\ref{dist:ordine}, ne conosciamo già la distribuzione:
 \begin{equation*}
   F_X(x,\theta) = \frac{x}{\theta} \implies
-  f_{X_{(n)}}(x,\theta) = \frac{n}{\theta^n}x^{n-1}
-\end{equation*} 
-Allora $\mathbb{E}[T_n]=\int_0^\theta \frac{n}{\theta^n}x^n dx=\frac{n}{n+1}\theta \neq \theta\Longrightarrow B_{\theta}[T_n]=\frac{-\theta}{n+1}$. 
-Ne segue che è distorto, ma asintoticamente non distorto per $\theta$. 
-Possiamo anche calcolarne la varianza: $\var[T_n]=\mathbb{E}[T_n^2]-\mathbb{E}[T_n]^2=\int_0^\theta \frac{n}{\theta^n}x^{n+1} dx -\frac{n}{n+1}=\frac{n\theta^2}{(n+1)^2(n+2)}$
-$\xrightarrow[n\rightarrow \infty]{}0$. 
-Perciò il massimo $X_{(n)}$ rimane in ogni caso uno stimatore affidabile. Osserviamo che possiamo tuttavia introdurre un nuovo stimatore che ci assicura la non distorsione, ovvero $T_n^*\coloneqq \frac{n+1}{n}T$, che possiede le proprietà cercate. \\ \\
+  f_{X_{(n)}}(x,\theta) = \frac{n}{\theta^n}x^{n-1}\mathbb{I}_{[0,\theta)]}(x).
+\end{equation*}
+Per quanto riguarda la proprietà di distorsione del massimo campionario, poiché
+\begin{align*}
+  \mathbb{E}(X_{(n)}) &= \int_0^\theta \frac{n}{\theta^n}x^n\mathrm{d}x
+                     = \frac{n}{n+1}\theta \\
+  B_{\theta}(X_{(n)}) &= \frac{-\theta}{n+1} \ne 0,
+\end{align*}
+concludiamo che esso è stimatore distorto e asintoticamente non distorto
+per \(\theta\).
+Ne segue che è distorto, ma asintoticamente non distorto per $\theta$.
+La sua varianza corrisponde a
+\begin{equation*}
+  \var[X_{(n)}]=\mathbb{E}[X_{(n)}^2]-\mathbb{E}[X_{(n)}]^2=\int_0^\theta \frac{n}{\theta^n}x^{n+1} dx -\left(\frac{n}{n+1}\theta\right)^2=\frac{n\theta^2}{(n+1)^2(n+2)}
+  \xrightarrow[n\rightarrow \infty]{}0.
+\end{equation*}
+Perciò il massimo $X_{(n)}$ rimane in ogni caso uno stimatore affidabile. Osserviamo che possiamo tuttavia introdurre un nuovo stimatore che ci assicura la non distorsione, ovvero $T_n^*\coloneqq \frac{n+1}{n}T$, che possiede le proprietà cercate.
 
 \begin{dfn}[Consistenza]
   Sia \(X\) una variabile casuale avente distribuzione \(F(x,\theta)\).
