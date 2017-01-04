@@ -42,7 +42,7 @@ Nota: poiché $U_{(\theta, \theta +1)}$ non appartiene alla famiglia regolare no
 \textbf{Problema:} esiste una statistica sufficiente che sia migliore (ovvero più sintetica) delle altre, a parità di informazione contenuta circa $\theta$? In effetti una tale statistica esiste e viene detta \textit{statistica sufficiente minimale}.
 
 
-\subsection{Statistiche sufficienti minimali}
+\section{Statistiche sufficienti minimali}
 
 \textbf{Esempio introduttivo} Pensiamo di replicare $n=4$ volte una prova bernoulliana con probabilità di successo $p$. Consideriamo lo spazio campionario $\varkappa$, composto da $2^4=16$ elementi. Vogliamo fare inferenza su $p$. Definiamo di seguito tre statistiche differenti:
 
@@ -60,20 +60,23 @@ A questo punto notiamo che:
 \item [3)] $Y_3$ consiste in due valori, ovvero è un vettore di dimensione 2. È statistica sufficiente per $p$, ma è eccessivamente raffinata per il problema che vogliamo affrontare, poiché l'apporto di $Y_1$ è inutile. Infatti $Y_3$ non è statistica sufficiente minimale per $p$.
 \end{enumerate}
 
-\begin{definizione}
-Una statistica $T_n(X_1,...,X_n)$ è detta \textit{statistica sufficiente minimale} per $\theta$ se:
+\begin{dfn}[stat. suff. minimale]
+Una statistica \(T_n(X_1,\dotsc,X_n)\) è detta \emph{statistica sufficiente minimale} per \(\theta\) se:
 \begin{enumerate}
-\item [1)] è statistica sufficiente per $\theta$
-\item [2)] assume valori distinti solamente in punti dello spazio campionario $\varkappa$ a cui corrispondono verosimiglianze non equivalenti, ovvero se $\forall \underline{x_1}, \underline{x_2} \in \varkappa$ vale 
-$$T_n(\underline{x_1}) \neq T_n(\underline{x_2}) \Longleftrightarrow L(\theta, \underline{x_1}) \neq L(\theta, \underline{x_2}) \; \; \forall \theta \in \Theta$$
+\item è statistica sufficiente per \(\theta\) e
+\item assume valori distinti solamente in punti dello spazio campionario \(\mathcal{X}\) a cui corrispondono verosimiglianze non equivalenti, ovvero per ogni \(\mathbf{x}_1, \mathbf{x}_2 \in \mathcal{X}\) vale 
+\begin{equation}
+  T_n(\mathbf{x}_1) \ne T_n(\mathbf{x}_2) \implies
+  L(\theta, \mathbf{x}_1) \ne L(\theta, \mathbf{x}_2) \quad \forall \theta \in \Theta.
+\end{equation}
 \end{enumerate}
-\end{definizione}
+\end{dfn}
 
-\begin{teo}[di Lehmann-Scheffé]
-Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione di densità $f(x;\theta)$ e sia $S_n=S_n(X_1,...,X_n)$ tale che, prese le determinazioni campionarie $\underline{x}$ e $\underline{y}$, il rapporto tra le funzioni di verosimiglianza valutate in $\underline{x}$ e $\underline{y}$, è funzione che non dipende da $\theta$ se e solo se $S_n(\underline{x})=S_n(\underline{y})$. Allora $S_n(X_1,...,X_n)$ è statistica sufficiente minimale per $\theta$. Ovvero:
+\begin{thm}[Lehmann \& Scheffé]
+Sia \((X_1,...,X_n)\) un campione casuale da una distribuzione di densità \(f(x;\theta)\) e sia $S_n=S_n(X_1,...,X_n)$ tale che, prese le determinazioni campionarie $\underline{x}$ e $\underline{y}$, il rapporto tra le funzioni di verosimiglianza valutate in $\underline{x}$ e $\underline{y}$, è funzione che non dipende da $\theta$ se e solo se $S_n(\underline{x})=S_n(\underline{y})$. Allora $S_n(X_1,...,X_n)$ è statistica sufficiente minimale per $\theta$. Ovvero:
 $$\frac{L(\theta;\underline{x})}{L(\theta;\underline{y})}=m(\underline{x},\underline{y}) \Longleftrightarrow S_n(\underline{x})=S_n(\underline{y})$$
 $\Longrightarrow S_n(X_1,...,X_n)$ è statistica sufficiente minimale per $\theta$.
-\end{teo}
+\end{thm}
 
 \begin{esempio} Sia $(X_1,...,X_n)$ da $X \sim \Gamma(\alpha,\beta), \alpha, \beta >0$. Vogliamo trovare una statistica congiuntamente sufficiente e minimale per $\alpha$ e $\beta$:
 \begin{enumerate}

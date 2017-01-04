@@ -1,0 +1,109 @@
+\begin{ese}
+  Dato il campione \((X_1,\dots,X_n)\) da \(b(1,p)\), vogliamo trovare una
+  UMVVE? per
+  \begin{equation*}
+    \var(X) = p(1-p) = \eta(\phi), \uqad p \in (0,1)
+  \end{equation*}
+  sapendo che
+  \begin{enumerate}
+    \item 
+      \begin{align*}
+        L(p;\mathbf{x}) &= \prod_{i=1}^n
+        p^{x_i}{(1-p)}^{1-x_i} \mathbb{I}_{\lbrace 0,1 \rbrace}(x_i) \\
+        &= \underbrace{p^{\sum_{i=1}^n x_i}{(1-p)}^{n-\sum_{i=1}^n x_i}}_{g(p,\sum_{i=1}^n x_i)}
+        \prod_{i=1}^n \mathbb{I}_{\lbrace 0,1 \rbrace}(x_i) \\
+        &\implies T_n(X_1,\dots,X_n) = \sum_{i=1}^n X_i
+      \end{align*}
+      dove \(T_n\) è statistica sufficiente minimale e completa;
+    \item
+      \(\cap{p}_n = \frac{1}{n}\sum_{i=1}^n x_i\)
+      è stimatore di massima verosimiglianza (MV) per \(p\);
+    \item \(\cap{\eta}(p) = \eta(\cap{p}_n) =
+            \cap{p}_n(1-\cap{p}_n) = \frac{1}{n^2}T_n(n-T_n)\).
+          Possiamo dire che \(\eta(\cap{p}_n)\) è stimatore non distorto di \(\eta(p)\)?
+          \begin{align*}
+            \mathbb{E}_p(\frac{1}{n^2}T_n(n-T_n)) &=
+            \frac{1}{n^2}\mathbb{E}_p(T_n(n-T_n)) \\
+            &= \frac{1}{n^2}\left(n\mathbb{E}_p(T_n) - \mathbb{E}_p(T_n^2)) \\
+            &= \frac{1}{n^2}(n\cdot np - (\underbrace{np(1-p)}_{\var(T_n)} + \underbrace{n^2p^2}_{(\mathbb{T_n})^2})) = \frac{n-1}{n}p(1-p) \ne p(1-p) 
+          \end{align*}
+          per cui risulta che lo stimatore è distorto per valori finiti di \(n\), mentre è asintoticamente non distorto.
+          Introduciamo
+          \begin{equation*}
+            W_n = \frac{n}{n-1}\eta(\cap{p}_n),
+          \end{equation*}
+          che è uno stimatore non distorto di \(\eta(p)\), che è funzione di statistica suffiiente minimale.
+          
+          Allora, per il corollario del teorema di Rao-Blackwell, possiamo afferamre che \(W_n\) è \emph{lo} stimatore UMVU di \(\eta(p) = p(1-p)\), grazie anche alla completezza di \(T_n\).
+  \end{enumerate}
+\end{ese}
+
+Lo stimatore di massima verosimiglianza è (sempre?) funzione di statistica sufficiente. Per questo, nella nostra ricerca dobbiamo considerarlo come passaggio obbligato. Vorremmo anche che lo stimatore fosse non distorto.
+
+Riusciamo a dire qualcosa in più circa la distribuzione degli stimatori UMVU, usando le informazioni già in nostro possesso?
+
+Riprendendo l'esempio di prima, abbiamo
+\begin{equation*}
+  \eta(p) = p(1-p) \implies
+  \begin{cases}
+    \cap{\eta}(p) = \cap{p}_n(1-\cap{p}_n)\, \text{massima verosimiglianza} \\
+    \tilde{\eta}(p) = \frac{n}{n-1} \cap{p}_n(1-\cap{p}_n) \,\text{UMVU stimatore a minima varianza nella classe dei non distorti}
+  \end{cases}
+\end{equation*}
+\begin{enumerate}
+  \item in merito allo stimatore di massima verosimigliana, sappiamo che \(\cap{\eta}(p) = \eta(\cap{p}_n)\) è uno stimatore consistente di \(\eta(p)\) e che si ha quindi convergenza in probabilità;
+  \item \(\sqrt{n}(\eta(\cap{p}_n) - \eta(p))\) è asintoticamente normale
+  \item \(\tilde{\eta}(p) - \cap{\eta}(p)) = \frac{1}{n-1}\cap{\eta}(p) \to 0\) in probabilità, sicché \(\tilde{\eta}(p)\) è anch'esso stimatore consistente di \(\eta(p)\). Inoltre,
+  \begin{equation*}
+    \sqrt{n}(\tilde{\eta} - \eta) - \sqrt{n}(\cap{\eta} - \eta) =
+    \frac{\sqrt{n}}{n-1}\cap{\eta} \to 0
+  \end{equation*}
+  in probabilità, perciò \(\sqrt{n}(\tilde{n}-n)\) ha la sts distribuzione asintotica di \(\sqrt{n}(\cap{n}-n)\).
+  Ma \(p \to^D N(p, \frac{p(1-p)}{n})\) e
+  \(\sqrt{n}(\cap{p}_n-p) \to^D N(0,p(1-p))\).
+  Allora, \(\sqrt{n}(\cap{\eta}-\eta) \to^D N(0,(1-2p)^2p(1-p)).\)
+  Non solo, \(\sqrt{n}(\tilde{\eta}-\eta)\to^D N(0,(1-2p)^2p(1-p))\).
+\end{enumerate}
+
+\begin{ese}
+  Vediamo qualche sviluppo del teorema di Rao-Blackwell.
+  Sia \((X_1,\dots,X_n)\) campione da \(\mathcal{P}(\lambda)\), con \(\lambda \in \mathbb{R}_+\). Sia
+  \begin{equation*}
+    \eta(\lambda) = \mathbb{P}_\lambda(X_1 > 0) = 1 - e^{-\lambda} = 1 - \mathbb{P}_\lambda(X_1 = 0).
+  \end{equation*}
+  Trovare uno stimatore UMVU di \(\eta(\lambda)\).
+  
+  Cosa ci serve per applicare Rao-Blackwell?
+  \begin{enumerate}
+    \item uno stimatore non distorto di \(\eta(\lambda)\), \(V_n\);
+    \item una statistica sufficiente (e completa per applicare Scheffer) per \(\lambda\), \(T_n\);
+    \item a questo punto,
+    \begin{equation*}
+      V_{n;T_n} = \mathbb{E}_\lambda{V_n \mid T_n = t_n}
+    \end{equation*}
+  \end{enumerate}ù
+  Sappiamo già che \(T_n = \sum_{i=1}^n X_i\) è statistica sufficiente, minimale e completa per \(\lambda\).
+  \begin{equation*}
+    V_n := \mathbb{I}_{\lbrace X_1 > 0 \rbrace} (x_i) =
+    \begin{cases}
+      1 & X_1 > 0 \\ 0 & X_1 = 0
+    \end{cases}
+  \end{equation*}
+  Ricordiamo che la funzione indicatore è una variabile casuale la cui media è pari a \(\mathbb{P}_\lambda(X_1 > 0)\).
+  \begin{equation*}
+    \mathbb{E}(V_n) = \sum_{x_1 = 1}^{\infty}\frac{e^{-\lambda}\lambda^{x_1}}{x_1!} = 1 - e^{\lambda}. 
+  \end{equation*}
+  Per cui \(V_n\) è stimatore non distorto.
+  Allora,
+  \begin{equation*}
+    V_{n;T_n} = \mathbb{E}_\lambda{\mathbb{I}_{\lbrace X_1 > 0 \rbrace} \mid T_n} = \\
+    1 - \mathbb{P}_\lambda{X_1 = 0 \mid T_n = t_n} = \\
+    1 - \frac{\mathbb{P}_\lambda{X_1 = 0, T_n = t_n}}{\mathbb{P}_\lambda{T_n = t_n}} \\
+    = 1 - \frac{\mathbb{P}_\lambda(X_1 = 0)\mathbb{P}_\lambda(\sum_{i=2}^n X_i = t_n)}{\mathbb{P}_\lambda(T_n=t_n)} \\
+    \implies V_{n;T_n} = 1 - {(\frac{n-1}{n})}^{t_n}
+  \end{equation*}
+  è stimatore UMVU per \(\eta{\lambda}\).
+  
+  Uno stimatore di massima verosimiglianza per \(\eta(\lambda)\) è \(\cap{\eta}(\lambda) = \eta(\cap{\lambda}_n) = 1-e^{-\cap{\lambda}}\) dove
+  \(\cap{\lambda}_n = \frac{1}{n}\sum_{i=1}^nX_i
+\end{ese}

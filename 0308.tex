@@ -11,7 +11,7 @@ Chiameremo allora $X_{(i)}$ la $i$-esima \textit{Statistica d'Ordine} del campio
 
 \textit{Osservazione:} La statistica d'ordine consiste semplicemente nel vettore per il quale le variabili casuali vengono appunto ordinate, in base al valore che assumono in un determinato punto del loro dominio comune, in ordine crescente. In particolare $X_{(i)}$ sarà l' $i$-esima variabile più piccola. Naturalmente, se il campione ha lunghezza $n$, allora $X_{(n)}=\max\left(\{X_1,\ldots,X_n\}\right)$. 
 Osserviamo che la funzione $\left(X_1,\ldots,X_n\right)\longmapsto \left(X_{(1)},\ldots,X_{(n)}\right)$ è essa stessa una Statistica.
-\begin{teo}
+\begin{teo}\label{dist:ordine}
 Sia $\left(X_1,\ldots,X_n\right)$ un campione casuale come sopra. Allora si ottiene $\forall$ $1\leq m\leq n$ che la densità dell' $m$-esima statistica d'ordine è data da: 
 \begin{displaymath}
 f_{X_{(m)}}\left(x,\theta\right)=\frac{n!}{(m-1)!(n-m)!}f_X\left(x,\theta\right)\cdot F_X\left(x,\theta\right)^{m-1}\cdot \big(1-F_X\left(x,\theta\right)\big)^{n-m}
@@ -130,15 +130,26 @@ $$f_{(T_1,\ldots,T_k)}(\theta,t_1,\ldots,t_k)=C(t_1,\ldots,t_k)D(\theta)^n exp\b
 \end{teo}
 
 \textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale. Supponiamo che $X\sim \bi(1,p)$. Allora la densità sarà discreta, ossia sarà $f(p,x)=\mathbb{P}[X=x]=\mathbbm{1}_{\{0,1\}}(x)(1-p)\exp\big\{x \log\big(\frac{p}{1-p}\big)\big\}$. Applicando il teorema otteniamo $T_1(X_1,\ldots,X_n)=$ $\sum_{i=1}^n B_1(X_i)=\sum_{i=1}^n X_i$ da cui si deduce subito che $T_1\sim \bi(n,p)$. In particolare possiamo scriverne la densità: $f_{T_1}(p,t_1)=\mathbbm{1}_{\{0,\ldots,n\}}(t_1)\binom{n}{t_1}(1-p)^n\exp\{t_1 \log\big(\frac{p}{1-p}\big)\}$. \\ 
-\noindent\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale e supponiamo che il nostro campione casuale abbia distribuzione uniforme $\uni([0,\theta])$. Vogliamo stimare $\theta$. Supponiamo che, essendo $\theta$ il massimo valore che ciascuna variabile può assumere, un plausibile buon stimatore possa essere proprio il massimo della statistica ordinata, ovvero $T_n(X_1,\ldots,X_n)\coloneqq X_{(n)}$. Per il teorema di pagina 8, ne conosciamo già la distribuzione: 
-$$f_{T_n}(\theta,x) = \frac{n!}{(n-1)!(n-n)!}\frac{1} {\theta} \left( \frac{x}{\theta} \right)^{n-1} \left (1 - \frac{x}{\theta}\right)^{n-n} = \frac{n}{\theta^n}x^{n-1}$$ 
+
+\paragraph{Massimo campionario.} Sia \((X_1,\dotsc,X_n)\) un campione casuale da distribuzione uniforme \(\mathcal{U}([0,\theta])\). Essendo \(\theta\) il massimo valore che ciascuna variabile può assumere, uno stimatore plausibile
+per \(\theta\) potrebbe essere il massimo campionario, cioè \(X_{(n)} = \max\lbrace X_1,\dotsc,X_n\rbrace\). Per il Teorema~\ref{dist:ordine}, ne conosciamo già la distribuzione:
+\begin{equation*}
+  F_X(x,\theta) = \frac{x}{\theta} \implies
+  f_{X_{(n)}}(x,\theta) = \frac{n}{\theta^n}x^{n-1}
+\end{equation*} 
 Allora $\mathbb{E}[T_n]=\int_0^\theta \frac{n}{\theta^n}x^n dx=\frac{n}{n+1}\theta \neq \theta\Longrightarrow B_{\theta}[T_n]=\frac{-\theta}{n+1}$. 
 Ne segue che è distorto, ma asintoticamente non distorto per $\theta$. 
 Possiamo anche calcolarne la varianza: $\var[T_n]=\mathbb{E}[T_n^2]-\mathbb{E}[T_n]^2=\int_0^\theta \frac{n}{\theta^n}x^{n+1} dx -\frac{n}{n+1}=\frac{n\theta^2}{(n+1)^2(n+2)}$
 $\xrightarrow[n\rightarrow \infty]{}0$. 
 Perciò il massimo $X_{(n)}$ rimane in ogni caso uno stimatore affidabile. Osserviamo che possiamo tuttavia introdurre un nuovo stimatore che ci assicura la non distorsione, ovvero $T_n^*\coloneqq \frac{n+1}{n}T$, che possiede le proprietà cercate. \\ \\
 
-\textbf{Definizione.} Sia $(X_1,\ldots,X_n)$ un campione casuale con distribuzione $F(\theta,x)$, ove $\theta\in \Theta\subset \mathbb{R}$. Sia poi $T_n$ una statistica $\forall n\in \mathbb{N}$. Diremo $T_n$ essere uno stimatore \textit{consistente} di $\theta$ $:\Longleftrightarrow$ $T_n(X_1,\ldots,X_n)\xrightarrow[n\rightarrow \infty]{\mathbb{P}} \theta$. \\ \\
+\begin{dfn}[Consistenza]
+  Sia \(X\) una variabile casuale avente distribuzione \(F(x,\theta)\).
+  Sia \((X_1,\dotsc,X_n)\) un campione casuale dalla distribuzione di \(X\) e
+  \(T_n\) una statistica. Diciamo che \(T_n\) è uno stimatore \emph{consistente}
+  per \(\theta \in \Theta\) se %\(T_n \xrightarrow[]{\mathbb{P}} \theta\):
+  \(T_n\) converge in probabilità a \(\theta\).
+\end{dfn}
 
 \noindent\textit{Esempio.} Sia $(X_1,\ldots,X_n)$ un campione casuale, ove $X\in \mathcal{L}^2(\mathbb{R)}$. Indichiamo come al solito media e varianza rispettivamente con $\mu$ e $\sigma^2$. Allora abbiamo:
 \begin{enumerate}

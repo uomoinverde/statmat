@@ -63,21 +63,26 @@ che è la FGM di una Poisson di parametro $\mu$, ovvero $X_n \stackrel{d}{\right
 \end{enumerate}
 \newpage
 %%%modificato titolo della sezione: sottolineamo il fatto che la prima parte del corso è applicativa
-\section{Approccio applicativo alla Statistica Matematica}
+
+\chapter{Approccio applicativo alla Statistica Matematica}
 Questa sezione corrisponde alla parte di corso svolta dalla seconda settimana di marzo fino a metà aprile, che riguarda gli aspetti pratici della statistica: verranno introdotte le statistiche d'ordine, gli intervalli di confidenza e i test per verifiche d'ipotesi.
 
-\begin{definizione} (Campione Casuale)
-Il vettore casuale $(X_1,...,X_n)$ si dice Campione Casuale relativamente ad una vc $X \sim F_X(x,\vartheta)$ se i suoi elementi sono vc i.i.d.
-\end{definizione}
+\begin{dfn}[Campione casuale]
+Se il vettore casuale \((X_1,\dotsc,X_n)\) è composto da variabili casuali indipendenti ed identicamente distribuite (iid), esso si dice essere un \emph{campione casuale} di dimensione \(n\) dalla distribuzione comune.
+\end{dfn}
 
 \noindent\textbf{Osservazione}
 Il fatto che le vc siano i.i.d. implica che $$F_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n F_{X_i} (X_i)$$ e $$f_{X_1,...,X_n}(X_1,...,X_n)=\prod_{i=1}^n f_{X_i} (X_i)$$
 
-\begin{definizione} (Statistica)
-Sia $(X_1,...,X_n)$ un campione casuale da una distribuzione associata alla vc $X$, e sia $\Omega$ lo spazio campionario di $(X_1,...,X_n)$
-
-\noindent Ogni funzione $$T(X_1,...,X_n):\Omega \longrightarrow \mathbbm{R}^k$$ che NON dipende da parametri incogniti è detta Statistica.
-\end{definizione}
+\begin{dfn}[Statistica]
+Sia \((X_1,\dotsc,X_n)\) un campione casuale su una variabile casuale \(X\), e sia \(\Omega\) lo spazio campionario in cui vive il vettore casuale. Una funzione \(T\) della forma
+\begin{equation}
+  \begin{split}
+    \Omega &\to \mathbb{R}^k \\ (X_1\dotsc,X_n) &\mapsto T((X_1\dotsc,X_n)) 
+  \end{split}
+\end{equation}
+non dipendente da parametri incogniti è detta \emph{statistica}.
+\end{dfn}
 
 %%Ho tolto le osservazioni di seguito, se poi riteniamo di rimetterle ok, altrimenti io le considero superflue e fuorvianti.
 

@@ -47,7 +47,7 @@ Alcune osservazioni che, pur sembrando banali, è bene tenere a mente:
 
 \noindent\textbf{Intervalli di confidenza per la varianza}
 \\ \\
-Sia $(X_1,...,X_n)$ un campione casuale da $N(\mu,\sigma^2)$.
+Sia \((X_1,\dotsc,X_n)\) un campione casuale da $N(\mu,\sigma^2)$.
 Consideriamo la statistica pivot $$W=\frac{n-1}{\sigma^2} S^2_n$$ Abbiamo già mostrato che $W \sim \chi^2_{n-1}$. 
 Ma allora, dato che noi cerchiamo $q_1,q_2$ t.c. 
 $$P \left( q_1 \leq \frac{n-1}{\sigma^2} S^2_n \leq q_2 \right) =1-\alpha$$ 
@@ -57,35 +57,85 @@ $$P \left( \frac{1}{q_2} \leq \frac{\sigma^2}{(n-1) S^2_n} \leq \frac{1}{q_1} \r
 $$P \left( \frac{(n-1) S^2_n}{q_2} \leq \sigma^2 \leq \frac{(n-1) S^2_n}{q_1} \right) =1-\alpha$$
 Troviamo così l'intervallo casuale (e di conseguenza il relativo intervallo di confidenza, una volta estratto il campione e trovato un valore a $S^2_n$) $$IC=\left[ \frac{(n-1)S^2_n}{q_2};\frac{(n-1)S^2_n}{q_1} \right]$$
 \\ \\
-\noindent\textbf{Intervalli di confidenza per la differenza di medie}
-\\ \\
-Vogliamo confrontare due distribuzioni: \textit{sintetizziamo} la differenza tra due popolazioni tramite la differenza delle loro media. \\ \\
-Supponiamo inizialmente di avere due campioni casuali tra loro indipendenti: 
+\subsection{Intervallo di confidenza per differenza di medie}
 
-\noindent $(X_1,...,X_{n_1})$ da una distribuzione D1, con media $\mu_1$ (ignota) e varianza $\sigma_1^2$ (nota)
+Vogliamo confrontare due distribuzioni: \textit{sintetizziamo} la differenza tra due popolazioni tramite la differenza delle loro media.
 
-\noindent $(Y_1,...,Y_{n_2})$ da una distribuzione D2, con media $\mu_2$ (ignota) e varianza $\sigma_2^2$ (nota)
+Supponiamo di avere raccolto due campioni casuali indipendenti
+\((X_1,\dotsc,X_n)\) e \((Y_1,\dotsc,Y_m)\) provenienti da distribuzioni \(D_X\) e \(D_Y\) di medie \(\mu_X\), \(\mu_Y\) ignote e deviazioni standard \(\sigma_X\), \(\sigma_Y\) note.
 
-\noindent NB: non necessariamente $n_1$ dev'essere uguale a $n_2$
-\\ \\
-Consideriamo gli stimatori media campionaria per le due medie, che indicheremo con $\overline{X}$ e $\overline{Y}$.
-La statistica pivot che ci interessa per $\Delta=\mu_1-\mu_2$ sarà $$Z=\frac{(\overline{X} - \overline{Y})-(\mu_1 - \mu_2)}{\left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}}$$
-Notiamo che $var(\overline{X} - \overline{Y})=\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}$ dato che $cov(\overline{X} , \overline{Y})=0$ per l'indipendenza.
-Ma allora $Z \stackrel{a}{\sim} N(0,1)$, quindi possiamo trovare un intervallo di confidenza \footnote{Approssimato, visto che conosciamo solo l'andamento asintotico di Z! D1 e D2 non è detto che siano mormali!}
-$$IC_\Delta(1-\alpha)=[(\overline{X} - \overline{Y})-ME;(\overline{X} - \overline{Y})+ME]$$ ove $ME=z_{\alpha/2} \left[ \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right]^{\frac{1}{2}}$.
+Per stimare le medie delle due popolazioni, possiamo ricorrere alle medie campionarie \(\bar{X}_n\) e \(\bar{Y}_m\). Volendo determinare un intervallo di confidenza per \(\Delta := \mu_X - \mu_Y\), osserviamo i seguenti fatti:
+\begin{enumerate}
+  \item La variabile casuale \(\hat{\Delta} := \bar{X} - \bar{Y}\) avrà valore atteso \(\Delta\) e varianza
+  \begin{equation*}
+    \var(\hat{\Delta}) = \frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m},
+  \end{equation*}
+  grazie all'assunzione di indipendenza dei due campioni casuali.
+  \item La funzione
+  \begin{equation*}
+    Z := \frac{(\bar{X}-\bar{Y}) - (\mu_X - \mu_Y)}{\sqrt{n^{-1}\sigma_X^2+m^{-1}\sigma_Y^2}}
+  \end{equation*}
+  risulta essere statistica pivot per \(\Delta\).
+  \item Per il teorema del limite centrale, \(Z\) ha distribuzione asintotica Normale standard indipendentemente dalla distribuzione di \(X\) e \(Y\). Ciò ci consente, per campioni di grandi dimensioni, di determinare un'intervallo di confidenza approssimato.
+\end{enumerate}
+L'intervallo di confidenza approssimato avrà forma
+\begin{equation}
+  \mathrm{IC}_{\Delta}(1-\alpha) \colon
+  \left[(\bar{x} - \bar{y}) - z_{\alpha/2} \sqrt{ \frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}},(\bar{x} - \bar{y}) + z_{\alpha/2} \sqrt{ \frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}}\right]
+\end{equation}
+
 Al posto delle varianze possiamo usare anche gli stimatori corretti e consistenti varianza campionaria, e giungere allo stesso risultato per il teorema di Slutsky.
 \\ \\
-In generale non conosciamo la varianza delle distribuzioni: in base al problema che dobbiamo affrontare, può essere plausibile supporre di conoscere la distribuzione delle due popolazioni a meno di uno o più parametri. \\ \\ 
-\textbf{Location Model:} Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione normale con media $\mu_1$ e varianza $\sigma_1^2$ (ignote), i loro stimatori $\overline{X}$ e $S^2_1$ e
- $(Y_1,...,Y_{n_2})$ da distribuzione normale con media $\mu_2$ e varianza $\sigma_2^2$ (ignote) e i loro stimatori $\overline{Y}$ e $S^2_2$. Supponiamo che i due campioni siano tra loro indipendenti ed inoltre che $\sigma_1=\sigma_2=\sigma$.
-Possiamo 'fondere' le informazioni contenute in $S^2_1$ e $S^2_2$: $$(Pooled Variance) \; S^2_p:= \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 - 2} $$ 
-che risulta essere uno stimatore corretto e consistente di $\sigma^2$ (esercizio).
-La statistica Pivot che prendiamo in considerazione sarà $$T=\frac{(\overline{X} - \overline{Y})-(\mu_1 - \mu_2)}{S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}}}$$ la quale risulta essere distribuita come $t_{n_1 + n_2 - 2}$. Ricalcando i passaggi delle applicazioni precedenti, fissato $\alpha$  troviamo l'intervallo casuale per $\Delta$ $$IC = \left[(\overline{X} - \overline{Y}) - t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} ; (\overline{X} - \overline{Y}) + t_{(n_1 + n_2 - 2;\alpha / 2)} S_p \left(\frac{1}{n_1} + \frac{1}{n_2} \right)^{\frac{1}{2}} \right]$$
-\\ \\
-\noindent\textbf{Intervalli di confidenza per la differenza di proporzioni}
-\\ \\
+In generale non conosciamo la varianza delle distribuzioni: in base al problema che dobbiamo affrontare, può essere plausibile supporre di conoscere la distribuzione delle due popolazioni a meno di uno o più parametri.
 
-Supponiamo di avere $(X_1,...,X_{n_1})$ da distribuzione $b(1,p_1)$, con stimatore $\hat{p_1}$ e $(Y_1,...,Y_{n_2})$ da distribuzione $b(1,p_2)$, con stimatore $\hat{p_2}$. Supponiamo che i due campioni siano tra loro indipendenti. Allora $$\Delta=\hat{p_1} - \hat{p_2} \stackrel {a} {\sim} N\left( p_1 - p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)$$ quindi usando la statistica Pivot 
-$$Z=\frac{(\hat{p_1} - \hat{p_2}) - (p_1 - p_2)}{\sqrt{\left( p_1 - p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)}} \stackrel {a} {\sim} N(0,1)$$ trovo l'intervallo di confidenza $$IC_\Delta (1-\alpha) = \left[ 
-(\hat{p_1} - \hat{p_2}) - z_{\alpha / 2} \sqrt{A(p_1,p_2)};(\hat{p_1} - \hat{p_2}) + z_{\alpha / 2} \sqrt{A(p_1,p_2)}
- \right]$$ ove $A(p_1,p_2)=\left(\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)$. Ovviamente al posto di $p_1$ e $p_2$ uso gli stimatori corretti e consistenti $\hat{p_1}$ e $\hat{p_2}$.
+\paragraph{Location Model.} Supponiamo di avere a disposizione due campioni casuali indipendenti \((X_1,\dotsc,X_n)\) e \((Y_1,\dotsc,Y_m)\) provenienti da distribuzioni Normali di parametri ignoti, con l'unica informazione che \(\sigma_X^2 = \sigma_Y^2 = \sigma^2\). Differentemente da quanto fatto prima, non è possibile normalizzare \(\hat{\Delta} = \bar{X} - \bar{Y}\) ottenendo una statistica pivot.
+Tuttavia, considerando le varianze campionarie \(S_X^2\) e \(S_Y^2\), possiamo ottenere una statistica pivot i cui percentili sono tabulati: in particolare, ricaviamo una statistica avente distribuzione \(t\)-Student.
+Le informazioni a disposizione sono le seguenti:
+\begin{enumerate}
+  \item \(\frac{(n-1)S_X^2}{\sigma^2} \sim \chi_{n-1}^2\) e
+  \(\frac{(m-1)S_Y^2}{\sigma^2} \sim \chi_{m-1}^2\);
+  \item
+  \begin{equation*}
+    Z := \frac{\hat{\Delta}-\Delta}{\sqrt{\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}}}
+    = \frac{\hat{\Delta} - \Delta}{\sigma\sqrt{\frac{1}{n}+\frac{1}{m}}}
+    \sim N(0,1)
+  \end{equation*}
+\end{enumerate}
+Ora, definiamo la seguente variabile casuale, detta \emph{pooled variance}:
+\begin{equation}
+  S_p^2 := \frac{(n - 1)S_X^2 + (m - 1)S_Y^2}{n + m - 2}
+\end{equation}
+la quale risulta essere uno stimatore corretto e consistente di \(\sigma^2\). Inoltre,
+\begin{equation*}
+  \frac{(n+m-2)S_p^2}{\sigma^2} \sim \chi_{n+m-2}^2.
+\end{equation*}
+Ora, possiamo finalmente definire una statistica pivot:
+\begin{equation}
+  T := \frac{Z}{\sqrt{\frac{S_p^2(n+m-2)}{\sigma^2(n+m-2)}}} =
+  \frac{\hat{\Delta}-\Delta}{S_p\sqrt{\frac{1}{n} + \frac{1}{m}}}
+  \sim t_{n+m-2}
+\end{equation}
+per cui ci è possibile costruire un intervallo di confidenza per \(\Delta\), essendo la distribuzione \(t\)-Student tabulata.
+Ricalcando i passaggi delle applicazioni precedenti, fissato $\alpha$  troviamo l'intervallo casuale per $\Delta$.
+\begin{equation}
+  \mathrm{IC}_{\Delta}(1-\alpha) \colon
+  \left[(\bar{x} - \bar{y}) - t_{n+m-2;\alpha/2}\, S_p\sqrt{ \frac{1}{n} + \frac{1}{m}},(\bar{x} - \bar{y}) t_{n+m-2;\alpha/2}\, S_p\sqrt{ \frac{1}{n} + \frac{1}{m}}\right]
+\end{equation}
+
+
+\subsection{Intervallo di confidenza per la differenza di proporzioni}
+
+Supponiamo di avere \((X_1,\dotsc,X_n)\) da distribuzione \(b(1,p_X)\), con stimatore \(\hat{p}_X\) e \((Y_1,\dotsc,Y_m)\) da distribuzione \(b(1,p_Y)\), con stimatore \(\hat{p}_Y\). Supponiamo che i due campioni siano tra loro indipendenti. Allora
+\begin{equation}
+  \Delta := \hat{p}_X - \hat{p}_Y \stackrel{a}{\sim}
+  N\left(p_X - p_Y, \frac{p_X(1-p_X)}{n} + \frac{p_Y(1-p_Y)}{m}\right).
+\end{equation}
+ quindi usando la statistica Pivot 
+\begin{equation*}
+  Z := \frac{(\hat{p}_X - \hat{p}_Y) - (p_X - p_Y)}{\sqrt{\frac{p_X(1-p_X)}{n} + \frac{p_Y(1-p_Y)}{m}}} \stackrel{a}{\sim} N(0,1)
+\end{equation*}
+trovo l'intervallo di confidenza, utilizzando gli stimatori campionari già introdotti per definire gli estremi dell'intervallo:
+\begin{equation*}
+  \mathrm{IC}_{\Delta}(1-\alpha) \colon \hat{p}_X - \hat{p}_Y \pm
+  z_{\alpha/2}\sqrt{\frac{\hat{p}_X(1-\hat{p}_X)}{n} + \frac{\hat{p}_Y(1-\hat{p}_Y)}{m}}
+\end{equation*}
