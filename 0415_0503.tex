@@ -1,6 +1,10 @@
+\chapter{Verosimiglianza statistica}
 Lezioni dal 15/04 al 06/05 comprese. Autore: Marco Peruzzetto.\\
 Questa parte comprende ed amplia le cose viste a lezione, estendendo alcune dimostrazioni e osservazioni. Quanto non fatto in classe verrà denotato da un (*).\\
 \\
+\begin{dfn}[Funzione di verosimiglianza]
+  Sia \((X_1,\dotsc,X_n)\) un vettore casuale
+\end{dfn}
 \textbf{Definizione:} Sia $\vec{X}\coloneqq (X_1,\ldots X_n)$ un vettore casuale da distribuzione $F(\vec{x}, \theta)$ per $\theta\in \Theta$ e sia $f_{X_i}(x_i,\theta)$ la corrispondente funzione densità di ciascuna $X_i$, $\forall 1\leq i\leq n$. Indicheremo con $\vec{x}=(x_1,\ldots,x_n)$ una qualsiasi possibile determinazione del vettore $\vec{X}$. Essa conterrà tutta l'informazione in merito a $\theta$. Possiamo allora definire la \textit{Funzione di Verosimiglianza} come la funzione:
 $$L\left(\theta, \vec{x}\right)\coloneqq f_{\vec{X}}(\vec{x},\theta)=f_{(X_1,\ldots,X_n)}(x_i,\ldots,x_n,\theta)\mbox{ , } \theta\in \Theta, $$ che rappresenta quindi la funzione di densità dell'intero vettore in dipendenza del parametro $\theta$. Nel caso in cui il vettore casuale sia un campione casuale, allora tutte le variabili casuali di cui esso è composto saranno i.i.d., ragion per cui la funzione di massima verosimiglianza assumerà la seguente tipica forma:
 $$L\left(\theta, \vec{x}\right)=\prod_{i=1}^n f_{X_i}\left(x_i, \theta\right) \mbox{ , } \theta\in \Theta.$$

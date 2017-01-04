@@ -1,46 +1,47 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {part}{I\hspace {1em}Prima parte del corso}{3}{part.1}
-\contentsline {chapter}{\numberline {1}Introduzione}{5}{chapter.1}
-\contentsline {section}{\numberline {1.1}Funzione generatrice dei momenti}{5}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Esempi}{5}{subsection.1.1.1}
-\contentsline {section}{\numberline {1.2}Momenti di una variabile casuale}{6}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Esempi}{7}{subsection.1.2.1}
-\contentsline {section}{\numberline {1.3}Famiglia Esponenziale a $k$ parametri}{7}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Trasformazioni di variabili casuali}{8}{subsection.1.3.1}
-\contentsline {paragraph}{Discrete}{8}{section*.2}
-\contentsline {paragraph}{Assolutamente continue}{8}{section*.3}
-\contentsline {subsection}{\numberline {1.3.2}Convergenze}{9}{subsection.1.3.2}
-\contentsline {paragraph}{Convergenza in probabilit\IeC {\`a}}{9}{section*.4}
-\contentsline {paragraph}{Convergenza in distribuzione}{10}{section*.5}
-\contentsline {subsection}{\numberline {1.3.3}Teoria asintotica}{10}{subsection.1.3.3}
-\contentsline {chapter}{\numberline {2}Approccio applicativo alla Statistica Matematica}{13}{chapter.2}
-\contentsline {subsection}{\numberline {2.0.1}Statistiche d'ordine}{13}{subsection.2.0.1}
-\contentsline {paragraph}{Massimo campionario.}{19}{section*.6}
-\contentsline {subsection}{\numberline {2.0.2}Intervalli di confidenza}{21}{subsection.2.0.2}
-\contentsline {subsection}{\numberline {2.0.3}Intervallo di confidenza per differenza di medie}{25}{subsection.2.0.3}
-\contentsline {paragraph}{Location Model.}{26}{section*.7}
-\contentsline {subsection}{\numberline {2.0.4}Intervallo di confidenza per la differenza di proporzioni}{27}{subsection.2.0.4}
+\contentsline {chapter}{\numberline {1}Introduzione}{4}{chapter.1}
+\contentsline {section}{\numberline {1.1}Funzione generatrice dei momenti}{4}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Esempi}{4}{subsection.1.1.1}
+\contentsline {section}{\numberline {1.2}Momenti di una variabile casuale}{5}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Esempi}{6}{subsection.1.2.1}
+\contentsline {section}{\numberline {1.3}Famiglia Esponenziale a \(k\) parametri}{6}{section.1.3}
+\contentsline {section}{\numberline {1.4}Trasformazioni di variabili casuali}{7}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Variabili discrete}{7}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Variabili assolutamente continue}{8}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Convergenze di variabili casuali}{8}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Convergenza in probabilit\IeC {\`a}}{8}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Convergenza in distribuzione}{9}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}Teoria asintotica}{9}{subsection.1.5.3}
+\contentsline {chapter}{\numberline {2}Approccio applicativo alla Statistica Matematica}{12}{chapter.2}
+\contentsline {subsection}{\numberline {2.0.1}Statistiche d'ordine}{12}{subsection.2.0.1}
+\contentsline {paragraph}{Massimo campionario.}{18}{section*.2}
+\contentsline {subsection}{\numberline {2.0.2}Intervalli di confidenza}{20}{subsection.2.0.2}
+\contentsline {subsection}{\numberline {2.0.3}Intervallo di confidenza per differenza di medie}{24}{subsection.2.0.3}
+\contentsline {paragraph}{Location Model.}{25}{section*.3}
+\contentsline {subsection}{\numberline {2.0.4}Intervallo di confidenza per la differenza di proporzioni}{26}{subsection.2.0.4}
 \contentsline {section}{\numberline {2.1}Test di ipotesi}{28}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Tipi di ipotesi}{29}{subsection.2.1.1}
-\contentsline {paragraph}{Lancio di una moneta.}{29}{section*.8}
-\contentsline {subsection}{\numberline {2.1.2}Esempi di statistiche test (generali e particolari)}{33}{subsection.2.1.2}
-\contentsline {part}{II\hspace {1em}Seconda parte del corso}{39}{part.2}
-\contentsline {section}{\numberline {2.2}Efficienza}{45}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Teorema di Rao-Cram\IeC {\'e}r}{46}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Estensione a un vettore di parametri:}{50}{subsection.2.2.2}
-\contentsline {chapter}{\numberline {3}Sufficienza}{57}{chapter.3}
-\contentsline {section}{\numberline {3.1}Introduzione}{57}{section.3.1}
-\contentsline {paragraph}{Cosa rappresenta la sufficienza?}{57}{section*.9}
-\contentsline {subsection}{\numberline {3.1.1}Esempi}{58}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}Statistiche sufficienti minimali}{62}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Principio di verosimiglianza}{63}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Famiglie esponenziali e sufficienza}{65}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Teorema di Rao-Blackwell}{65}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Completezza}{68}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Teorema di Lehmann-Scheff\IeC {\'e}}{68}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}Propriet\IeC {\`a} degli stimatori di massima verosimiglianza}{70}{section.3.4}
-\contentsline {section}{\numberline {3.5}Metodi Numerici per la Stima di Massima Verosimiglianza}{73}{section.3.5}
-\contentsline {chapter}{\numberline {4}}{75}{chapter.4}
-\contentsline {section}{\numberline {4.1}Teoria dei Test pi\IeC {\`u} Potenti ed Uniformemente pi\IeC {\`u} Potenti}{75}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Rapporto di massime verosimiglianze}{80}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {2.1.1}Tipi di ipotesi}{28}{subsection.2.1.1}
+\contentsline {paragraph}{Lancio di una moneta.}{29}{section*.4}
+\contentsline {subsection}{\numberline {2.1.2}Esempi di statistiche test (generali e particolari)}{32}{subsection.2.1.2}
+\contentsline {part}{II\hspace {1em}Seconda parte del corso}{38}{part.2}
+\contentsline {section}{\numberline {2.2}Verosimiglianza statistica}{39}{section.2.2}
+\contentsline {section}{\numberline {2.3}Efficienza}{43}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Teorema di Rao-Cram\IeC {\'e}r}{44}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Estensione a un vettore di parametri:}{48}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Sufficienza}{54}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduzione}{54}{section.3.1}
+\contentsline {paragraph}{Cosa rappresenta la sufficienza?}{54}{section*.5}
+\contentsline {subsection}{\numberline {3.1.1}Esempi}{55}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Statistiche sufficienti minimali}{59}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Principio di verosimiglianza}{60}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Famiglie esponenziali e sufficienza}{62}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Teorema di Rao-Blackwell}{62}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Completezza}{65}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Teorema di Lehmann-Scheff\IeC {\'e}}{65}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}Propriet\IeC {\`a} degli stimatori di massima verosimiglianza}{67}{section.3.4}
+\contentsline {section}{\numberline {3.5}Metodi Numerici per la Stima di Massima Verosimiglianza}{70}{section.3.5}
+\contentsline {chapter}{\numberline {4}}{72}{chapter.4}
+\contentsline {section}{\numberline {4.1}Teoria dei Test pi\IeC {\`u} Potenti ed Uniformemente pi\IeC {\`u} Potenti}{72}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Rapporto di massime verosimiglianze}{77}{subsection.4.1.1}

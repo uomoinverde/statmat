@@ -128,12 +128,15 @@ $$\stackrel{TEO 2}
 \noindent \textbf{Esercizio}
 Ripetere il calcolo precedente supponendo $X_i \sim P(\lambda), \forall i$.
 
-\section{Famiglia Esponenziale a $k$ parametri}
-Una famiglia di $f$ densità / $f$ massa è detta essere una Famiglia Esponenziale a $k$ parametri $\theta_1,...,\theta_k$ se la corrispondente $f$ densità / $f$ massa (che è indicizzata da $\theta_1,...,\theta_k$) può essere scritta come
+\section{Famiglia Esponenziale a \(k\) parametri}
 
-$$f_X(x;\theta) = C^*(x) D^*(\theta) \exp \lbrace \displaystyle\sum_{m=1}^k A_m(\theta) B_m (x) \rbrace$$
-
-dove $C^*(x)$ è una funzione della sola $x$, $D^*(\theta)$ è una funzione del solo $\theta$, $A_m(\theta)$ è una funzione del solo $\theta$ e $B_m(x)$ è una funzione della sola $x$.
+Una famiglia di funzioni di densità/massa probabilistica, indicizzate da \(k\)
+parametri \(\theta_1,\dotsc,\theta_k\) rappresentati qui dal vettore, è detta essere una \emph{famiglia esponenziale} a \(k\) parametri se la corrispondente funzione di densità/massa probabilistica ha forma
+\begin{equation}
+  f_X(x;\theta) = C(x)D(\theta)
+                  \exp\lbrace\sum_{m=1}^k A_m(\theta) B_m(x)\rbrace
+\end{equation}
+dove \(C(x)\) è una funzione della sola \(x\), \(D(\theta)\) è una funzione del solo \(\theta\), $A_m(\theta)$ è una funzione del solo \(\theta\) e \(B_m(x)\) è una funzione della sola \(x\).
 
 \noindent \textbf{Esempi}
 \begin{enumerate}
@@ -157,4 +160,5 @@ Il fatto che il supporto di $f_X$ dipenda dal parametro $\vartheta$ NON permette
 Le famiglie di esponenziali hanno interessanti proprietà matematiche (proprietà di regolarità).
 
 Dal punto di vista statistico, ciò si traduce in un'interessante conseguenza: tutta l'informazione contenuta nei dati a disposizione $(X_1,...,X_n)$ relativa alla funzione $f_X (x; \theta)$ può essere sintetizzata attraverso $k$ quantità (funzioni di $(X_1,...,X_n)$) che potranno essere impiegate per costruire procedure inferenziali (stima, test per la verifica di ipotesi) riguardanti il parametro $\theta$.\\
-Ovvero, l'appartenenza ad una famiglia esponenziale permette una riduzione dei dati $(X_1$, ... ,$X_n)$ via $B_m$.\end{oss}
+Ovvero, l'appartenenza ad una famiglia esponenziale permette una riduzione dei dati $(X_1$, ... ,$X_n)$ via $B_m$.
+\end{oss}
