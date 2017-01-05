@@ -2,16 +2,45 @@
 
 Lezione del 20/05, ultima modifica 21/06, Andrea Gadotti
 
-\section{Proprietà degli stimatori di massima verosimiglianza}
+\section{Stimatori di massima verosimiglianza}
+
+\begin{prp}
+  Uno stimatore di massima verosimiglianza per il parametro \(\theta\) è
+  funzione di una statistica sufficiente per \(\theta\).
+\end{prp}
+\begin{proof}
+  Assumendo l'esistenza di una statistica sufficiente \(T_n\) per \(\theta\),
+  è possibile fattorizzare secondo Neyman la funzione di verosimiglianza
+  ottenendo le uguaglianze
+  \begin{align*}
+    L(\theta;\mathbf{x}) &= h(x)g(\theta,t_n), \\
+    l(\theta;\mathbf{x}) &= \ln h(x) + \ln g(\theta,t_n).
+  \end{align*}
+  Ora, l'equazione di stima per lo stimatore di massima verosimiglianza
+  data da
+  \begin{equation*}
+    \frac{d}{d\theta}l(\theta;\mathbf{x}) =
+    \frac{d}{d\theta}\ln g(\theta,t_n) = 0
+  \end{equation*}
+  fornisce una prova dell'indipendenza dello stimatore di massima verosimiglianza rispetto alla determinazione campionaria e al parametro
+  da stimare, mantenendo dipendenza unicamente dalla statistica sufficiente.
+\end{proof}
+
+\begin{prp}[Proprietà di invarianza]
+  Sia \(g(\theta)\) una funzione reale del parametro \(\theta\),
+  indicizzante la famiglia parametrica di distribuzioni \(\mathcal{F}_\theta\)
+  da cui proviene il campione casuale \(\mathbf{X}\).
+  Assunto \(\hat{\theta} = \hat{\theta}(\mathbf{X})\) essere il relativo
+  stimatore di massima verosimiglianza, lo stimatore di massima
+  verosimiglianza di \(g(\theta)\) è dato da
+  \begin{equation}
+    \hat{\eta} = g(\hat{\theta}).
+  \end{equation}  
+\end{prp}
 
 Gli stimatori di massima verosimiglianza godono delle seguenti proprietà:
 
 \begin{enumerate}
-
-\item[(1)] \textbf{Relazione con statistiche sufficienti:} gli stimatori di MV sono funzioni di statistiche sufficienti. Infatti
-$$L(\theta, \underline{x})=g(t_n(x),\theta) h(x) \Longrightarrow l(\theta, \underline{x})=\log(g(t_n(x),\theta)) + \log(h(x))$$
-e quindi lo stimatore di massima verosimiglianza risulterà funzione della sola $t_n$.
-\item[(2)] \textbf{Proprietà di invarianza:} se $\hat{\theta}_n$ è stimatore di MV per $\theta$ e $g(\theta)$ una funzione di $\theta$, allora $g(\hat{\theta}_n)$ è stimatore di MV per $g(\theta)$.
 \item[(3)] \textbf{Efficienza (per n finito):} nel caso in cui la distribuzione provenga da una famiglia regolare, se esiste uno stimatore non distorto $T_n$ di $\theta$ la cui varianza raggiunge il limite inferiore di Rao-Cramer, tale stimatore coincide con lo stimatore di MV di $\theta$. (nota: in generale gli stimatori di MV sono distorti)
 \item[(4)] \textbf{Consistenza:} gli stimatori di MV sono consistenti
 \begin{itemize}

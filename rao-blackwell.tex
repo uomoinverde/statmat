@@ -1,0 +1,99 @@
+%%%%lezione 17 maggio%%%%
+
+Lezione del 17/05, ultima modifica 21/06, Andrea Gadotti
+
+
+\section{Raffinamento}
+
+Il risultato che vedremo nelle prossime righe ci consentirà di utilizzare
+il condizionamento di stimatori non distorti rispetto a a statistiche
+sufficienti per ottenere stimatori non distorti più affidabili, sotto il
+profilo della varianza.
+
+\begin{thm}[Rao-Blackwell]
+  Sia \((\mathbf{X})\) un campione casuale da una distribuzione di
+  parametro da stimare \(\theta\).
+  Siano inoltre \(V_n\) uno stimatore non distorto di \(\theta\) e \(T_n\) una statistica sufficiente per \(\theta\). Allora, lo stimatore
+  \begin{equation}
+    V_{n,T_n} = \mathbb{E}_{\theta}(V_n \mid T_n)
+  \end{equation}
+  gode delle seguenti proprietà:
+  \begin{enumerate}
+    \item il suo valore atteso corrisponde a \(\theta\) ovvero è a sua volta
+    uno stimatore non distorto di \(\theta\);
+    \item vale la disuguaglianza
+      \(\var_{\theta}(V_{n,T_n}) \le \var_{\theta}(V_n)\);
+    \item esso è funzione della statistica sufficiente \(T_n\).
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  Per dimostrare il primo punto, ci avvaliamo della seguente identità, non
+  dandone dimostrazione:
+  \begin{align*}
+    \mathbb{E}(\mathbb{E}(X \mid Y)) &= \mathbb{E}(X)
+    \intertext{da cui evinciamo l'uguaglianza}
+    \mathbb{E}(\mathbb{E}(V_n \mid T_n)) &= \mathbb{E}(V_n) = \theta.
+  \end{align*}
+  Un altro risultato, che usiamo senza dimostrare, è il seguente:
+  \begin{align*}
+    \var(X) &= \var[\mathbb{E}(X \mid Y)] + \mathbb{E}[\var(X \mid Y)]
+    \intertext{da cui ricaviamo il risultato}
+    \var(V_n) &= 
+      \var[\mathbb{E}(V_n \mid T_n)] + \mathbb{E}[\var(V_n \mid T_n)] =
+      \var(V_{n,T_n}) + \mathbb{E}[\var(V_n \mid T_n)];
+  \end{align*}
+  essendo la varianza una funzione strettamente nonnegativa, otteniamo la
+  positività di \(\mathbb{E}[\var(V_n \mid T_n)]\) e la conclusione del
+  secondo punto.
+  
+  Infine, notiamo che la sufficienza di \(T_n\) garantisce l'indipendenza
+  da \(\theta\) della distribuzione condizionata \(f_{\mathbf{X}\mid t_n}\).
+  \begin{equation*}
+    \mathbb{E}_{\theta}(V_n \mid T_n) = \int_D v_n \cdot f_{v_n|t_n}(v_n,t_n) dv_n = \int_{D^n} v_n(\mathbf{x}) \cdot f_{\mathbf{x} \mid t_n}(\mathbf{x},t_n) d\mathbf{x} = \phi(T_n)
+  \end{equation*}
+  dove l'ultima uguaglianza è giustificata dal fatto che $f_{\underline{x}|t_n}(\underline{x},t_n)$ non dipende da $\theta$ per definizione di statistica sufficiente.
+\end{proof}
+
+\begin{ese}
+  Sia \((X_1,\dotsc,X_n)\) un campione casuale estratto da una popolazione
+  Bernoulliana di parametro \(p \in (0,1)\).
+  Abbiamo visto in precedenza che \(T_n=\sum_{i=1}^n X_i\) è statistica
+  sufficiente minimale per \(p\).
+  Vogliamo applicare il teorema di Rao-Blackwell: per farlo, ci
+  avvaliamo dello stimatore non distorto \(X_1\). Notiamo che lo stimatore scelto è estremamente ``grezzo'', dato che il primo risultato di \(n\) prove non ci dice in realtà nulla su \(p\), ma nonostante questo lo stimatore che otterremo sarà molto buono.
+  Procediamo al calcolo del valore atteso di \(X_1\) condizionato a \(T_n\).
+  \begin{equation*}
+    \begin{split}
+    V_{n,T_n} &= \mathbb{E}(X_1 \mid T_n) 
+      = 0 \cdot \mathbb{P} (X_1=0 \mid T_n) +
+        1 \cdot \mathbb{P}(X_1=1 \mid T_n) \\
+      &= \mathbb{P}(X_1=1 \mid T_n=t_n)
+       = \mathbb{P}(X_1=1, T_n=t_n)/\mathbb{P}(T_n=t_n) \\
+      &= \frac{\mathbb{P}(X_1=1, T_{n-1}=t_n-1)}{\mathbb{P}(T_n=t_n)}
+       = \frac{\mathbb{P}(X_1=1) %
+     \mathbb{P}(\sum_{i=2}^n x_i = t_n-1)}{\mathbb{P}(T_n=t_n)} \\
+    &= \frac{p \binom{n-1}{t_n-1} p^{t_n-1} (1-p)^{(n-1)-(t_n-1)}}{\binom{n}{t_n} p^{t_n} (1-p)^{n-t_n}}
+    = t_n/n
+    = \frac{1}{n} \sum_{i=1}^n x_i = \overline{x}_n.
+    \end{split}
+  \end{equation*}
+  dove abbiamo usato anche il fatto che $T_{n-1}=\sum_{i=2}^n x_i$ e $T_n \sim b(n,p)$.
+
+  Per il teorema di Rao-Blackwell siamo sicuri di aver trovato uno stimatore uguale o migliore (in termini di varianza) di \(X_1\). Notiamo però che in realtà abbiamo ottenuto il migliore in assoluto, ovvero un \textsc{mvue} di \(p\). Infatti:
+  \begin{equation*}
+    I(p) = -\mathbb{E} \left(\frac{d^2}{dp^2} l(p;\mathbf{x}) \right) = \frac{n}{p(1-p)} = \frac{1}{\var(\overline{X}_n)}
+  \end{equation*}
+  e poiché \(b(1,p)\) appartiene alla famiglia di distribuzioni regolare
+  ad un parametro, possiamo applicare il teorema di Rao-Cramer, e quindi concludere che lo stimatore trovato, ovvero la media campionaria, è quello con varianza uniformemente minima, ovvero è un UMVU.
+\end{ese}
+
+\begin{oss}
+
+~\begin{enumerate}
+\item[1)] Nell'esempio precedente, per verificare che lo stimatore ha varianza minima abbiamo trovato $I(\theta)$ e $1/\var(T_n)$ e abbiamo mostrato che sono uguali. Grazie al lemma 1 di pagina 41, potevamo invece trovare $I(\theta)$ e la score function $S(\theta):= \frac{d}{d\theta} l(\theta,\underline{x})$ e mostrare che $S(\theta)=(V{n,T_n}-\theta) I(\theta)$ (sempre solo nel caso in cui abbiamo a che fare con una famiglia regolare)
+\item[2)] Quanto detto nel punto 1) è utile nel caso in cui lo stimatore trovato sia effettivamente efficiente. Purtroppo però non tutti gli stimatori UMVU sono efficienti (ovvero: potrebbe non esistere uno stimatore non distorto che sia efficiente), anche se la distribuzione appartiene alla famiglia regolare.
+\item[3)] Nel caso di famiglie non regolari, non possiamo utilizzare il teorema di Rao-Cramer. Dobbiamo quindi trovare trovare un altro modo per verificare se, una volta trovato uno stimatore non distorto, questo ha anche varianza uniformemente minima.
+\item[4)] Il teorema di Rao-Blackwell (in particolare il punto 3) afferma che la ricerca di uno stimatore ottimale si può restringere alla classe degli stimatori non distorti che siano funzioni di statistiche sufficienti per il parametro su cui si vuole fare inferenza. Finora abbiamo trattato il concetto di sufficienza. Come vedremo, quest'ultima, unita alla \emph{completezza}, ci permetterà di risolvere il problema della ricerca di uno stimatore ottimale nel caso in cui il campione non provenga da una famiglia regolare.
+\end{enumerate}
+\end{oss}
+

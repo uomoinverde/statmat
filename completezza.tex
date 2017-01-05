@@ -1,0 +1,93 @@
+\section{Completezza}
+
+Esiste la possibilità di avere l'unicità dello stimatore {\textsc UMVU}, ovvero l'unicià dello stimatore di minima varianza, all'interno della classe degli stimatori non distorti. A tal fine, introduciamo il concetto di \emph{completezza}.
+
+\begin{dfn}[Statistica completa]
+  Una statistica \(T\) è detta \emph{completa} per la famiglia di distribuzioni da cui proviene se per qualunque funzione misurabile \(\phi(T)\) vale
+  \begin{equation}
+    \forall_{\theta\in\Theta}\mathbb{E}_{\theta}(\phi(T)) = 0%
+    \implies%
+    \forall_{\theta\in\Theta}\mathbb{P}(\phi(T)=0)=1,
+  \end{equation}
+  ossia \(\phi\) corrisponde alla funzione nulla quasi ovunque.
+\end{dfn}
+
+Intuitivamente, la completezza di una statistica è una condizione che assicura la possibilità di stimare tutti i parametri del modello statistico a partire da questa: in particolare, garantisce che per valori diversi dei parametri, si hanno distribuzioni diverse.
+L'importanza della condizione di completezza si evince nel momento in cui,
+tramite Rao-Blackwell, si desidera migliorare una statistica sufficiente
+minimale. Di seguito, un notevole risultato.
+
+\begin{thm}[Lehmann-Scheffé]
+  Siano \(T_n(\mathbf{X})\), \(V_n(\mathbf{X})\) una statistica sufficiente
+  completa e uno stimatore non distorto per \(\theta\), rispettivamente.
+  Allora, lo stimatore
+  \begin{equation}
+    \phi(T_n) := %V{n,T_n}
+              \mathbb{E}_{\theta}(V_n \mid T_n)
+  \end{equation}
+  è l'unico {\textsc{mvue}} di \(\theta\).
+  %è l'unica funzione della statistica sufficiente $T_n$ che risulta essere %stimatore non distorto di $\theta$.
+\end{thm}
+\begin{proof}
+  Per il teorema di Rao-Blackwell, da uno stimatore non distorto \(V_n\) si
+  può ricavare uno stimatore non distorto 
+  \(\phi(T_n) = \mathbb{E}_{\theta}(V_n \mid T_n)\)
+  la cui varianza è non superiore a quella di \(V_n\)
+  Sia \(\psi(T_n)\) un'altra funzione di \(T_n\), anch'essa non distorta per \(\theta\). Allora,
+  \begin{equation*}
+    \mathbb{E}(\phi(T_n)-\psi(T_n)) = \mathbb{E}(\phi(T_n))-\mathbb{E}(\psi(T_n)) = \theta - \theta = 0.
+  \end{equation*}
+  Dalla completezza di \(T_n\) si può dedurre che \(\phi(T_n)-\psi(T_n)\)
+  è quasi ovunque nulla, per cui \(\phi(T_n) = \psi(T_n)\) a meno di insiemi
+  di misura nulla.
+\end{proof}
+
+\begin{oss}[importante]
+Grazie al teorema di Rao-Blackwell sapevamo che possiamo restringere la ricerca di uno stimatore UMVU alle funzioni di statistiche sufficienti. Grazie al teorema di Lehmann-Scheffé possiamo ora dire che (se la statistica è completa), la funzione migliore da considerare è unica ed è proprio $\mathbb{E}_{\theta}(V_n|T_n)$.\\
+Notiamo che se la statistica sufficiente è più di una, possiamo sempre ricondizionare alla statistica $T_n$ qualsiasi stimatore ottenuto usando le altre statistiche, ottenendo una funzione di $T_n$. Per questo possiamo dire che $\mathbb{E}_{\theta}(V_n|T_n)$ \underline{è l'unico stimatore UMVU} per $\theta$.
+\end{oss}
+
+\textbf{Problema:} abbiamo visto come la completezza di una statistica sufficiente ci aiuta nella ricerca di uno stimatore UMVU. Ma la completezza è una proprietà ricorrente?
+
+\begin{thm}[Completezza su famiglie esponenziali]
+Data una famiglia esponenziale di distribuzioni a \(k\) parametri, il vettore
+\begin{equation}
+  T = \left(\sum_{i=1}^n B_1(x_i),\dotsc,\sum_{i=1}^n B_k(x_i)\right)
+\end{equation}
+è statistica congiuntamente sufficiente minimale per il vettore dei parametri \({(\theta_i)}_{1 \le i \le k}\), ed è statistica completa.
+\end{thm}
+
+\begin{esempio}[riassuntivo]
+
+Sia $(X_1,...,X_n)$ un campione casuale da distribuzione avente densità esponenziale
+$$f_X(x;\theta)=\theta e^{-\theta x} \mathbbm{1}_{\mathbb{R}^+}(x), \; \; \text{con } \theta>0$$
+Vogliamo costruire uno stimatore UMVU per $\theta$.
+
+\begin{enumerate}
+\item[a)] Cerchiamo una statistica sufficiente per $\theta$:
+$$L(	\theta,\underline{x}) = \prod_{i=1}^n \theta e^{-\theta x_i} \mathbbm{1}_{\mathbb{R}^+}(x_i) = \theta^n e^{-\theta \sum_{i=1}^n x_i} \prod_{i=1}^n \mathbbm{1}_{\mathbb{R}^+}(x_i)$$
+Per il teorema di fattorizzazione di Neymann, $T_n:=\sum_{i=1}^n X_i$ è statistica sufficiente per $\theta$.\\
+Notiamo che, poiché la distribuzione in questione appartiene alla famiglia esponenziale, la statistica trovata è anche completa.
+\item[b)] Cerchiamo lo stimatore di massima verosimiglianza per $\theta$.
+$$l(\theta, \underline{x}) = n \log(\theta) - \theta \sum_{i=1}^n x_i + \sum_{i=1}^n \log(x_i)$$
+$$\frac{d}{d\theta} l(\theta,\underline{x}) = n/\theta - \sum_{i=1}^n x_i$$
+Ponendo la derivata uguale a 0 si ottiene subito che $\hat{\theta}_n := \frac{n}{\sum_{i=1}^n X_i}$ è stimatore di massima verosimiglianza per $\theta$.
+\item[c)] Vediamo se $\hat{\theta}_n$ è non distorto.\\
+Osserviamo innanzitutto che $X_i \sim \gamma(\alpha=1, \beta=1/\theta)$. Dunque 
+$$W:=\sum_{i=1}^n x_i \sim \gamma(\alpha=n, \beta=1/\theta)$$ Quindi:
+$$\mathbb{E}(\hat{\theta}_n) = \mathbb{E}\left(\frac{n}{\sum_{i=1}^n X_i}\right) = n \mathbb{E}\left(\frac{1}{W}\right) = n \int_0^{+\infty} \frac{1}{w} f_W(w,\alpha,\beta) dw = ... = \frac{n}{n-1} \theta \neq \theta$$
+Quindi $\hat{\theta}_n$ è stimatore distorto per $\theta$, ma è curabile facilmente.
+\item[d)] Consideriamo la statistica di $S_n$ data da $S_n:=\frac{n-1}{n} \hat{\theta}_n$. Notiamo che si tratta di uno stimatore non distorto di $\theta$, funzione della statistica sufficiente e completa $\sum_{i=1}^n X_i$. Quindi per i teoremi di Rao-Blackwell e Lehmann-Scheffé, $S_n$ è \underline{lo} stimatore UMVU per $\theta$.
+\end{enumerate}
+\end{esempio}
+
+\begin{esempio}
+Sia $(X_1,...,X_n)$ da $U(0,\theta)$. Notiamo che la distribuzione in questione non appartiene alla famiglia esponenziale (perché il suo supporto dipende da $\theta$).
+\begin{enumerate}
+\item[a)] Sappiamo che $X_{(n)}=\max(X_1,...,X_n)$ è una statistica sufficiente per $\theta$. Si dimostra (esercizio) che è anche completa.
+\item[b)] Abbiamo visto in precedenza che $\frac{n-1}{n}X_{(n)}$ è stimatore non distorto per $\theta$, ed è chiaramente anche funzione di $X_{(n)}$
+\item[c)] Quindi per i teoremi di Rao-Blackwell e Lehmann-Scheffé, $\frac{n-1}{n} X_{n)}$ è \underline{lo} stimatore UMVU per $\theta$.
+\\
+\\
+\end{enumerate}
+\end{esempio}
